@@ -6,7 +6,7 @@ class WhoAreWe extends Component {
     return (
         <section>
                 <center><img src="https://img.icons8.com/cotton/64/000000/lighthouse--v5.png"/></center>
-                <div>
+                <div className="question">
                     <h1>Vous aimez Saint-Nazaire ?</h1>
                 </div>
 

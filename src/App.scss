@@ -1,4 +1,8 @@
 @import "../assets/sass/theme.scss";
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Georgia');
+
 
 .App {
   text-align: center;
@@ -38,3 +42,89 @@
     transform: rotate(360deg);
   }
 }
+.reponse h1{
+  font-family: 'Georgia', sans-serif;
+  color:black;
+  font-size: 300%;
+  margin-top: 50px;
+  text-align: center
+}
+.reponse h3{
+  font-family: 'Georgia', sans-serif;
+  color:black;
+  font-size: 150%;
+  margin-left: 20px;
+  
+}
+.question h1{
+  font-family: 'Georgia', sans-serif;
+  color:green;
+  font-size: 300%;
+  margin-top: 50px;
+  text-align: center
+
+}
+
+.titreInferieur h3{
+  margin-top: 50px;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 10px 10px 300px #000;
+  font-size: 200% ; 
+  text-decoration: underline;
+}
+
+.titreInferieur p{
+  margin-top: 20px;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 10px 10px 300px #000;
+}
+
+
+.prerequis{
+  margin-top: 30px;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 10px 10px 300px #000;
+  font-size: 150%; 
+  color: green;
+
+}
+.my-slider{
+  width: 200px;
+  height: 10%;
+  text-align: center;
+}
+
+h1{
+  font-family: 'Raleway', sans-serif;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 300%;
+  color: green;
+}
+.madiv{
+  border-style:solid;
+  border-width:5px;
+  border-color:green;
+  border-radius: 10px;
+
+}
+
+@media screen and (max-width: 768px){
+  .content h1{
+      font-size: 250%
+  }
+  .btn{
+      font-size: 110%;
+      padding: 7px 15px;
+  }
+  p {
+      font-size: 100%;
+      line-height: 160%;
+  }
+  .my-slider{
+      width: 200px;
+      height: 10%;
+      text-align: center;
+  }
+}
+
