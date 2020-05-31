@@ -6,6 +6,8 @@ import WhoAreWe from './components/accueilComponent/who-are-we/who-are-we.jsx';
 import Carrousel from './components/accueilComponent/carrousel/carrousel.jsx';
 import Description from './components/accueilComponent/description/description.jsx';
 import Suggestion from './components/accueilComponent/suggestion/suggestion.jsx';
+import Participant from './components/accueilComponent/listeParticipants/indexParticipant.jsx';
+import Alarm from './components/accueilComponent/alarm/alarm.jsx';
 
 
 
@@ -21,6 +23,8 @@ function App() {
       <Carrousel />
       <Description />
       <Suggestion />
+      <Participant />
+      <Alarm />
     </>
   );
 }
