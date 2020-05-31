@@ -5,12 +5,12 @@ class Alarm extends React.Component {
     constructor(props) {    
         super(props);  
           
-          this.state = { min : 1, sec : 0 };   // Créer l’objet state dans le composant    
+          this.state = { hour: 1,min : 1, sec : 0 };   // Créer l’objet state dans le composant    
           setInterval(() => {
           var newState = this.decrTime(this.state);     
           console.log(newState);  // Afficher l’objet state dans la console    
           
-         this.setState({min : newState.min, sec : newState.sec }); 
+         this.setState({hour: newState.hour, min : newState.min, sec : newState.sec }); 
          }, 1000);
 
          }

@@ -8,6 +8,8 @@ import Description from './components/accueilComponent/description/description.j
 import Suggestion from './components/accueilComponent/suggestion/suggestion.jsx';
 import Participant from './components/accueilComponent/listeParticipants/indexParticipant.jsx';
 import Alarm from './components/accueilComponent/alarm/alarm.jsx';
+import SuggestionCreation from './components/SuggestionCreationComponent/SuggestionCreation.jsx';
+import UtilisateurCreation from './components/UtilisateurCreationComponent/UtilisateurCreation.jsx';
 
 
 
@@ -25,6 +27,8 @@ function App() {
       <Suggestion />
       <Participant />
       <Alarm />
+      <SuggestionCreation />
+      <UtilisateurCreation />
     </>
   );
 }
