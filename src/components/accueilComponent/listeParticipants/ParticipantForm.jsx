@@ -27,9 +27,9 @@ class ParticipantForm extends Component {
           value={this.state.nouveauParticipant}
           onChange={this.handleChange}
           type="text"
-          placeholder="Ajouter un client"
+          placeholder="Ajouter un participant"
         />
-        <button>Confirmer</button>
+        <button disabled={true}>Confirmer</button>
       </form>
     );
   }
