@@ -5,7 +5,8 @@ class suggestion extends Component {
   render() {
     return (
         
-        <div><center><img src="https://img.icons8.com/color/64/000000/25-de-abril-bridge.png"/></center>
+        <div>
+        <center><img src="https://img.icons8.com/color/64/000000/25-de-abril-bridge.png"/></center>
             <div class="titreInferieur">
             <h3>Les suggestions</h3>
                 <p>Si vous voulez faire une suggestion à propos de la prochaine course ou de l'activité de l'association vous pouvez la faire par ce bouton.

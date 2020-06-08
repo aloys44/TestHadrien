@@ -86,7 +86,7 @@ handleSubmit = e => {
             <div className="title">
               <label htmlFor="title">Titre</label>
               <input
-                className={formErrors.title.length > 0 ? "error" : null}
+                className={formErrors.title.length > 3 ? "error" : null}
                 placeholder="Titre"
                 type="text"
                 name="title"
@@ -111,6 +111,9 @@ handleSubmit = e => {
               {formErrors.description.length > 0 && (
                 <span className="errorMessage">{formErrors.description}</span>
               )}
+              <div className="createAccount">
+              <button type="submit">Valider la suggestion</button>
+            </div>
             </div>  
           </form>
         </div>

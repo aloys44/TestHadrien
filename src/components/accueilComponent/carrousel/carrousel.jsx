@@ -11,10 +11,9 @@ class Carrousel extends Component {
             <div><img src="../img/carroussel/photo5.jpg"></img></div>
             <div><img src="../img/carroussel/photo6.jpg"></img></div>
         </div>
+       
         </section>
     )}
-
-     
     }
 
 

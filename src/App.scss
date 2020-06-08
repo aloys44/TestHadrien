@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Georgia');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap');
+
+
 
 
 .App {
@@ -101,6 +104,13 @@ h1{
   font-size: 300%;
   color: green;
 }
+Minortitle{
+  font-family: 'Raleway', sans-serif;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 300%;
+  color: green;
+}
 .madiv{
   border-style:solid;
   border-width:5px;
@@ -138,6 +148,18 @@ h1{
   background-color: darkorange;
 }
 
+
+
+.wrapper-connexion{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:salmon;
+}
+
 .wrapper-suggestion{
   height: 100vh;
   width: 100%;
@@ -147,8 +169,6 @@ h1{
   align-items: center;
   background-color: royalblue;
 }
-
-
 
 .wrapper {
   height: 100vh;
@@ -168,6 +188,39 @@ h1{
   border-radius: 10px;
   box-shadow: 0px 10px 50px #555;
   background-color: #ffffff;
+}
+
+  .form-participants {
+  width: 800px;
+  display: left;
+  flex-direction: column;
+  padding: 20px 40px 20px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 50px #555;
+  background-color: #ffffff;
+}
+  .form-participants {
+    width: 800px;
+    display: left;
+    flex-direction: column;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px #555;
+    background-color: #ffffff;
+  }
+  
+  .hr {
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.hr::before,
+.hr::after {
+    border-top: .0625em solid;
+    content: "";
+    flex: 1;
+    margin: 0 .5em;
 }
 
 form {
@@ -277,4 +330,72 @@ input.error {
 .createAccount small {
   color: #999;
   font-weight: lighter;
+}
+
+body {
+  font-size: 100%
+}
+.timer-content{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 100%;
+}
+
+.timer-container {
+  background-image: url('./timer.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  width: 100vw;
+  height: 100vh;
+}
+
+.timer {
+  background-color: rgba(0,0,0,0.5);
+  display:flex;
+  flex: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 7em;
+  padding-top: 2em;
+  width: 100%;
+  height: 100%
+}
+
+.timer div:first-child {
+  text-align: center;
+}
+
+.timer-icon {
+  font-size: 8em;
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+.timer div:first-child p {
+color: #f8f8f8
+}
+
+.timer div:last-child {
+  border: 1px solid #fff;
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  margin-top: 3em;
+  padding: 3em;
+  text-align: center;
+}
+
+section p:first-child, .timer div:last-child span{
+  font-size: 3em;
+}
+
+@media screen and (max-widht: 480px){
+  .timer div:last-child {
+    margin-left: 2em;
+    margin-right: 2em;
+    padding: 3em 1em;
+  }
 }
