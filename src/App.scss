@@ -335,9 +335,28 @@ input.error {
 body {
   font-size: 100%
 }
-.timer-content{
+* {
+  box-sizing: border-box;
+  margin: auto;
+  padding: auto;
+}
+
+.timer-container h2{
+  font-family: 'Quicksand', sans-serif;
+  font-size:300%;
+  color: #fff;
+}
+.timer-container h3{
+  font-family: 'Quicksand', sans-serif;
+  font-size:200%;
+  color: #fff;
+  margin-top: 1em;
+}
+.timer-content p{
   font-family: 'Quicksand', sans-serif;
   font-size: 100%;
+  color: #fff;
+  width: 100vw;
 }
 
 .timer-container {
@@ -352,7 +371,7 @@ body {
 
 .timer {
   background-color: rgba(0,0,0,0.5);
-  display:flex;
+  display:grid;
   flex: column;
   align-items: center;
   justify-content: center;
@@ -362,34 +381,35 @@ body {
   height: 100%
 }
 
-.timer div:first-child {
+.timer div:first-child{
   text-align: center;
 }
 
 .timer-icon {
   font-size: 8em;
 }
-
-h2 {
-  font-weight: 600;
+.timer-content h2{
+  font-weight: 600%;
   margin-bottom: 0.5em;
 }
-.timer div:first-child p {
+
+
+.timer div:first-child p{
 color: #f8f8f8
 }
 
-.timer div:last-child {
+.timer div:last-child{
   border: 1px solid #fff;
   border-radius: 3px;
   display: grid;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: repeat(7, 1fr);
   margin-top: 3em;
   padding: 3em;
   text-align: center;
 }
 
 section p:first-child, .timer div:last-child span{
-  font-size: 3em;
+  font-size: 5em;
 }
 
 @media screen and (max-widht: 480px){

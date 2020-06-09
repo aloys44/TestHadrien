@@ -10,7 +10,7 @@ import React, {useRef, useState, useEffect} from "react";
         let interval = useRef();
 
         const startTimer = () => {
-            const countdownDate = new Date('May 30, 2020 00:00:00').getTime();
+            const countdownDate = new Date('June 21, 2020 11:00:00').getTime();
 
             interval = setInterval(() => {
                 const now = new Date().getTime();
@@ -22,7 +22,6 @@ import React, {useRef, useState, useEffect} from "react";
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 if (distance < 0){
-                    // stop le timer
                     clearInterval(interval.current);
                 } else {
                     setTimerDays(days);
@@ -47,18 +46,19 @@ import React, {useRef, useState, useEffect} from "react";
         return (
             <section className="timer-container">
                 <section className="timer">
-                        <span className="mdi mdi-calendar-clock timer-icon"></span>
-                        <h2>Countdown Timer</h2>
-                        <p>Countdown to a really special date</p>
+                    <div>
+                        <h2>Temps prévu avant la prochaine course</h2>
+                        <h3>Inscrivez vous !</h3>
+                    </div>
                     <div>
                         <section>
                             <p>{timerDays}</p>
-                            <p><small>Days</small></p>
+                            <p><small>Jours</small></p>
                         </section>
                         <span>:</span>
                         <section>
                             <p>{timerHours}</p>
-                            <p><small>Hours</small></p>
+                            <p><small>Heures</small></p>
                         </section>
                         <span>:</span>
                         <section>
@@ -73,6 +73,7 @@ import React, {useRef, useState, useEffect} from "react";
                     </div>
                 </section>
             </section>
+
         );
     };
 
