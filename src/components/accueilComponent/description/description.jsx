@@ -11,12 +11,9 @@ class Description extends Component {
                 Nous réalisons ainsi des activités liées au plogging. Cela consiste à très simplement ramasser les déchets
                 que nous croisons durant les différents parcours pour ensuite les trier et les jeter.         </p>
 
-        </div>
         <div className="prerequis">
             <h3>Prerequis :</h3>
         </div>
-
-        <div className="titreInferieur">
                 <p>Pour participer à nos courses rien de plus simple. Il vous suffit de simplement ramener un sac et des gants afin de pouvoir
                 ramasser les déchets que nous trouverons en chemin.</p>
         </div>

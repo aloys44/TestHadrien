@@ -27,7 +27,6 @@ class indexParticipant extends React.Component {
     nombreParticipantTotalMax: 20,
 
   };
-
   handleDeleteTeamOne = id => {
     const participantsTeamOne = [...this.state.participantsTeamOne];
     const index = participantsTeamOne.findIndex(participantTeamOne => participantTeamOne.id === id);
@@ -40,7 +39,6 @@ class indexParticipant extends React.Component {
     this.setState({ nombreParticipantTeamOne });
     this.setState({ nombreParticipantTotal });
   };
-
   handleDeleteTeamTwo = id => {
     const participantsTeamTwo = [...this.state.participantsTeamTwo];
     const index = participantsTeamTwo.findIndex(participantTeamTwo => participantTeamTwo.id === id);
@@ -52,21 +50,17 @@ class indexParticipant extends React.Component {
     this.setState({ participantsTeamTwo });
     this.setState({ nombreParticipantTeamTwo });
     this.setState({ nombreParticipantTotal });
-
   };
-
 
   handleAddTeamOne = participantTeamOne => {
     const participantsTeamOne = [...this.state.participantsTeamOne];
     const nombreParticipantTeamOne = this.state.nombreParticipantTeamOne +1 ; 
     const nombreParticipantTotal = this.state.nombreParticipantTotal +1 ;
 
-
     participantsTeamOne.push(participantTeamOne);
     this.setState({ participantsTeamOne });
     this.setState({ nombreParticipantTeamOne });
     this.setState({ nombreParticipantTotal });
-
   };
 
   handleAddTeamTwo = participantTeamTwo => {

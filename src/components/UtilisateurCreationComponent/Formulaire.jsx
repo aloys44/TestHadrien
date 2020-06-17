@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { AddUser, GetUsers } from "../../actions/users";
+
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -44,11 +48,24 @@ constructor(props) {
     };
   }
 
+    add = () => {
+    const user = {
+      id: 3,
+      username: this.state.pseudo,
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+
+    };
+
+    this.props.AddUser(user);
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
 
-    if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
         First Name: ${this.state.firstName}
@@ -57,9 +74,6 @@ constructor(props) {
         Password: ${this.state.password}
         ConfirmedPassword:  ${this.state.confirmedPassword}
       `);
-    } else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-    }
   };
 
   handleChange = e => {
@@ -102,6 +116,8 @@ constructor(props) {
   };
 
   render() {
+    console.log(this.props.users);
+
     const { formErrors } = this.state;
 
     return (
@@ -194,7 +210,7 @@ constructor(props) {
               )}
             </div>
             <div className="createAccount">
-              <button type="submit">Créer votre nouveau profil !</button>
+              <button type="submit" onClick={this.add}>Créer votre nouveau profil !</button>
               <small>Vous avez déja un compte?</small>
             </div>
           </form>
@@ -204,4 +220,15 @@ constructor(props) {
   }
 }
 
-export default Formulaire;
+const mapStateToProps = (state) => {
+  return { users: state.users };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    AddUser: (user) => dispatch(AddUser(user)),
+    GetUsers: () => dispatch(GetUsers()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Formulaire);

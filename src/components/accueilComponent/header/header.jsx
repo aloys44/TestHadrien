@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import Connexion from "./Connexion.jsx";
+
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 class Header extends Component {
+
+
 
   render() {
     return (
@@ -28,10 +33,10 @@ class Header extends Component {
             </a>
 
             <div class="navbar-item has-dropdown is-hoverable">
+
                 <a class="navbar-link">
                 More
                 </a>
-
                 <div class="navbar-dropdown">
                 <a class="navbar-item">
                     About
@@ -46,20 +51,26 @@ class Header extends Component {
                 <a class="navbar-item">
                     Report an issue
                 </a>
+                
                 </div>
             </div>
             </div>
 
             <div class="navbar-end">
             <div class="navbar-item">
+              <Router>
                 <div class="buttons">
                 <a class="button is-primary">
-                    <strong>Sign up</strong>
+                    <strong>Inscription</strong>
                 </a>
                 <a class="button is-light">
-                    Log in
+                    <strong><Link path="/Connection" >Connection</Link></strong>
                 </a>
                 </div>
+                      <Switch>
+                        <Route path="/Connection" component={Connexion} />
+                    </Switch>
+              </Router>      
             </div>
             </div>
         </div>

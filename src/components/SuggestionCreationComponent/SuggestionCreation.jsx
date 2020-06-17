@@ -1,5 +1,9 @@
 import React from "react";
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { AddSuggestion, GetSuggestions } from "../../actions/suggestions";
+
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -23,8 +27,6 @@ class SuggestionCreation extends React.Component {
             super(props);    
                  
          this.state = {
-      title: null,
-      description: null,
       formErrors: {
         title: "",
         description: "",
@@ -32,9 +34,17 @@ class SuggestionCreation extends React.Component {
     };
   }
 
-handleSubmit = e => {
-    e.preventDefault();
+    add = e => {
+    const suggestion = {
+      id: 4,
+      title: this.state.title,
+      description: this.state.description,
+      author: "Alois",
+     };
+    this.props.AddSuggestion(suggestion);
+  };
 
+handleSubmit = e => {
 
     if (formValid(this.state)) {
       console.log(`
@@ -112,7 +122,7 @@ handleSubmit = e => {
                 <span className="errorMessage">{formErrors.description}</span>
               )}
               <div className="createAccount">
-              <button type="submit">Valider la suggestion</button>
+              <button type="submit" onClick={this.add}>Valider la suggestion</button>
             </div>
             </div>  
           </form>
@@ -124,4 +134,15 @@ handleSubmit = e => {
      
      } }
 
-export default SuggestionCreation;
+const mapStateToProps = (state) => {
+  return { suggestions: state.suggestions };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    AddSuggestion: (suggestion) => dispatch(AddSuggestion(suggestion)),
+    GetSuggestions: () => dispatch(GetSuggestions()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SuggestionCreation);

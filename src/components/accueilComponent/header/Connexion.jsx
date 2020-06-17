@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ConnexionChecking from './ConnexionChecking';
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -110,10 +109,6 @@ handleSubmit = e => {
             </div>
             <div className="createAccount">
               <button type="submit">Connexion</button>
-                            <ConnexionChecking
-              onValidUsername={this.state.pseudo}
-              onValidPassword={this.state.password}
-              />
               <button type="submit" className="submit-choice"><small>Vous n'avez pas de compte ?</small></button>
             </div>
           </form>

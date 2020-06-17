@@ -1,8 +1,11 @@
 
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
+
 class LikeButton extends React.Component {
 
         state = {
-            likes: this.props.likes || 0,
+            likes: this.props.likes,
             isLiked: this.props.isLiked || false
         };
 
@@ -43,3 +46,5 @@ document.querySelectorAll('span.react-like').forEach(function(span){
 
     ReactDOM.render(<LikeButton likes={likes} isLiked={isLiked} />,span);
 });
+
+export default LikeButton;
