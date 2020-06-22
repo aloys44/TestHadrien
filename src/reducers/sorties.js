@@ -1,8 +1,9 @@
-import { SORTIE_ADD, SORTIE_ADD_ERROR, SORTIE_DATA_LOADED } from '../constants/ActionTypes';
+import { SORTIE_ADD, SORTIE_ADD_ERROR, SORTIE_DATA_LOADED,  } from '../constants/ActionTypes';
 
 
 const initialState = {
   sortieList: null,
+  sortieSorted: null,
   error: false
 };
 

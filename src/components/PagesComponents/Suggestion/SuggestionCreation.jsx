@@ -2,7 +2,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { AddSuggestion, GetSuggestions } from "../../actions/suggestions";
+import { AddSuggestion, GetSuggestions } from "../../../actions/suggestions";
 
 
 const formValid = ({ formErrors, ...rest }) => {
@@ -39,7 +39,7 @@ class SuggestionCreation extends React.Component {
       id: 4,
       title: this.state.title,
       description: this.state.description,
-      author: "Alois",
+      author: this.state.author,
      };
     this.props.AddSuggestion(suggestion);
   };

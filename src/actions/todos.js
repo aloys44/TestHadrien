@@ -1,56 +1,58 @@
 import * as types from "../constants/ActionTypes";
 
-export function GetSuggestions() {
+export function GetTodos() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/list.php")
+    return fetch("http://testhadrienback/api/todos/list.php")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.SUGGESTION_DATA_LOADED,
-          payload: json.suggestionList,
+          type: types.TODO_OBJECT_ADD_ERROR,
+          payload: json.todoList,
         });
       });
   };
 }
 
-export function GetSuggestionsSorted() {
+/*
+export function GetSortieSorted() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/readSuggestionSortByLike.php")
+    return fetch("http://testhadrienback/api/sorties/readSortieLast.php")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.SUGGESTION_SORTED_DATA_LOADED,
-          payload: json.suggestionList,
+          type: types.SORTIE_DATA_LOADED,
+          payload: json.sortieList,
         });
       });
   };
 }
+*/
 
-export function AddSuggestion(suggestion) {
+
+export function AddTodo(todo) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/add.php", {
+    return fetch("http://testhadrienback/api/todos/add.php", {
       method: "post",
-      body: JSON.stringify(suggestion),
+      body: JSON.stringify(todo),
     })
       .then((response) => {
           if (response.status == 201) {
             let json = response.json();
             dispatch({
-                type: types.SUGGESTION_ADD,
-                payload: suggestion,
+                type: types.TODO_OBJECT_ADD,
+                payload: todo,
             });
           } else {
               dispatch({
-                type: types.SUGGESTION_ADD_ERROR,
+                type: types.TODO_OBJECT_DATA_LOADED,
             });
           }
-        
        })
        .catch(() => {
             dispatch({
-                type: types.SUGGESTION_ADD_ERROR,
+                type: types.TODO_OBJECT_DATA_LOADED,
             });
        })
   };

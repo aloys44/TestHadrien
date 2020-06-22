@@ -108,8 +108,8 @@
 .to-do-listComponent{
   align-items: center;
   background-color:lightcoral;
-  min-height: 700px;
-  height: 100vh;
+  min-height: 70px;
+  height: 50%;
   width: 100%;
   margin: 40px auto;
 }
@@ -140,7 +140,7 @@
 }
 .to-do-form button{
   background-color: rgb(202,156,24);
-  height: 60px;
+  height: 40px;
   width:100px;
   border-radius: 5px;
   margin: 5px;
@@ -154,11 +154,11 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3%;
-
+  height:70%;
   width: 70%;
 }
 .to-do-listCoursePresentation h1{
-  font-size: 3em;
+  font-size: 2em;
   color:black;
   font-weight:bold;
 }
@@ -181,7 +181,7 @@
   background-color: darkorange;
   margin: 10px;
   float: left;
-  height: 85%;
+  height: 5%;
   width: 45%;
   margin: 5px;
   font-size: 30px;
@@ -234,11 +234,12 @@
   color: #fff;
   width: 90%;
   height: 50px;
-  background-color:gray;
+  background-color:orangered;
   border-radius: 5px;
 }
 
 .list p input{
+  align-items: center;
   background-color: transparent;
   border: 0;
   color: #fff;
@@ -309,7 +310,15 @@ Minortitle{
   align-items: center;
   background-color: darkorange;
 }
-
+.wrapper-suggestion-creationCourse{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:blueviolet;
+}
 
 
 .wrapper-connexion{
@@ -329,7 +338,39 @@ Minortitle{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: royalblue;
+  background-color: firebrick;
+}
+
+
+.wrapper-suggestion-listUser{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: forestgreen;
+}
+
+.wrapper-suggestion-listUser h1{
+  text-align: center;
+  width: 100%;
+  color: #111;
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+.wrapper-suggestion-listSuggestion{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color:mediumslateblue;
+  
 }
 
 .wrapper {
@@ -344,6 +385,7 @@ Minortitle{
 
 .form-wrapper {
   width: 400px;
+  height: 800px;
   margin-bottom:10px;
   display: flex;
   flex-direction: column;
@@ -351,6 +393,13 @@ Minortitle{
   border-radius: 10px;
   box-shadow: 0px 10px 50px #555;
   background-color: #ffffff;
+}
+.form-wrapper h1{
+  text-align: center;
+  width: 100%;
+  color: #111;
+  font-size: 30px;
+  font-weight: lighter;
 }
 
   .form-participants {
@@ -455,8 +504,16 @@ input.error {
 
 .firstName,
 .lastName
-.details {
+ {
   width: 49%;
+}
+
+.details {
+  margin-left:10%;
+  margin-bottom:5px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
 
 .title,

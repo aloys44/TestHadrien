@@ -3,18 +3,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import LikeButton from "./LikeComponent/LikeButton"
-import { GetSuggestions } from "../../actions/suggestions";
+import { GetSuggestionsSorted } from "../../actions/suggestions";
 
 
-class SuggestionList extends React.Component {
+class SuggestionsSortByLike extends React.Component {
   constructor(props) {
     super(props);
 
-    this.props.GetSuggestions();
+    this.props.GetSuggestionsSorted();
   }
 
   load = () => {
-    this.props.GetSuggestions();
+    this.props.GetSuggestionsSorted();
   };
 
   render() {
@@ -44,8 +44,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    GetSuggestions: () => dispatch(GetSuggestions()),
+    GetSuggestionsSorted: () => dispatch(GetSuggestionsSorted()),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SuggestionList);
+export default connect(mapStateToProps, mapDispatchToProps)(SuggestionsSortByLike);

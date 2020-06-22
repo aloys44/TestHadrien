@@ -14,6 +14,22 @@ export function GetSorties() {
   };
 }
 
+export function GetSortieSorted() {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/sorties/readSortieLast.php")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch({
+          type: types.SORTIE_DATA_LOADED,
+          payload: json.sortieList,
+        });
+      });
+  };
+}
+
+
+
 export function AddSortie(sortie) {
   return function (dispatch) {
     return fetch("http://testhadrienback/api/sorties/add.php", {

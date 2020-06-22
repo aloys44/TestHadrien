@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { AddUser, GetUsers } from "../../actions/users";
+import { AddUser, GetUsers } from "../../../actions/users";
 
 
 const emailRegex = RegExp(

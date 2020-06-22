@@ -10,55 +10,29 @@ class SortieCreation extends React.Component {
  constructor(props) {
             super(props);    
                  
+         this.state = {
+      formErrors: {
+        title: "",
+        description: "",
+      }
+    };
   }
-  title = "";
-  description = "";  
-  author = "";
-  nbMaxWalk_participants = "";  
-  leaderWalk_participants = "";
-  nbMaxRun_participants = "";
-  leaderRun_participants = "";
-  nbTotal_participants = "";
 
     add = () => {
     const sortie = {
-      title: this.title,
-      description: this.description,
-      author: this.author,
-      nbMaxWalk_participants: this.nbMaxWalk_participants,
-      leaderWalk_participants: this.leaderWalk_participants,
-      nbMaxRun_participants: this.nbMaxRun_participants,
-      leaderRun_participants: this.leaderRun_participants,
-      nbTotal_participants: this.nbTotal_participants,
+      id: 7,
+      title: this.state.title,
+      description: this.state.description,
+      author: this.state.author,
+      nbMaxWalk_participants: this.state.nbMaxWalk_participants,
+      leaderWalk_participants: this.state.leaderWalk_participants,
+      nbMaxRun_participants: this.state.nbMaxRun_participants,
+      leaderRun_participants: this.state.leaderRun_participants,
+      nbTotal_participants: this.state.nbTotal_participants,
      };
      console.log(sortie);
     this.props.AddSortie(sortie);
   };
-
-  titleChange= (e) => {
-    this.title = e.target.value;
-  }
-  descriptionChange= (e) => {
-    this.description = e.target.value;
-  }
-  authorChange= (e) => {
-    this.author = e.target.value;
-  }
-  nbMaxWalk_participantsChange= (e) => {
-    this.nbMaxWalk_participants = e.target.value;
-  }
-  leaderWalk_participantsChange= (e) => {
-    this.leaderWalk_participants = e.target.value;
-  }
-  nbMaxRun_participantsChange= (e) => {
-    this.nbMaxRun_participants = e.target.value;
-  }
-  leaderRun_participantsChange= (e) => {
-    this.leaderRun_participants = e.target.value;
-  }
-  nbTotal_participantsChange= (e) => {
-    this.nbTotal_participants = e.target.value;
-  }
 
 handleSubmit = e => {
       console.log(`
@@ -77,22 +51,50 @@ handleSubmit = e => {
     
   };
 
+  handleChange = e => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+
+    switch (name) {
+      case "title":
+        formErrors.title =
+          value.length < 5 ? "minimum de 5 caractères requis !" : "";
+        break;
+      case "description":
+        if(value.length < 3){
+          formErrors.description =
+          value.length < 10 ? "minimum de 10 caractères requis !" : "";
+        } else {
+          formErrors.description =
+          value.length > 50 ? "maximum de 500 caractères requis !" : "";
+        }
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+  };
+
  render() {    
+       const { formErrors } = this.state;
 
 
      return (
      <div>
-      <div className="wrapper-suggestion-creationCourse">
-        <div className="form-wrapper">
+      <div className="wrapper-suggestion">
+        <div className="form-wrapper-course">
           <h1>Création d'une course</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className="details">
+            <div className="title">
               <label htmlFor="title">Titre</label>
               <input
                 placeholder="Titre"
                 type="text"
                 name="title"
-                onChange={this.titleChange}
+                noValidate
+                onChange={this.handleChange}
               />
             </div>
             <div className="details">
@@ -102,7 +104,7 @@ handleSubmit = e => {
                 type="text"
                 name="author"
                 noValidate
-                onChange={this.authorChange}
+                onChange={this.handleChange}
               />
             </div>
             <div className="details">
@@ -112,7 +114,7 @@ handleSubmit = e => {
                 type="text"
                 name="nbMaxWalk_participants"
                 noValidate
-                onChange={this.nbMaxWalk_participantsChange}
+                onChange={this.handleChange}
               />
             </div>
                <div className="details">
@@ -122,7 +124,7 @@ handleSubmit = e => {
                 type="text"
                 name="leaderWalk_participants"
                 noValidate
-                onChange={this.leaderWalk_participantsChange}
+                onChange={this.handleChange}
               />
             </div>
             <div className="details">
@@ -132,7 +134,7 @@ handleSubmit = e => {
                 type="text"
                 name="nbMaxRun_participants"
                 noValidate
-                onChange={this.nbMaxRun_participantsChange}
+                onChange={this.handleChange}
               />
             </div>               
             <div className="details">
@@ -142,7 +144,7 @@ handleSubmit = e => {
                 type="text"
                 name="leaderRun_participants"
                 noValidate
-                onChange={this.leaderRun_participantsChange}
+                onChange={this.handleChange}
               />
             </div>               
             <div className="details">
@@ -152,18 +154,18 @@ handleSubmit = e => {
                 type="text"
                 name="nbTotal_participants"
                 noValidate
-                onChange={this.nbTotal_participantsChange}
+                onChange={this.handleChange}
               />
             </div>               
             <div className="description">
               <label htmlFor="description">Description</label>
               <textarea
                 placeholder="Description"
-                rows="7"
+                rows="10"
                 type="text"
                 name="description"
                 noValidate
-                onChange={this.descriptionChange}
+                onChange={this.handleChange}
               />
               <div className="createAccount">
               <button type="submit" onClick={this.add}>Valider la course</button>

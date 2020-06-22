@@ -2,26 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { AddSuggestion, GetSuggestions } from "../../actions/suggestions";
+import LikeButton from "./LikeComponent/LikeButton"
+import { GetSuggestions } from "../../../actions/suggestions";
 
-class SuggestionCreation extends React.Component {
+
+class SuggestionList extends React.Component {
   constructor(props) {
     super(props);
 
     this.props.GetSuggestions();
   }
-
-  add = () => {
-    const suggestion = {
-      id: 0,
-      title: "titre 2",
-      description: "Description 2",
-      like_count: "2",
-      author: "Alois",
-    };
-
-    this.props.AddSuggestion(suggestion);
-  };
 
   load = () => {
     this.props.GetSuggestions();
@@ -30,16 +20,17 @@ class SuggestionCreation extends React.Component {
   render() {
     console.log(this.props.suggestions);
     return (
-      <div>
-        <button onClick={this.add}>ADD SUGGESTION</button>
-        <button onClick={this.load}>LOAD SUGGESTION</button>
+      <div className="wrapper-suggestion-listSuggestion">
         {this.props.suggestions.suggestionList == null
           ? "ERROR MOTHERFUCKER"
           : this.props.suggestions.suggestionList.map((suggestion, index) => (
               <>
+            <div className="form-wrapper">
                 <h3>{suggestion.title}</h3>
                 <p>{suggestion.description}</p>
                 <p>{suggestion.like_count}</p>
+                <LikeButton likes={suggestion.like_count} />
+            </div>
               </>
             ))}
       </div>
@@ -53,9 +44,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    AddSuggestion: (suggestion) => dispatch(AddSuggestion(suggestion)),
     GetSuggestions: () => dispatch(GetSuggestions()),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SuggestionCreation);
+export default connect(mapStateToProps, mapDispatchToProps)(SuggestionList);

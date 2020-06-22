@@ -1,4 +1,4 @@
-import { SUGGESTION_ADD, SUGGESTION_ADD_ERROR, SUGGESTION_DATA_LOADED } from '../constants/ActionTypes';
+import { SUGGESTION_ADD, SUGGESTION_ADD_ERROR, SUGGESTION_DATA_LOADED, SUGGESTION_SORTED_DATA_LOADED } from '../constants/ActionTypes';
 
 const initialState = {
   suggestionList: null,
@@ -18,6 +18,11 @@ export default function suggestions(state = initialState, action) {
       };
 
       case SUGGESTION_DATA_LOADED:
+      return {
+        suggestionList: action.payload,
+      };
+
+      case SUGGESTION_SORTED_DATA_LOADED:
       return {
         suggestionList: action.payload,
       };

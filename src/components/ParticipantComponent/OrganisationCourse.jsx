@@ -122,6 +122,9 @@ class OrganisationCourse extends React.Component {
       }
 
   render() {
+
+    let nbTotal =0;
+
     return (
         <div className="to-do-listParticipant">
             <div className="to-do-listComponent">
@@ -146,7 +149,7 @@ class OrganisationCourse extends React.Component {
                 <h3>La prochaine course aura lieu le: {sortie.running_date}</h3>
                 <h3>{sortie.nbSuscribedWalk_participants}+{sortie.nbSuscribedRun_participants}/{sortie.nbTotal_participants}</h3>
    
-                  </div>
+                  
                   <div className="to-do-listTeamOne">
                       <h1>Equipe Course dirigée par :</h1>
                       <label><h2>{sortie.leaderWalk_participants}</h2></label>
@@ -157,7 +160,7 @@ class OrganisationCourse extends React.Component {
                       setUpdate={this.setUpdate}/>
                   </div>   
                   <div className="to-do-listTeamTwo">
-                      <h1>Equipe Course dirigée par :</h1>
+                      <h1>Equipe Marche dirigée par :</h1>
                       <label><h2>{sortie.leaderRun_participants}</h2></label>
                       <h3>{sortie.nbMaxRun_participants}/{sortie.nbMaxRun_participants}</h3>
                       <ListParticipants 
@@ -165,6 +168,7 @@ class OrganisationCourse extends React.Component {
                       deleteParticipant={this.deleteParticipantTeamOne}
                       setUpdate={this.setUpdate}/>
                   </div> 
+                  </div>
                                 </>
             ))} 
                 </div>
