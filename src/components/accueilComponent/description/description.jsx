@@ -13,10 +13,12 @@ class Description extends Component {
 
         <div className="prerequis">
             <h3>Prerequis :</h3>
-        </div>
+        
                 <p>Pour participer à nos courses rien de plus simple. Il vous suffit de simplement ramener un sac et des gants afin de pouvoir
                 ramasser les déchets que nous trouverons en chemin.</p>
         </div>
+        </div>
+
         </section>
             
     )}

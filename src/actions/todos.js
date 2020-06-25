@@ -7,7 +7,7 @@ export function GetTodos() {
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.TODO_OBJECT_ADD_ERROR,
+          type: types.TODO_OBJECT_DATA_LOADED,
           payload: json.todoList,
         });
       });

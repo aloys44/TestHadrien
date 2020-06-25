@@ -69,21 +69,51 @@
 }
 
 .titreInferieur h3{
-  margin-top: 50px;
   font-family: 'Raleway', sans-serif;
   text-shadow: 10px 10px 300px #000;
   font-size: 200% ; 
   text-decoration: underline;
+  font-weight: bold;
+
 }
+
 
 .titreInferieur p{
   margin-top: 20px;
   font-family: 'Raleway', sans-serif;
   text-shadow: 10px 10px 300px #000;
 }
+.titreInferieur{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.important_p h2{
+  margin-top: 50px;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 10px 10px 300px #000;
+  font-weight: bold;
+  color: green;
+  font-size: 200% ; 
+}
+.important_p h4{
+  margin-top: 10px;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 10px 10px 300px #000;
+  color: darkcyan;
+  font-size: 130% ; 
+}
 
+.espace{
+  margin-bottom: 30px;
+}
+.espace_2{
+  margin-top:30px;
+  margin-bottom: 30px;
+
+}
 
 .prerequis{
+  margin-bottom: 30px;
   margin-top: 30px;
   font-family: 'Raleway', sans-serif;
   text-shadow: 10px 10px 300px #000;
@@ -643,6 +673,7 @@ body {
   font-size:200%;
   color: #fff;
   margin-top: 1em;
+  margin-bottom: 1em;
 }
 .timer-content p{
   font-family: 'Quicksand', sans-serif;
@@ -703,6 +734,13 @@ color: #f8f8f8
 section p:first-child, .timer div:last-child span{
   font-size: 5em;
 }
+  .construction {
+      height: 500px;
+      width: 100%;
+      margin: auto;
+      background: url(/construction.jpg) no-repeat 50% 50%;
+      background-size: cover;
+  }
 
 @media screen and (max-widht: 480px){
   .timer div:last-child {
@@ -711,4 +749,28 @@ section p:first-child, .timer div:last-child span{
     padding: 3em 1em;
     display: none;
   }
+  .image{
+    height: 20px;
+    width: 10%;
+  }
+	
+.scrollup {
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	display: none;
+	color: white;
+	background-color: #3a3f51;
+	border: 1px solid #3a3f51;
+	font-size: 20px;
+	text-align: right;
+  line-height: 37px;
 }
+ 
+.scrollup:hover {
+	color: white;
+}
+}
+

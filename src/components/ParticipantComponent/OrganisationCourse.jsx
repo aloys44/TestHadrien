@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { library } from  '@fortawesome/fontawesome-svg-core';
 import { faTrash } from  '@fortawesome/free-solid-svg-icons';
 import ListParticipants from './ListParticipants';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import 'moment/locale/pt-br';
-import 'moment/locale/fr';
+
 
 import { AddSortie , GetSorties } from "../../actions/sorties";
 import { AddUser , GetUsers } from "../../actions/users";

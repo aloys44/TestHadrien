@@ -56,6 +56,15 @@ class Header extends Component {
             </div>
 
           <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">Choses Restantes à faire sur ce site ...</a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item"><NavLink to="/TodoCreation" >Création todo</NavLink></a>
+                <a class="navbar-item"><NavLink to="/TodoListComponent" >Liste des Choses à faire</NavLink></a>
+              </div>
+            </div>
+
+
+          <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Admin</a>
               <div class="navbar-dropdown">
                 <a class="navbar-item"><NavLink to="/ListeUtilisateur" >Liste des Utilisateurs</NavLink></a>
@@ -73,7 +82,7 @@ class Header extends Component {
                   <NavLink to="/Formulaire">Inscription</NavLink>
                 </strong>
                 </div>
-                <a class="button is-light">
+                <a class="button is-primary">
                   <strong>
                     <NavLink to="/Connexion">Connection</NavLink>
                   </strong>

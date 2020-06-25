@@ -9,10 +9,13 @@ const SuggestionCreation = React.lazy(() => import('./components/PagesComponents
 const SuggestionListe = React.lazy(() => import('./components/PagesComponents/Suggestion/SuggestionList'));
 const SuggestionTri = React.lazy(() => import('./components/SuggestionCreationComponent/SuggestionsSortByLike'));
 const Sortie = React.lazy(() => import('./components/SortieComponent/SortieCreation'));
+const ListeSortie = React.lazy(() => import('./components/SortieComponent/SortieList'));
 const ListeChoseAFaire = React.lazy(() => import('./components/PagesComponents/TodoList/TodoListComponent'));
 const ParticipantTest = React.lazy(() => import('./components/ParticipantComponent/OrganisationCourse'));
 const UserUpdate = React.lazy(() => import('./components/PagesComponents/UtilisateurCreation/UserUpdate'));
 const TodoCreation = React.lazy(() => import('./components/PagesComponents/Todo/TodoComponent'));
+const TodoListComponent = React.lazy(() => import('./components/PagesComponents/Todo/TodoListComponent'));
+
 
 const PageNotFound = React.lazy(() => import('./PageNotFound'));
 
@@ -27,10 +30,12 @@ const routes = [
   { path: '/SuggestionListe', name: 'SuggestionListe', component: SuggestionListe },
   { path: '/SuggestionTri', name: 'SuggestionTri', component: SuggestionTri },
   { path: '/Sortie', name: 'Sortie', component: Sortie },
+  { path: '/ListeSortie', name: 'ListeSortie', component: ListeSortie },
   { path: '/ListeChoseAFaire', name: 'ListeChoseAFaire', component: ListeChoseAFaire },
   { path: '/ParticipantTest', name: 'ParticipantTest', component: ParticipantTest },
   { path: '/UserUpdate', name: 'UserUpdate', component: UserUpdate },
-  { path: '/TodoCreation', name: 'TodoCreation', component: TodoCreation }
+  { path: '/TodoCreation', name: 'TodoCreation', component: TodoCreation },
+  { path: '/TodoListComponent', name: 'TodoListComponent', component: TodoListComponent }
 
 ];
 

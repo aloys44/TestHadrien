@@ -14,16 +14,17 @@ class suggestion extends Component {
         
         <div>
             <div class="titreInferieur">
-            <h3>Les suggestions</h3>
-                <p>Si vous voulez faire une suggestion à propos de la prochaine course ou de l'activité de l'association vous pouvez la faire par ce bouton.
-                un système de Like fera remonter les 3 suggestions préférées au sein de la page d'accueil.</p>
+            <h3>Les Todo</h3>
+                <p>Si vous voulez faire une suggestion à propos du site web c'est ici que ça se passe ! 
+                A savoir que les différentes améliorations prévues pour le site sont déja répertoriées par catégorie,
+                vous pouvez en prendre connaissance au sein de la liste des TODO.</p>
             </div>
-            <center><img src="https://img.icons8.com/officel/80/000000/25-de-abril-bridge.png"/></center>
+            <center><img src="https://img.icons8.com/flat_round/100/000000/tower-crane.png"/></center>
             <div className="espace_2"> 
             <center>
                 <a class="button is-primary">
                   <strong>
-                    <NavLink to="/SuggestionCreation">Création d'une suggestion</NavLink>
+                    <NavLink to="/TodoCreation">Création d'une Todo</NavLink>
                   </strong>
                 </a>
             </center>
@@ -31,10 +32,12 @@ class suggestion extends Component {
             <center>
                 <a class="button is-primary">
                   <strong>
-                    <NavLink to="/SuggestionListe">Liste des suggestions</NavLink>
+                    <NavLink to="/TodoListComponent">Liste des Todo</NavLink>
                   </strong>
                 </a>
             </center>    
+             	
+<a href="#" title="Haut de page" class="scrollup"><i class="fa fa-arrow-up"></i></a>
         </div>
         
     );

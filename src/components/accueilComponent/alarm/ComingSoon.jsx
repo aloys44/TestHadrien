@@ -1,5 +1,11 @@
 import React, {useRef, useState, useEffect} from "react";
-
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 
     const ComingSoon = () => {
         const [timerDays, setTimerDays] = useState('00');
@@ -44,11 +50,19 @@ import React, {useRef, useState, useEffect} from "react";
 
 
         return (
+            <div>
             <section className="timer-container">
                 <section className="timer">
                     <div>
                         <h2>Temps prévu avant la prochaine course</h2>
                         <h3>Inscrivez vous !</h3>
+                        <center>
+                            <a class="button is-white">
+                            <strong>
+                                <NavLink to="/Sortie">Participer à la prochaine course</NavLink>
+                            </strong>
+                            </a>
+                        </center>
                     </div>
                     <div>
                         <section>
@@ -73,7 +87,7 @@ import React, {useRef, useState, useEffect} from "react";
                     </div>
                 </section>
             </section>
-
+            </div>
         );
     };
 
