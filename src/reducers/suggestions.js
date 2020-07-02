@@ -11,7 +11,6 @@ export default function suggestions(state = initialState, action) {
       return {
         suggestionList: [...state.suggestionList, action.payload],
       };
-
       case SUGGESTION_ADD_ERROR:
       return {
         suggestionList: null,

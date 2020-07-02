@@ -10,6 +10,8 @@ class ListUser extends React.Component {
  constructor(props) {
             super(props);    
                  
+    this.props.GetUsers();
+
   }
   pseudo = "";
   firstName = "";
@@ -64,26 +66,40 @@ handleSubmit = e => {
   render() {
     console.log(this.props.users);
     return (
-      <div className="wrapper-suggestion-listUser">
+      <div className="container">
+            <h1><strong>Liste des Joggeurs utiles</strong></h1>
+          <div className="columns is-multiline">
         {this.props.users.userList == null
           ? "ERROR MOTHERFUCKER"
           : this.props.users.userList.map((user, index) => (
-              <>
-            <div className="form-wrapper">
-                <h1>{user.username}</h1>
-                <p>prénom: {user.firstName}</p>
-                <p>nom: {user.lastName}</p>
-                <p>email: {user.email}</p>
-                <p>expérience: {user.experience}</p>
-                <p>photo: {user.photo}</p>
+                   <div class="column is-full">
+                      <article
+                        className={
+                          index % 2 == 0
+                            ? "message is-link"
+                            : "message is-success"
+                        }
+                      >
+                        <div class="message-header">
+                          <p>
+                            {user.username} 
+                          </p>
+                          <p>{user.experience}</p>
+                        </div>
+                        <div class="message-body">
+                          {user.email}{" "}
+                          <h6 className="photo"><i class={user.photo}></i></h6>
+                        </div>
+                      </article>
+                    </div>
+                  )
+                )}
+          </div>
+        </div>
 
-            </div>
-              </>
-            ))}
-      </div>
     );
   }
-} 
+}
 
 const mapStateToProps = (state) => {
   return { users: state.users };
@@ -91,7 +107,6 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    AddUser: (user) => dispatch(AddUser(user)),
         GetUsers: () => dispatch(GetUsers())
 
   };

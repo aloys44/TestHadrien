@@ -14,6 +14,75 @@ export function GetTodos() {
   };
 }
 
+export function GetTodosCategory1() {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/todos/readTodosSortedByCategory1.php")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch({
+          type: types.TODO_OBJECT_DATA_LOADED,
+          payload: json.todoList,
+        });
+      });
+  };
+}
+export function GetTodosCategory2() {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/todos/readTodosSortedByCategory2.php")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch({
+          type: types.TODO_OBJECT_DATA_LOADED,
+          payload: json.todoList,
+        });
+      });
+  };
+}
+export function GetTodosCategory3() {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/todos/readTodosSortedByCategory3.php")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch({
+          type: types.TODO_OBJECT_DATA_LOADED,
+          payload: json.todoList,
+        });
+      });
+  };
+}
+export function GetTodosCategory4() {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/todos/readTodosSortedByCategory4.php")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch({
+          type: types.TODO_OBJECT_DATA_LOADED,
+          payload: json.todoList,
+        });
+      });
+  };
+}
+export function GetTodosCategoryUser() {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/todos/readTodosSortedByCategoryUser.php")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch({
+          type: types.TODO_OBJECT_DATA_LOADED,
+          payload: json.todoList,
+        });
+      });
+  };
+}
+
+
+
+
 /*
 export function GetSortieSorted() {
   return function (dispatch) {
@@ -38,22 +107,23 @@ export function AddTodo(todo) {
       body: JSON.stringify(todo),
     })
       .then((response) => {
-          if (response.status == 201) {
-            let json = response.json();
+          if (response.status === 200) {
+             response.json().then((json) => {
             dispatch({
-                type: types.TODO_OBJECT_ADD,
-                payload: todo,
+              type: types.TODO_OBJECT_ADD,
+              payload: json,
             });
-          } else {
-              dispatch({
-                type: types.TODO_OBJECT_DATA_LOADED,
-            });
-          }
-       })
-       .catch(() => {
-            dispatch({
-                type: types.TODO_OBJECT_DATA_LOADED,
-            });
-       })
+          });
+        } else {
+          dispatch({
+            type: types.TODO_OBJECT_ADD_ERROR,
+          });
+        }
+      })
+      .catch(() => {
+        dispatch({
+          type: types.TODO_OBJECT_ADD_ERROR,
+        });
+      });
   };
 }

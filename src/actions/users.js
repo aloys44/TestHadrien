@@ -13,6 +13,23 @@ export function GetUsers() {
   };
 }
 
+export function GetUserByAuthToken(auth_token) {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/users/getUserByAuthToken.php", {
+      method: "post",
+      body: JSON.stringify({"auth_token": auth_token}),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch({
+          type: types.USER_CONNECTED,
+          payload: json,
+        });
+      });
+  };
+}
+
+
 export function AddUser(user) {
   return function (dispatch) {
     return fetch("http://testhadrienback/api/users/add.php", {

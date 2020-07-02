@@ -2,9 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import LikeButton from "./LikeComponent/LikeButton"
+import LikeButton from "./LikeComponent/LikeButton";
 import { GetSuggestions } from "../../../actions/suggestions";
-
 
 class SuggestionList extends React.Component {
   constructor(props) {
@@ -20,23 +19,42 @@ class SuggestionList extends React.Component {
   render() {
     console.log(this.props.suggestions);
     return (
-      <div className="wrapper-suggestion-listSuggestion">
-        {this.props.suggestions.suggestionList == null
-          ? "ERROR MOTHERFUCKER"
-          : this.props.suggestions.suggestionList.map((suggestion, index) => (
-              <>
-            <div className="form-wrapper">
-                <h3>{suggestion.title}</h3>
-                <p>{suggestion.description}</p>
-                <p>{suggestion.like_count}</p>
-                <LikeButton likes={suggestion.like_count} />
-            </div>
-              </>
-            ))}
-      </div>
+      
+          <div className="container">
+            <h1><strong>Liste des Joggeurs utiles</strong></h1>
+          <div className="columns is-multiline">
+            {this.props.suggestions.suggestionList == null
+              ? "ERROR MOTHERFUCKER"
+              : this.props.suggestions.suggestionList.map(
+                  (suggestion, index) => (
+                    <div class="column is-full">
+                      <article
+                        className={
+                          index % 2 == 0
+                            ? "message is-link"
+                            : "message is-success"
+                        }
+                      >
+                        <div class="message-header">
+                          <p>
+                            {suggestion.title} 
+                          </p>
+                          <p>{suggestion.description}</p>
+                        </div>
+                        <div class="message-body">
+                          {suggestion.creation_date}{" "}
+                        </div>
+                      </article>
+                    </div>
+                  )
+                )}
+          </div>
+        </div>
+
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return { suggestions: state.suggestions };

@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { library } from  '@fortawesome/fontawesome-svg-core';
-import { faTrash } from  '@fortawesome/free-solid-svg-icons';
+
 import ListParticipants from './ListParticipants';
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 
 import { AddSortie , GetSorties } from "../../actions/sorties";
 import { AddUser , GetUsers } from "../../actions/users";
 
 
-class OrganisationCourse extends React.Component {
+class OrganisationCourse extends Component {
     constructor(props){
         super(props);
 

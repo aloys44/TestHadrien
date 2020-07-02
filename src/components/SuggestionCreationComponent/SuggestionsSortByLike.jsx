@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import LikeButton from "./LikeComponent/LikeButton"
-import { GetSuggestionsSorted } from "../../actions/suggestions";
+import { GetSuggestionsSorted, LikeSuggestion } from "../../actions/suggestions";
 
 
 class SuggestionsSortByLike extends React.Component {
@@ -17,6 +17,16 @@ class SuggestionsSortByLike extends React.Component {
     this.props.GetSuggestionsSorted();
   };
 
+  like = (suggestion) => {
+    const suggestionLike = {
+      title: suggestion.title,
+      description: suggestion.description,
+      is_liked: 1
+    }
+    
+    this.props.LikeSuggestion(suggestionLike);
+  }
+
   render() {
     console.log(this.props.suggestions);
     return (
@@ -29,7 +39,7 @@ class SuggestionsSortByLike extends React.Component {
                 <h3>{suggestion.title}</h3>
                 <p>{suggestion.description}</p>
                 <p>{suggestion.like_count}</p>
-                <LikeButton likes={suggestion.like_count} />
+                <LikeButton likes={suggestion.like_count} suggestion={suggestion} fallback={this.like} />
             </div>
               </>
             ))}
@@ -39,12 +49,14 @@ class SuggestionsSortByLike extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("state : ", state);
   return { suggestions: state.suggestions };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     GetSuggestionsSorted: () => dispatch(GetSuggestionsSorted()),
+    LikeSuggestion: (suggestion) => dispatch(LikeSuggestion(suggestion)),
   };
 }
 

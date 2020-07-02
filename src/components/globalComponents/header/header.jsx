@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { AddUser, ConnectUser } from "../../../actions/users";
 
 import {
   BrowserRouter as Router,
@@ -9,17 +13,34 @@ import {
 } from "react-router-dom";
 
 class Header extends Component {
+   constructor(props) {
+            super(props);    
+  }
+
+  handleClick = (e) => {
+    const linkDisabled=false;
+    const valueUsername = ""
+    if(this.props.user?.username != ""){
+         e.preventDefault()
+  }
+    if(this.props.user?.roles != 0){
+         e.preventDefault()
+  
+  }
+
+
+    
+}
   render() {
     return (
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="#">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="#">
             <img src="/TempLogo.png" width="112" height="28" />
           </a>
-
           <a
             role="button"
-            class="navbar-burger burger"
+            className="navbar-burger burger"
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
@@ -29,64 +50,65 @@ class Header extends Component {
             <span aria-hidden="true"></span>
           </a>
         </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <div class="navbar-item">
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <div className="navbar-item">
               <NavLink to="/ParticipantTest">Prochaine Course</NavLink>
             </div>
-            <div class="navbar-item">
-              <NavLink to="/ListeChoseAFaire">Liste des choses à Faire</NavLink>
-            </div>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Votre profil</a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item"><NavLink to="/SuggestionCreation" >Voir Votre profil</NavLink></a>
-                <a class="navbar-item"><NavLink to="/UserUpdate" >Modification du profil</NavLink></a>
+
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">Votre profil</a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item"><NavLink to="/SuggestionCreation"  >Voir Votre profil</NavLink></a>
+                <a className="navbar-item"><NavLink to="/UserUpdate"  onClick={this.handleClick}>Modification du profil</NavLink></a>
               </div>
             </div>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Suggestion</a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item"><NavLink to="/SuggestionCreation" >Création d'une suggestion</NavLink></a>
-                <a class="navbar-item"><NavLink to="/SuggestionListe" >Liste des suggestions</NavLink></a>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">Suggestion</a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item"><NavLink to="/SuggestionCreation" >Création d'une suggestion</NavLink></a>
+                <a className="navbar-item"><NavLink to="/SuggestionListe" >Liste des suggestions</NavLink></a>
               </div>
             </div>
 
-          <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Choses Restantes à faire sur ce site ...</a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item"><NavLink to="/TodoCreation" >Création todo</NavLink></a>
-                <a class="navbar-item"><NavLink to="/TodoListComponent" >Liste des Choses à faire</NavLink></a>
+          <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">Choses Restantes à faire sur ce site ...</a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item"><NavLink to="/TodoCreation" >Création todo</NavLink></a>
+                <a className="navbar-item"><NavLink to="/TodoListComponent" >Liste des Choses à faire</NavLink></a>
               </div>
             </div>
 
 
-          <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Admin</a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item"><NavLink to="/ListeUtilisateur" >Liste des Utilisateurs</NavLink></a>
-                <a class="navbar-item"><NavLink to="/Sortie" >Création d'une course</NavLink></a>
+          <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">Admin</a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item"><NavLink to="/ListeUtilisateur"  onClick={this.handleRole}>Liste des Utilisateurs</NavLink></a>
+                <a className="navbar-item"><NavLink to="/Sortie"  onClick={this.handleClick} >Création d'une course</NavLink></a>
               </div>
             </div>
           </div>
 
+          <div className="navbar-item has-dropdown is-hoverable">
+          
+           <a className="navbar-item">{this.props.user?.username == null || this.props.user?.username == "" ? "Vous n'êtes pas encore connecté !" : "Bonjour " + this.props.user.username + " !"}</a>
+          </div>
 
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <div class="button is-primary">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+                <div className="button is-primary">
                 <strong>
-                  <NavLink to="/Formulaire">Inscription</NavLink>
+                  <NavLink to="/Formulaire" className="nav-link">Inscription</NavLink>
                 </strong>
                 </div>
-                <a class="button is-primary">
+                <div className="button is-primary">
                   <strong>
-                    <NavLink to="/Connexion">Connection</NavLink>
+                    <NavLink to="/Connexion" className="nav-link">Connection</NavLink>
                   </strong>
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -97,4 +119,16 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  console.log("state User :", state)
+  return { user: state.users.user };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    AddUser: (user) => dispatch(AddUser(user))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+

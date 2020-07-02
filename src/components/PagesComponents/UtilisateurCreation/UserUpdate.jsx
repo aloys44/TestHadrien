@@ -2,15 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { AddUser, GetUsers } from "../../../actions/users";
+import { AddUser, ConnectUser } from "../../../actions/users";
+
 
 
 
 class UserUpdate extends React.Component {
  constructor(props) {
             super(props);    
-                 
   }
+
   pseudo = "";
   firstName = "";
   lastName = "";  
@@ -52,27 +53,21 @@ class UserUpdate extends React.Component {
 handleSubmit = e => {
       console.log(`
         --SUBMITTING--
-        pseudo: ${this.state.pseudo}
-        firstName: ${this.state.firstName}
-        lastName: ${this.state.lastName}
-        email: ${this.state.email}
-        password: ${this.state.password}
+
       `);
   };
 
- render() {    
-
-
+ render() {   
      return (
      <div>
-      <div className="wrapper-suggestion">
+className      <div className="wrapper-suggestion">
         <div className="form-wrapper">
           <h1>Modification de votre profil</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="details">
               <label htmlFor="username">Votre pseudo</label>
               <input
-                placeholder="Pseudo"
+                placeholder={this.props.user?.username == null || this.props.user?.username == "" ? "Pseudo" : this.props.user?.username}
                 type="text"
                 name="username"
                 onChange={this.pseudoChange}
@@ -81,7 +76,7 @@ handleSubmit = e => {
             <div className="details">
               <label htmlFor="firstName">Votre prénom</label>
               <input
-                placeholder="Prénom"
+                placeholder={this.props.user?.firstName == null || this.props.user?.firstName == "" ? "Prénom" : this.props.user?.firstName}
                 type="text"
                 name="firstName"
                 noValidate
@@ -91,7 +86,7 @@ handleSubmit = e => {
             <div className="details">
               <label htmlFor="lastName">Votre nom</label>
               <input
-                placeholder="Nom"
+                placeholder= {this.props.user?.lastName == null || this.props.user?.lastName == "" ? "Nom" : this.props.user?.lastName}
                 type="text"
                 name="lastName"
                 noValidate
@@ -101,7 +96,7 @@ handleSubmit = e => {
                <div className="details">
               <label htmlFor="email">Votre email</label>
               <input
-                placeholder="Email"
+                placeholder={this.props.user?.email == null || this.props.user?.email == "" ? "Email" : this.props.user?.email}
                 type="text"
                 name="email"
                 noValidate
@@ -131,7 +126,8 @@ handleSubmit = e => {
      } }
 
 const mapStateToProps = (state) => {
-  return { users: state.users };
+  console.log("state User :", state)
+  return { user: state.users.user };
 };
 
 function mapDispatchToProps(dispatch) {

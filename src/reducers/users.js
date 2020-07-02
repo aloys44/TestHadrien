@@ -4,6 +4,7 @@ import { USER_ADD, USER_ADD_ERROR, USER_DATA_LOADED, USER_CONNECTED, USER_CONNEC
 const initialState = {
   userList: null,
   userConnect: null,
+  user: null,
   error: false
 };
 
@@ -26,12 +27,12 @@ export default function users(state = initialState, action) {
 
       case USER_CONNECTED:
       return {
-        userConnect: action.payload,
+        user: action.payload,
       };
 
       case USER_CONNECT_ERROR:
       return {
-        userConnect: null,
+        user: null,
       };
 
     default:

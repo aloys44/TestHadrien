@@ -14,17 +14,9 @@ import Sortie from "./sortie/sortie.jsx";
 
 import ComingSoon from "./alarm/ComingSoon.jsx";
 
-import SortieCreation from "../SortieComponent/SortieCreation.jsx";
 
-import SuggestionCreation from "../PagesComponents/Suggestion/SuggestionCreation.jsx";
-import SuggestionSorted from '../SuggestionCreationComponent/SuggestionsSortByLike.jsx';
 
-import UserUpdate from '../PagesComponents/UtilisateurCreation/UserUpdate.jsx';
-import TodoListComponent from '../PagesComponents/TodoList/TodoListComponent';
 
-import Formulaire from '../PagesComponents/UtilisateurCreation/Formulaire';
-import SuggestionList from '../PagesComponents/Suggestion/SuggestionList';
-import ListUser from '../PagesComponents/UtilisateurCreation/ListUser';
 
 import OrganisationCourse from "../ParticipantComponent/OrganisationCourse.jsx";
 

@@ -22,7 +22,7 @@ export function GetSuggestionsSorted() {
         console.log(json);
         dispatch({
           type: types.SUGGESTION_SORTED_DATA_LOADED,
-          payload: json.suggestionList,
+          payload: json.suggestionListSorted,
         });
       });
   };
@@ -35,12 +35,36 @@ export function AddSuggestion(suggestion) {
       body: JSON.stringify(suggestion),
     })
       .then((response) => {
-          if (response.status == 201) {
-            let json = response.json();
+          if (response.status == 200 || response.status == 201) {
+             response.json().then((json) => {
             dispatch({
                 type: types.SUGGESTION_ADD,
-                payload: suggestion,
+                payload: json,
+                });
             });
+          } else {
+          dispatch({
+            type: types.SUGGESTION_ADD_ERROR,
+          });
+        }
+      })
+      .catch(() => {
+        dispatch({
+          type: types.SUGGESTION_ADD_ERROR,
+        });
+      });
+  };
+}
+
+export function LikeSuggestion(suggestion) {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/suggestions/like.php", {
+      method: "post",
+      body: JSON.stringify(suggestion),
+    })
+      .then((response) => {
+          if (response.status == 200 || response.status == 201 ) {
+            dispatch(GetSuggestionsSorted());
           } else {
               dispatch({
                 type: types.SUGGESTION_ADD_ERROR,

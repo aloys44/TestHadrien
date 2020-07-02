@@ -4,29 +4,21 @@ import ReactDOM from 'react-dom'
 
 class LikeButton extends React.Component {
 
-        state = {
-            likes: this.props.likes,
-            isLiked: this.props.isLiked || false
-        };
-
-
     handleClick = () =>  {
-        const isLiked = this.state.isLiked;
-        const likes = this.state.likes + (isLiked ? -1 : 1);
-
-        this.setState({likes, isLiked: !isLiked});
+        console.log("test");
+        this.props.fallback(this.props.suggestion);
     };
 
     render() {
 
 
         return <button className="btn btn-link" onClick={ this.handleClick}>
-            {this.state.likes}
+            {this.props.likes}
             <i
                 className={
-                    this.state.isLiked ? "fas fa-thumbs-up" : "far fa-thumbs-up"}/>
+                    this.props.likes > 0 ? "far fa-thumbs-up"  : "fas fa-thumbs-up"}/>
             &nbsp;
-            {this.state.isLiked ? "Je n'aime plus" : "J'aime !"}
+            {this.props.likes > 0 ? "J'aime !" : "Je n'aime plus"}
             &nbsp;
         </button>
 

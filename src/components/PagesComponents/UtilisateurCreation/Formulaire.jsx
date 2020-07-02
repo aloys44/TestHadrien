@@ -1,219 +1,214 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { AddUser, GetUsers } from "../../../actions/users";
+import ImageUploader from "react-images-upload";
+import Select from 'react-select'
 
 
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
+  const options = [
+  { value: "fas fa-user-ninja", label: <i class="fas fa-user-ninja"></i> },
+  { value: "fas fa-user-astronaut", label: <i class="fas fa-user-astronaut"></i> },
+  { value: "fas fa-user-tie", label: <i class="fas fa-user-tie"></i> },
+  { value: "fas fa-user-secret", label: <i class="fas fa-user-secret"></i> },
+  { value: "fas fa-snowboarding", label: <i class="fas fa-snowboarding"></i> },
+  { value: "fas fa-bed", label: <i class="fas fa-bed"></i> },
+  { value: "fas fa-hiking", label: <i class="fas fa-hiking"></i> },
+  { value: "fab fa-suse", label: <i class="fab fa-suse"></i> },
+  { value: "fas fa-kiwi-bird", label: <i class="fas fa-kiwi-bird"></i> },
+  { value: "fas fa-dragon", label: <i class="fas fa-dragon"></i> },
+  { value: "fas fa-cat", label: <i class="fas fa-cat"></i> },
+  { value: "fas fa-robot", label: <i class="fas fa-robot"></i> },
+  { value: "fas fa-running", label: <i class="fas fa-running"></i> },
+  { value: "fas fa-meteor", label: <i class="fas fa-meteor"></i> },
+  { value: "fab fa-earlybirds", label: <i class="fab fa-earlybirds"></i> },
+  { value: "fas fa-frog", label: <i class="fas fa-frog"></i> },
+  { value: "fas fa-fish", label: <i class="fas fa-fish"></i> },
+  { value: "fas fa-ghost", label: <i class="fas fa-ghost"></i> },
+  { value: "fas fa-hippo", label: <i class="fas fa-hippo"></i> },
+  { value: "fab fa-jenkins", label: <i class="fab fa-jenkins"></i> },
+  { value: "fas fa-snowman", label: <i class="fas fa-snowman"></i> },
 
-  // validate form errors being empty
-  Object.values(formErrors).forEach(val => {
-    val.length > 0 && (valid = false);
-  });
-
-  // validate the form was filled out
-  Object.values(rest).forEach(val => {
-    val === null && (valid = false);
-  });
-
-  return valid;
-};
+];
 
 
-class Formulaire extends React.Component { 
+
+class Formulaire extends Component { 
 constructor(props) {
     super(props);    
-        
-         this.state = {
-      firstName: null,
-      lastName: null,
-      email: null,
-      pseudo: null,
-      password: null,
-      confirmedPassword: null,
-      formErrors: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        pseudo: "",
-        password: "",
-        confirmedPassword: "",
-      }
-    };
   }
+
+
+    state = {
+  selectedOption: null,
+}
 
     add = () => {
     const user = {
-      id: 3,
-      username: this.state.pseudo,
-      password: this.state.password,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
+      username: this.username,
+      password: this.password,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      photo: this.state.selectedOption.value,
 
     };
-
-    this.props.AddUser(user);
+    if( this.username.length > 3 && this.firstName.length > 3 && this.lastName.length > 3){
+      if(this.email.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+")  != null){
+        if(this.confirmedPassword == this.password ){
+          if(this.password.length > 7){
+            console.log(user);
+          this.props.AddUser(user);
+          } else {
+              alert("le mot de passe fait moins de 7 lettres"); }
+          } else {
+              alert("le mot de passe fait moins de 7 lettres ou le mot de passe de confirmation ne correspond pas"); }
+        } else {
+          alert("l'email ne semble pas valide ...'"); }
+      } else {
+        alert("le prénom, nom de famille et pseudo doivent comporter plus de 3 caractères");
+      } 
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+    changeUsername = (e) =>{
+        if(e.target.value.length < 15 ){
+      this.username = e.target.value;
+      console.log("pseudo : " + e.target.value);
+        } else {
+      alert("le pseudo ne doit pas dépasser les 15 lettres !");
+    }}
+    
+  changeFirstName = (e) =>{
+        if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+      this.firstName = e.target.value;
+      console.log("prénom : " + e.target.value);
+        } else {
+      alert("le prénom ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+    }}
 
+  changeLastName = (e) =>{
+        if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+      this.lastName = e.target.value;
+      console.log("nom : " + e.target.value);
+        } else {
+      alert("le nom ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+    }}
 
+  changeEmail = (e) =>{
+      if(e.target.value.length < 30 ){
+      this.email = e.target.value;
+      console.log("email : " + e.target.value);
+        } else {
+      alert("l'email' ne doit pas dépasser les 30 lettres !");
+    }}
+  changePassword = (e) =>{
+    if(e.target.value.length < 15) {
+      this.password = e.target.value;
+      console.log("mot de passe : " + e.target.value);
+        } else {
+      alert("le mot de passe ne doit pas dépasser les 15 lettres et ne pas avoir de chiffres !");
+    }}
+
+  changeConfirmedPassword = (e) =>{
+    if(e.target.value.length < 15) {
+      this.confirmedPassword = e.target.value;
+      console.log("mot de passe : " + e.target.value);
+        } else {
+      alert("le mot de passe ne doit pas dépasser les 15 lettres et ne pas avoir de chiffres !");
+    }}
+
+  handleChange = (selectedOption) => {
+  this.setState({ selectedOption });
+  console.log(`Option selected:`, selectedOption);
+}
+
+      handleSubmit  = (e) =>{
       console.log(`
         --SUBMITTING--
-        First Name: ${this.state.firstName}
-        Last Name: ${this.state.lastName}
-        Email: ${this.state.email}
-        Password: ${this.state.password}
-        ConfirmedPassword:  ${this.state.confirmedPassword}
+        First Name: ${this.firstName}
+        Last Name: ${this.lastName}
+        Email: ${ this.email}
+        Password: ${this.password}
+        ConfirmedPassword:  ${this.confirmedPassword}
       `);
   };
 
-  handleChange = e => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    let { password, confirmPassword } = this.state;
-    let formErrors = { ...this.state.formErrors };
-
-    switch (name) {
-      case "firstName":
-        formErrors.firstName =
-          value.length < 3 ? "minimum de 3 caractères requis !" : "";
-        break;
-      case "lastName":
-        formErrors.lastName =
-          value.length < 3 ? "minimum de 3 caractères requis !" : "";
-        break;
-      case "email":
-        formErrors.email = emailRegex.test(value)
-          ? ""
-          : "invalid email address";
-        break;
-      case "password":
-        formErrors.password =
-          value < 6 ? "minimum de 6 caractères requis !" : "";
-        break;
-      case "confirmedPassword": 
-        formErrors.confirmedPassword = 
-          value !== this.state.password ? "Le mot de passe saisi ne correspond pas !" : "OK";
-        break;  
-      case "pseudo":
-        formErrors.pseudo =
-          value.length < 3 ? "minimum de 3 caractères requis !" : "";
-        break;  
-      default:
-        break;
-    }
-
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
-  };
 
   render() {
     console.log(this.props.users);
-
-    const { formErrors } = this.state;
-
-    return (
+  const { selectedOption } = this.state;    
+  return (
       <div className="wrapper">
         <div className="form-wrapper">
           <h1>Création du profil</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
             <div className="firstName">
-              <label htmlFor="firstName">Prénom</label>
+              <label>Prénom</label>
               <input
-                className={formErrors.firstName.length > 0 ? "error" : null}
-                placeholder="Prénom"
                 type="text"
+                placeholder="Prénom"
                 name="firstName"
-                noValidate
-                onChange={this.handleChange}
+                onChange={this.changeFirstName}
               />
-              {formErrors.firstName.length > 0 && (
-                <span className="errorMessage">{formErrors.firstName}</span>
-              )}
             </div>
             <div className="lastName">
-              <label htmlFor="lastName">Nom</label>
+              <label>Nom</label>
               <input
-                className={formErrors.lastName.length > 0 ? "error" : null}
-                placeholder="Nom"
                 type="text"
+                placeholder="Nom"
                 name="lastName"
-                noValidate
-                onChange={this.handleChange}
+                onChange={this.changeLastName}
               />
-              {formErrors.lastName.length > 0 && (
-                <span className="errorMessage">{formErrors.lastName}</span>
-              )}
             </div>
             <div className="pseudo">
-              <label htmlFor="pseudo">Pseudo</label>
+              <label>Pseudo</label>
               <input
-                className={formErrors.pseudo.length > 0 ? "error" : null}
+                type="text"
                 placeholder="Votre pseudo"
-                type="pseudo"
-                name="pseudo"
-                noValidate
-                onChange={this.handleChange}
+                name="username"
+                onChange={this.changeUsername}
               />
-              {formErrors.pseudo.length > 0 && (
-                <span className="errorMessage">{formErrors.pseudo}</span>
-              )}
             </div>
             <div className="email">
-              <label htmlFor="email">Email</label>
+              <label>Email</label>
               <input
-                className={formErrors.email.length > 0 ? "error" : null}
+                type="mail"
                 placeholder="Email"
-                type="email"
                 name="email"
-                noValidate
-                onChange={this.handleChange}
+                onChange={this.changeEmail}
               />
-              {formErrors.email.length > 0 && (
-                <span className="errorMessage">{formErrors.email}</span>
-              )}
             </div>
             <div className="password">
-              <label htmlFor="password">Mot de passe</label>
+              <label>Mot de passe</label>
               <input
-                className={formErrors.password.length > 0 ? "error" : null}
-                placeholder="Mot de passe"
                 type="password"
+                placeholder="Mot de passe"
                 name="password"
-                noValidate
-                onChange={this.handleChange}
+                onChange={this.changePassword}
               />
-              {formErrors.password.length > 0 && (
-                <span className="errorMessage">{formErrors.password}</span>
-              )}
             </div>
             <div className="password">
-              <label htmlFor="confirmedPassword">Confirmation du mot de passe</label>
+              <label>Confirmation du mot de passe</label>
               <input
-                className={formErrors.confirmedPassword.length > 0 ? "error" : null}
+                type="password"
                 placeholder="Confirmation du mot de passe"
-                type="confirmedPassword"
                 name="confirmedPassword"
-                noValidate
-                onChange={this.handleChange}
+                onChange={this.changeConfirmedPassword}
               />
-              {formErrors.confirmedPassword.length > 0 && (
-                <span className="errorMessage">{formErrors.confirmedPassword}</span>
-              )}
+              <div className="espace_3">
+              <label>Avatar</label>
+              <center><h1>
+               <Select 
+               placeholder="Votre avatar ..."
+                onChange={this.handleChange}
+                options={options}
+                autoFocus={true} />
+                </h1></center>
+              </div>  
             </div>
             <div className="createAccount">
               <button type="submit" onClick={this.add}>Créer votre nouveau profil !</button>
               <small>Vous avez déja un compte?</small>
             </div>
-          </form>
         </div>
       </div>
     );
@@ -227,7 +222,6 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     AddUser: (user) => dispatch(AddUser(user)),
-    GetUsers: () => dispatch(GetUsers()),
   };
 }
 

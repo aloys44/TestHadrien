@@ -4,144 +4,92 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { AddSuggestion, GetSuggestions } from "../../../actions/suggestions";
 
-
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
-
-  // validate form errors being empty
-  Object.values(formErrors).forEach(val => {
-    val.length > 0 && (valid = false);
-  });
-
-  // validate the form was filled out
-  Object.values(rest).forEach(val => {
-    val === null && (valid = false);
-  });
-
-  return valid;
-};
-
-
-class SuggestionCreation extends React.Component {  
-    constructor(props) {
-            super(props);    
-                 
-         this.state = {
-      formErrors: {
-        title: "",
-        description: "",
-      }
-    };
+class SuggestionCreation extends React.Component {
+  constructor(props) {
+    super(props);
   }
 
-    add = e => {
+
+  changeTitle = (e) => {
+    if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+        this.title = e.target.value;
+                console.log("titre : " + e.target.value);
+    } else {
+      alert("le titre ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+    }
+  };
+                
+  changeDescription = (e) =>{
+    if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+        this.description = e.target.value;
+          console.log("description : " + e.target.value);
+              } else {
+      alert("la description ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+    }
+
+  }
+     
+  
+
+  handleSubmit = () => {
+
+      
     const suggestion = {
-      id: 4,
-      title: this.state.title,
-      description: this.state.description,
-      author: this.state.author,
-     };
+      title: this.title,
+      description: this.description,
+      auth_token: this.props.user?.auth_token,
+    };
+
+    console.log(this.title.length);
+    console.log("suggestion : ", suggestion);
     this.props.AddSuggestion(suggestion);
   };
 
-handleSubmit = e => {
-
-    if (formValid(this.state)) {
-      console.log(`
-        --SUBMITTING--
-        Title: ${this.state.title}
-        Description: ${this.state.description}
-      `);
-    } else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-    }
-  };
-
-  handleChange = e => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    let formErrors = { ...this.state.formErrors };
-
-    switch (name) {
-      case "title":
-        formErrors.title =
-          value.length < 5 ? "minimum de 5 caractères requis !" : "";
-        break;
-      case "description":
-        if(value.length < 3){
-          formErrors.description =
-          value.length < 10 ? "minimum de 10 caractères requis !" : "";
-        } else {
-          formErrors.description =
-          value.length > 50 ? "maximum de 500 caractères requis !" : "";
-        }
-        break;
-      default:
-        break;
-    }
-
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
-  };
-
- render() {    
-       const { formErrors } = this.state;
-
-
-     return (
-     <div>
+  render() {
+    return (
       <div className="wrapper-suggestion">
         <div className="form-wrapper">
           <h1>Création d'une suggestion</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
-            <div className="title">
-              <label htmlFor="title">Titre</label>
+            <div className="details">
+              <label>Titre</label>
               <input
-                className={formErrors.title.length > 3 ? "error" : null}
                 placeholder="Titre"
                 type="text"
                 name="title"
-                noValidate
-                onChange={this.handleChange}
+                minlength="10"
+                maxlength="100"
+                onChange={this.changeTitle}
               />
-              {formErrors.title.length > 0 && (
-                <span className="errorMessage">{formErrors.title}</span>
-              )}
             </div>
-            <div className="description">
-              <label htmlFor="description">Description</label>
-              <textarea
-                className={formErrors.description.length > 0 ? "error" : null}
+            <div className="details">
+              <label>Description</label>
+              <input
                 placeholder="Description"
-                rows="10"
                 type="text"
                 name="description"
-                noValidate
-                onChange={this.handleChange}
+                minlength="10"
+                maxlength="100"
+                onChange={this.changeDescription}
               />
-              {formErrors.description.length > 0 && (
-                <span className="errorMessage">{formErrors.description}</span>
-              )}
-              <div className="createAccount">
-              <button type="submit" onClick={this.add}>Valider la suggestion</button>
             </div>
-            </div>  
-          </form>
+            <div className="createAccount">
+              <button type="submit" onClick={this.handleSubmit}>
+                Création d'une nouvelle suggestion
+              </button>
+            </div>
+
         </div>
       </div>
-    </div>  
-     )
-     
-     
-     } }
-
+    );
+  }
+}
 const mapStateToProps = (state) => {
-  return { suggestions: state.suggestions };
+  return { suggestions: state.suggestions, user: state.users.user };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     AddSuggestion: (suggestion) => dispatch(AddSuggestion(suggestion)),
-    GetSuggestions: () => dispatch(GetSuggestions()),
   };
 }
 

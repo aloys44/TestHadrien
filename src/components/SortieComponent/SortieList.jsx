@@ -30,18 +30,18 @@ class SortieList extends React.Component {
   render() {
     console.log(this.props.sorties);
     return (
-      <div className="wrapper-suggestion-listUser">
+      <article class="message is-success">
         {this.props.sorties.sortieList == null
           ? "ERROR MOTHERFUCKER"
           : this.props.sorties.sortieList.map((sortie, index) => (
               <>
-            <div className="form-wrapper">
+            <div class="message-body">
                 <h1>{sortie.title}</h1>
-                <p>prénom: {sortie.description}</p>
+                <p>Description: {sortie.description}</p>
             </div>
               </>
             ))}
-      </div>
+</article>
     );
   }
 } 

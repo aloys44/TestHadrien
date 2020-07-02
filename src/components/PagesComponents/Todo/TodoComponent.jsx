@@ -1,65 +1,53 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { AddTodo } from "../../../actions/todos";
 
 
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
-
-  // validate form errors being empty
-  Object.values(formErrors).forEach(val => {
-    val.length > 0 && (valid = false);
-  });
-
-  // validate the form was filled out
-  Object.values(rest).forEach(val => {
-    val === null && (valid = false);
-  });
-
-  return valid;
-};
-
-
-class TodoComponent extends React.Component { 
+class TodoComponent extends Component { 
 constructor(props) {
     super(props);    
         
-
-      }
-
-    title = "";
-    description = "";  
-    category = "";
-    date_creation = "";  
-    anticipatedEnd_realisation = "";
+}
 
 
-    add = () => {
+
+    handleSubmit = (e) => {
+
     const todo = {
       title: this.title,
       description: this.description,
-      category: this.category,
+      category: "utilisateur",
+      author: this.props.user?.username, 
 
     };
-
+     if (this.title.length < 5 || this.description.length < 5) {
+      console.log(this.title.length);
+      alert("titre ou description trop petite ! Minimum 5 lettres pour chaque !")
+    } else {
+    console.log(todo);
     this.props.AddTodo(todo);
-  };
+  };}
 
-  titleChange = (e) => {
-    this.title = e.target.value;
+  changeTitle = (e) => {
+    if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+        this.title = e.target.value;
+                console.log("titre : " + e.target.value);
+    } else {
+      alert("le titre ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+    }
+  };
+                
+  changeDescription = (e) =>{
+    if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+        this.description = e.target.value;
+          console.log("description : " + e.target.value);
+              } else {
+      alert("la description ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+    }
+
   }
-  descriptionChange = (e) => {
-    this.description = e.target.value;
-  }
-  categoryChange = (e) => {
-    this.category = e.target.value;
-  }
+
 
   render() {
 
@@ -67,38 +55,29 @@ constructor(props) {
       <div className="wrapper">
         <div className="form-wrapper">
           <h1>Création d'un Objet Todo</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
+          <form>
             <div className="details">
               <label htmlFor="title">Titre</label>
               <input
                 placeholder="Titre"
-                type="text"
+                type="title"
                 name="title"
-                onChange={this.titleChange}
+                onChange={this.changeTitle}
               />
             </div>
             <div className="details">
               <label htmlFor="description">Description</label>
               <input
                 placeholder="Description"
-                type="text"
+                type="description"
                 name="description"
-                onChange={this.descriptionChange}
-              />
-            </div>
-            <div className="details">
-              <label htmlFor="category">Catégorie</label>
-              <input
-                placeholder="Catégorie"
-                type="text"
-                name="category"
-                onChange={this.categoryChange}
+                onChange={this.changeDescription}
               />
             </div>
             <div className="createAccount">
-              <button type="submit" onClick={this.add}>Création d'un nouveau Todo</button>
+              <button type="submit" onClick={this.handleSubmit}>Création d'un nouveau Todo</button>
             </div>
-          </form>
+            </form>
         </div>
       </div>
     );
@@ -106,7 +85,7 @@ constructor(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { todos: state.todos };
+  return { todos: state.todo , user: state.users.user };
 };
 
 function mapDispatchToProps(dispatch) {

@@ -4040,6 +4040,7 @@ a.list-item {
     margin-bottom: 1em; }
 
 .message {
+  margin-top: 5px;
   background-color: whitesmoke;
   border-radius: 4px;
   font-size: 1rem; }

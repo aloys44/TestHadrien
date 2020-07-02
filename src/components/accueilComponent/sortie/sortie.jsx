@@ -25,8 +25,15 @@ class Sortie extends Component {
                     <NavLink to="/Sortie">Participer à la prochaine course</NavLink>
                   </strong>
                 </a>
-            </center>
-            </div> 
+                </center>
+                </div> 
+                <center>
+                <a class="button is-primary">
+                  <strong>
+                    <NavLink to="/ListeSortie">Voir toutes les courses</NavLink>
+                  </strong>
+                </a>
+                </center>
         </div>
         
     );

@@ -4,55 +4,70 @@ import { bindActionCreators } from "redux";
 
 import { GetTodos } from "../../../actions/todos";
 
-
 class TodoListComponent extends React.Component {
   constructor(props) {
     super(props);
 
     this.props.GetTodos();
+
   }
   title = "";
   description = "";
-  category = "";  
+  category = "";
   creation_date = "";
-  anticipatedEnd_realisation = "";  
+  anticipatedEnd_realisation = "";
   like_Count = "";
 
   load = () => {
     this.props.GetTodos();
   };
 
-
   render() {
     console.log(this.props.todos);
     return (
-      <div className="wrapper-suggestion-listSuggestion">
-        {this.props.todos.todoList == null
-          ? "ERROR MOTHERFUCKER"
-          : this.props.todos.todoList.map((todo, index) => (
-              <>
-            <div className="form-wrapper">
-                <h3>{todo.title}</h3>
-                <p>{todo.description}</p>
-            </div>
-              </>
-            ))}
-      </div>
+        <div className="container">
+            <h1><strong>Liste des TODO</strong></h1>
+
+          <div className="columns is-multiline">
+            {this.props.todo.todoList == null
+              ? "ERROR MOTHERFUCKER"
+              : this.props.todo.todoList.map((todo, index) => (
+                  <div className="column is-full">
+                        <article
+                          className={
+                            index % 2 == 0
+                              ? "message is-danger"
+                              : "message is-warning"
+                          }
+                        >
+                          <div className="message-header">
+                            <p>
+                              {todo.title} créée par {todo.author}
+                            </p>
+                            <p>{todo.creation_date}</p>
+                          </div>
+                          <div className="message-body">
+                            {todo.description}{" "}
+                          </div>
+                        </article>
+                      </div>
+                  )
+                )}
+          </div>
+        </div>
     );
   }
 }
+  
 
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  
-  return { todos: state.todos };
+  return { todo: state.todo };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     GetTodos: () => dispatch(GetTodos()),
-
   };
 }
 

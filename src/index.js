@@ -7,7 +7,6 @@ import configureStore from "./store/configureStore";
 import "./index.css";
 
 import App from "./App";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import * as serviceWorker from "./serviceWorker";
 

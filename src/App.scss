@@ -111,6 +111,10 @@
   margin-bottom: 30px;
 
 }
+.espace_3{
+  margin-top:10px;
+
+}
 
 .prerequis{
   margin-bottom: 30px;
@@ -771,6 +775,21 @@ section p:first-child, .timer div:last-child span{
  
 .scrollup:hover {
 	color: white;
+}
+.image-item {
+  display: flex;
+  margin: 10px 0;
+}
+.image-item__btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+button {
+  height: 40px;
+}
+ h6{
+  font-size: 250%;
 }
 }
 
