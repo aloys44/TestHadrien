@@ -1,4 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { AddUser, ConnectUser } from "../../../actions/users";
+
 import {
   BrowserRouter as Router,
   NavLink,
@@ -7,11 +12,44 @@ import {
   Link,
 } from "react-router-dom";
 
+
 class Sortie extends Component {
+   constructor(props) {
+            super(props);    
+  }
 
   render() {
-    return (
-        
+    // Utilisateur non connecté
+        if(this.props.user?.username == "" || this.props.user?.username == null) {
+            return (
+        <div>
+            <div className="titreInferieur">
+            <h3>Les Sorties</h3>
+                <p>Pour participer à la prochaine course et ainsi augmenter votre expérience au sein de votre profil Joggeurs Utiles, il faut vous inscrire en cliquant sur ce bouton.</p>
+            </div>
+            <center><img src="https://img.icons8.com/bubbles/100/000000/girl-running.png"/></center>
+            <div className="espace_2"> 
+            <center>
+                <h1>Vous n'êtes pas encore connecté {this.props.user?.username}</h1>
+                <a className="button is-danger">
+                  <strong>
+                    <NavLink to="/Sortiez">Participer à la prochaine course</NavLink>
+                  </strong>
+                </a>
+                </center>
+                </div> 
+                <center>
+                <a className="button is-danger">
+                  <strong>
+                    <NavLink to="/ListeSortiez">Voir toutes les courses</NavLink>
+                  </strong>
+                </a>
+                </center>
+        </div>   
+    );
+    } else {
+          // Utilisateur connecté
+        return (
         <div>
             <div class="titreInferieur">
             <h3>Les Sorties</h3>
@@ -20,7 +58,7 @@ class Sortie extends Component {
             <center><img src="https://img.icons8.com/bubbles/100/000000/girl-running.png"/></center>
             <div className="espace_2"> 
             <center>
-                <a class="button is-primary">
+                <a className="button is-primary">
                   <strong>
                     <NavLink to="/Sortie">Participer à la prochaine course</NavLink>
                   </strong>
@@ -28,16 +66,27 @@ class Sortie extends Component {
                 </center>
                 </div> 
                 <center>
-                <a class="button is-primary">
+                <a className="button is-primary">
                   <strong>
                     <NavLink to="/ListeSortie">Voir toutes les courses</NavLink>
                   </strong>
                 </a>
                 </center>
-        </div>
-        
+        </div>   
     );
+    }
   }
 }
 
-export default Sortie;
+const mapStateToProps = (state) => {
+  console.log("state User :", state)
+  return { user: state.users.user };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    AddUser: (user) => dispatch(AddUser(user))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sortie);

@@ -3,31 +3,22 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 
 class LikeButton extends React.Component {
-
-        state = {
-            likes: this.props.likes,
-            isLiked: this.props.isLiked || false
-        };
-
+  constructor(props) {
+    super(props);
+  }
 
     handleClick = () =>  {
-        const isLiked = this.state.isLiked;
-        const likes = this.state.likes + (isLiked ? -1 : 1);
+        //this.props.nbr += this.props.is_like ? +1 : -1;
 
-        this.setState({likes, isLiked: !isLiked});
+        this.props.fallback(this.props.suggestion, this.props.is_like);
     };
 
     render() {
-
-
         return <button className="btn btn-link" onClick={ this.handleClick}>
-            {this.state.likes}
+            {this.props.nbr}
             <i
                 className={
-                    this.state.isLiked ? "fas fa-thumbs-up" : "far fa-thumbs-up"}/>
-            &nbsp;
-            {this.state.isLiked ? "Je n'aime plus" : "J'aime !"}
-            &nbsp;
+                    this.props.is_like ? "fas fa-thumbs-up" : "fas fa-thumbs-down"}/>
         </button>
 
 

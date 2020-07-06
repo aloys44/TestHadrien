@@ -21,7 +21,7 @@ export function GetTodosCategory1() {
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.TODO_OBJECT_DATA_LOADED,
+          type: types.TODO_OBJECT_DATA_LOADED_VERSION_1,
           payload: json.todoList,
         });
       });
@@ -34,7 +34,7 @@ export function GetTodosCategory2() {
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.TODO_OBJECT_DATA_LOADED,
+          type: types.TODO_OBJECT_DATA_LOADED_VERSION_2,
           payload: json.todoList,
         });
       });
@@ -47,7 +47,7 @@ export function GetTodosCategory3() {
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.TODO_OBJECT_DATA_LOADED,
+          type: types.TODO_OBJECT_DATA_LOADED_VERSION_3,
           payload: json.todoList,
         });
       });
@@ -60,7 +60,7 @@ export function GetTodosCategory4() {
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.TODO_OBJECT_DATA_LOADED,
+          type: types.TODO_OBJECT_DATA_LOADED_VERSION_4,
           payload: json.todoList,
         });
       });

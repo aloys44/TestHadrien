@@ -771,6 +771,7 @@ section p:first-child, .timer div:last-child span{
 	font-size: 20px;
 	text-align: right;
   line-height: 37px;
+  
 }
  
 .scrollup:hover {
@@ -788,8 +789,15 @@ section p:first-child, .timer div:last-child span{
 button {
   height: 40px;
 }
- h6{
-  font-size: 250%;
-}
+ 
+
+
 }
 
+
+
+.photo {
+  font-size: 250%;
+  float: right;
+  margin-bottom: 5%;
+}

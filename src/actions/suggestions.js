@@ -14,20 +14,6 @@ export function GetSuggestions() {
   };
 }
 
-export function GetSuggestionsSorted() {
-  return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/readSuggestionSortByLike.php")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        dispatch({
-          type: types.SUGGESTION_SORTED_DATA_LOADED,
-          payload: json.suggestionListSorted,
-        });
-      });
-  };
-}
-
 export function AddSuggestion(suggestion) {
   return function (dispatch) {
     return fetch("http://testhadrienback/api/suggestions/add.php", {
@@ -35,7 +21,7 @@ export function AddSuggestion(suggestion) {
       body: JSON.stringify(suggestion),
     })
       .then((response) => {
-          if (response.status == 200 || response.status == 201) {
+          if (response.status === 200 || response.status === 201) {
              response.json().then((json) => {
             dispatch({
                 type: types.SUGGESTION_ADD,
@@ -56,15 +42,20 @@ export function AddSuggestion(suggestion) {
   };
 }
 
-export function LikeSuggestion(suggestion) {
+export function ReactOnSuggestion(suggestion, is_liked, auth_token) {
   return function (dispatch) {
     return fetch("http://testhadrienback/api/suggestions/like.php", {
       method: "post",
-      body: JSON.stringify(suggestion),
+      body: JSON.stringify({
+        id: suggestion.id,
+        is_liked: is_liked ? "1" : "0",
+        auth_token: auth_token
+
+      }),
     })
       .then((response) => {
-          if (response.status == 200 || response.status == 201 ) {
-            dispatch(GetSuggestionsSorted());
+          if (response.status === 200 || response.status === 201 ) {
+            dispatch(GetSuggestions());
           } else {
               dispatch({
                 type: types.SUGGESTION_ADD_ERROR,

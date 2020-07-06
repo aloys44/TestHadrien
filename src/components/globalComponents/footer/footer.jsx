@@ -18,18 +18,21 @@ class Footer extends Component {
   }
 
     
-}
+
   render() {
-    return 
-    <footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      <strong>Site Web</strong> réalisé par<a href="https://jgthms.com">Aloïs Coussout</a>.
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-    </p>
+    return (
+    <footer className="footer">
+  <div className="content has-text-centered">
+
+          <p><strong>Site Web</strong> réalisé par <a href="https://jgthms.com">Aloïs Coussout</a>.    </p>
+      <p>Pour accéder à la page facebook des <a href="https://www.facebook.com/Les-Joggeurs-Utiles-Saint-Nazaire-541821872966758/">Joggeurs Utiles</a></p>
+      <p>A bientôt pour de nouvelles aventures avec les Joggeurs Utiles !</p>
+      <img src="https://img.icons8.com/bubbles/100/000000/homer-simpson.png"/>
   </div>
 </footer>
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   console.log("state User :", state)
@@ -41,8 +44,8 @@ function mapDispatchToProps(dispatch) {
     AddUser: (user) => dispatch(AddUser(user))
   };
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);
 
 
 

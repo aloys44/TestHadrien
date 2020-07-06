@@ -88,7 +88,7 @@ handleSubmit = e => {
                         </div>
                         <div class="message-body">
                           {user.email}{" "}
-                          <h6 className="photo"><i class={user.photo}></i></h6>
+                          <i class={user.photo + " photo"}></i>
                         </div>
                       </article>
                     </div>

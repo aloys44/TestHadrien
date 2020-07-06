@@ -1,4 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { AddUser, ConnectUser } from "../../../actions/users";
+
 import {
   BrowserRouter as Router,
   NavLink,
@@ -7,11 +12,39 @@ import {
   Link,
 } from "react-router-dom";
 
+
 class suggestion extends Component {
+   constructor(props) {
+            super(props);    
+  }
+
+   renderLinkButton = (props) => {
+    if (props.userRole > 2 ) {
+      return (
+        <>
+          <a class="button is-primary">
+            <strong>
+              <NavLink to={props.link}>{props.linkTitle}</NavLink>
+            </strong>
+          </a>
+        </>
+      )
+    } else {
+      return (
+         <>
+          <a class="button is-danger">
+            <strong>
+              <NavLink to={props.link}>{props.linkTitle}</NavLink>
+            </strong>
+          </a>
+        </>
+      )
+    }
+  }
 
   render() {
+
     return (
-        
         <div>
             <div class="titreInferieur">
             <h3>Les suggestions</h3>
@@ -21,19 +54,11 @@ class suggestion extends Component {
             <center><img src="https://img.icons8.com/officel/80/000000/25-de-abril-bridge.png"/></center>
             <div className="espace_2"> 
             <center>
-                <a class="button is-primary">
-                  <strong>
-                    <NavLink to="/SuggestionCreation">Création d'une suggestion</NavLink>
-                  </strong>
-                </a>
+               <this.renderLinkButton userRole={this.props.user.role} link={"/SuggestionCreation"} linkTitle={"Création d'une suggestion"}/>
             </center>
             </div>
             <center>
-                <a class="button is-primary">
-                  <strong>
-                    <NavLink to="/SuggestionListe">Liste des suggestions</NavLink>
-                  </strong>
-                </a>
+               <this.renderLinkButton userRole={this.props.user.role} link={"/SuggestionListe"} linkTitle={"Liste des suggestions"}/>
             </center>    
         </div>
         
@@ -41,4 +66,15 @@ class suggestion extends Component {
   }
 }
 
-export default suggestion;
+const mapStateToProps = (state) => {
+  console.log("state User :", state)
+  return { user: state.users.user };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    AddUser: (user) => dispatch(AddUser(user))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(suggestion);

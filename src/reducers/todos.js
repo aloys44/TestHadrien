@@ -1,4 +1,4 @@
-import { TODO_OBJECT_ADD, TODO_OBJECT_ADD_ERROR, TODO_OBJECT_DATA_LOADED  } from '../constants/ActionTypes';
+import { TODO_OBJECT_ADD, TODO_OBJECT_ADD_ERROR, TODO_OBJECT_DATA_LOADED, TODO_OBJECT_DATA_LOADED_VERSION_1, TODO_OBJECT_DATA_LOADED_VERSION_2  } from '../constants/ActionTypes';
 
 
 const initialState = {
@@ -21,6 +21,17 @@ export default function todos(state = initialState, action) {
       case TODO_OBJECT_DATA_LOADED:
       return {
         todoList: action.payload,
+      };
+
+      case TODO_OBJECT_DATA_LOADED_VERSION_1:
+     return {
+        todoList: action.payload,
+      };
+
+
+      case TODO_OBJECT_DATA_LOADED_VERSION_2:
+      return {
+        todoListCategory2: action.payload,
       };
 
     default:

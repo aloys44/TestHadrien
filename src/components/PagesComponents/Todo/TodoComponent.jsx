@@ -17,7 +17,7 @@ constructor(props) {
     const todo = {
       title: this.title,
       description: this.description,
-      category: "utilisateur",
+      category: "5",
       author: this.props.user?.username, 
 
     };

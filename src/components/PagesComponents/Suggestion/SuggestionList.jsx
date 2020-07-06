@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import LikeButton from "./LikeComponent/LikeButton";
-import { GetSuggestions } from "../../../actions/suggestions";
+import { GetSuggestions, ReactOnSuggestion } from "../../../actions/suggestions";
 
 class SuggestionList extends React.Component {
   constructor(props) {
@@ -16,34 +16,34 @@ class SuggestionList extends React.Component {
     this.props.GetSuggestions();
   };
 
+  reaction = (suggestion, is_liked) => {
+    this.props.ReactOnSuggestion(suggestion, is_liked, this.props.user?.auth_token);
+  }
+
   render() {
     console.log(this.props.suggestions);
     return (
       
           <div className="container">
-            <h1><strong>Liste des Joggeurs utiles</strong></h1>
+            <h1><strong>Liste des Suggestions</strong></h1>
           <div className="columns is-multiline">
             {this.props.suggestions.suggestionList == null
               ? "ERROR MOTHERFUCKER"
               : this.props.suggestions.suggestionList.map(
                   (suggestion, index) => (
-                    <div class="column is-full">
-                      <article
-                        className={
-                          index % 2 == 0
-                            ? "message is-link"
-                            : "message is-success"
-                        }
-                      >
-                        <div class="message-header">
+                    <div className="column is-full">
+                      <article>
+                        <div className="message-header">
                           <p>
                             {suggestion.title} 
                           </p>
                           <p>{suggestion.description}</p>
                         </div>
-                        <div class="message-body">
+                        <div className="message-body">
                           {suggestion.creation_date}{" "}
                         </div>
+                        <LikeButton is_like={true} nbr={suggestion.likes} suggestion={suggestion} fallback={this.reaction} />
+                        <LikeButton is_like={false} nbr={suggestion.dislikes} suggestion={suggestion} fallback={this.reaction} />
                       </article>
                     </div>
                   )
@@ -57,12 +57,13 @@ class SuggestionList extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  return { suggestions: state.suggestions };
+  return { suggestions: state.suggestions, user: state.users?.user };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     GetSuggestions: () => dispatch(GetSuggestions()),
+    ReactOnSuggestion: (suggestion, is_liked, auth_token) => dispatch(ReactOnSuggestion(suggestion, is_liked, auth_token))
   };
 }
 

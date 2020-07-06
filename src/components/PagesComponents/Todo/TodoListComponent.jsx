@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import TodoListComponentCategory1 from "./TodoListComponentCategory1";
 
 import { GetTodos } from "../../../actions/todos";
 
@@ -10,6 +11,9 @@ class TodoListComponent extends React.Component {
 
     this.props.GetTodos();
 
+    this.state = {
+      category: 0
+    };
   }
   title = "";
   description = "";
@@ -22,44 +26,66 @@ class TodoListComponent extends React.Component {
     this.props.GetTodos();
   };
 
+click = category => e => {
+    this.setState({
+    category: category
+  })
+  };
+
+  renderArticle = (props) => {
+    if (props.category == 0 || props.category == props.todo.category) {
+      return (
+        <>
+        <div className="column is-full">
+          <article className="message is-link">
+            <div className="message-header">
+              <p>
+                {props.todo.title} créée par {props.todo.author}
+              </p>
+              <p>{props.todo.creation_date}</p>
+            </div>
+            <div className="message-body">
+              {props.todo.description + " - " + props.todo.category}{" "}
+            </div>
+          </article>
+        </div>
+        </>
+      )
+    } else {
+      return (
+        <>
+        </>
+      )
+    }
+  }
+
   render() {
     console.log(this.props.todos);
     return (
-        <div className="container">
-            <h1><strong>Liste des TODO</strong></h1>
+      <div>
+        <h1>
+          <strong>Liste des TODO</strong>
+        </h1>
 
+        <button onClick={this.click(1)}>categorie 1</button>
+        <button onClick={this.click(2)}>categorie 2</button>
+        <button onClick={this.click(0)}>reset</button>
+
+        <br/>
+
+        <div className="container">
           <div className="columns is-multiline">
             {this.props.todo.todoList == null
               ? "ERROR MOTHERFUCKER"
               : this.props.todo.todoList.map((todo, index) => (
-                  <div className="column is-full">
-                        <article
-                          className={
-                            index % 2 == 0
-                              ? "message is-danger"
-                              : "message is-warning"
-                          }
-                        >
-                          <div className="message-header">
-                            <p>
-                              {todo.title} créée par {todo.author}
-                            </p>
-                            <p>{todo.creation_date}</p>
-                          </div>
-                          <div className="message-body">
-                            {todo.description}{" "}
-                          </div>
-                        </article>
-                      </div>
-                  )
-                )}
+                <this.renderArticle category={this.state.category} todo={todo}/>
+                ))}
           </div>
         </div>
+      </div>
     );
   }
 }
-  
-
 
 const mapStateToProps = (state) => {
   return { todo: state.todo };
