@@ -36,7 +36,7 @@ export function UpdateUser(user) {
       body: JSON.stringify(user),
     })
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           response.json().then((json) => {
             dispatch({
               type: types.USER_UPDATE,
@@ -66,7 +66,7 @@ export function AddUser(user) {
       body: JSON.stringify(user),
     })
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           response.json().then((json) => {
             dispatch({
               type: types.USER_ADD,
@@ -93,7 +93,7 @@ export function ConnectUser(user) {
       method: "post",
       body: JSON.stringify(user),
     }).then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         response.json().then((json) => {
           dispatch({
             type: types.USER_CONNECTED,

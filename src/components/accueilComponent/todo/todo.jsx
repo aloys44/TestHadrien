@@ -1,30 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
-import { AddUser, ConnectUser } from "../../../actions/users";
+import { AddUser } from "../../../actions/users";
 
 import {
-  BrowserRouter as Router,
   NavLink,
-  Switch,
-  Route,
-  Link,
 } from "react-router-dom";
 
 
 class suggestion extends Component {
-   constructor(props) {
-            super(props);    
-  }
-
 
   render() {
-        if(this.props.user?.username == "" || this.props.user?.username == null) {
+        if(this.props.user?.username === "" || this.props.user?.username === null) {
             return (
         
         <div>
-            <div class="titreInferieur">
+            <div className="titreInferieur">
             <h3>Les Todo</h3>
                 <p>Si vous voulez faire une suggestion à propos du site web c'est ici que ça se passe ! 
                 A savoir que les différentes améliorations prévues pour le site sont déja répertoriées par catégorie,
@@ -33,7 +24,7 @@ class suggestion extends Component {
             <center><img src="https://img.icons8.com/flat_round/100/000000/tower-crane.png"/></center>
             <div className="espace_2"> 
             <center>
-                <a class="button is-primary">
+                <a className="button is-primary">
                     <strong>
                        <h1>Vous n'êtes pas connecté ...</h1>
                     </strong>
@@ -48,7 +39,7 @@ class suggestion extends Component {
     return (
 
         <div>
-            <div class="titreInferieur">
+            <div className="titreInferieur">
             <h3>Les Todo</h3>
                 <p>Si vous voulez faire une suggestion à propos du site web c'est ici que ça se passe ! 
                 A savoir que les différentes améliorations prévues pour le site sont déja répertoriées par catégorie,
@@ -57,19 +48,15 @@ class suggestion extends Component {
             <center><img src="https://img.icons8.com/flat_round/100/000000/tower-crane.png"/></center>
             <div className="espace_2"> 
             <center>
-                <a class="button is-primary">
                   <strong>
-                    <NavLink to="/TodoCreation">Création d'une Todo</NavLink>
+                    <NavLink to="/TodoCreation" className="button is-primary">Création d'une Todo</NavLink>
                   </strong>
-                </a>
             </center>
             </div>
             <center>
-                <a class="button is-primary">
                   <strong>
-                    <NavLink to="/TodoListComponent">Liste des Todo</NavLink>
+                    <NavLink to="/TodoListComponent" className="button is-primary">Liste des Todo</NavLink>
                   </strong>
-                </a>
             </center>    
           <a href="#" title="Haut de page" className="scrollup"><img src="https://img.icons8.com/clouds/100/000000/long-arrow-up.png"/></a>
         </div>

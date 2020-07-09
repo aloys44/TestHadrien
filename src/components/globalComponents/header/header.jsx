@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
-import { AddUser, ConnectUser } from "../../../actions/users";
+import { AddUser } from "../../../actions/users";
 
 import {
-  BrowserRouter as Router,
   NavLink,
   Switch,
   Route,
@@ -23,11 +21,11 @@ class Header extends Component {
         return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-        <NavLink  to="/Accueil">
-          <a className="navbar-item" href="/Accueil">
-            <img src="/TempLogo.png" width="112" height="28" />
-          </a>
-        </NavLink>
+        
+            <NavLink  to="/Accueil" componentclass={Link} >
+              <img src="/TempLogo.png" width="112" height="28" ></img>
+            </NavLink>
+        
           <a
             role="button"
             className="navbar-burger burger"
@@ -56,12 +54,12 @@ class Header extends Component {
               <div className="buttons">
                 <div className="button is-primary">
                 <strong>
-                  <NavLink to="/Formulaire" className="nav-link">Inscription</NavLink>
+                  <NavLink to="/Formulaire" id="RouterNavLink" className="nav-link">Inscription</NavLink>
                 </strong>
                 </div>
                 <div className="button is-primary">
                   <strong>
-                    <NavLink to="/Connexion" className="nav-link">Connection</NavLink>
+                    <NavLink to="/Connexion" id="RouterNavLink" className="nav-link">Connection</NavLink>
                   </strong>
                 </div>
               </div>
@@ -101,29 +99,29 @@ class Header extends Component {
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Votre profil</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/ProfilUser">Voir Votre profil</NavLink></a>
-                <a className="navbar-item"><NavLink to="/UserUpdate">Modification du profil</NavLink></a>
+                <NavLink to="/ProfilUser" className="navbar-item">Voir Votre profil</NavLink>
+                <NavLink to="/UserUpdate" className="navbar-item">Modification du profil</NavLink>
               </div>
             </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Suggestion</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/SuggestionCreation" >Création d'une suggestion</NavLink></a>
-                <a className="navbar-item"><NavLink to="/SuggestionListe" >Liste des suggestions</NavLink></a>
+                  <NavLink to="/SuggestionCreation" className="navbar-item">Création d'une suggestion</NavLink>
+                  <NavLink to="/SuggestionListe" className="navbar-item">Liste des suggestions</NavLink>
               </div>
             </div>
 
           <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Choses Restantes à faire sur ce site ...</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/TodoCreation" >Création todo</NavLink></a>
-                <a className="navbar-item"><NavLink to="/TodoListComponent" >Liste des Choses à faire</NavLink></a>
+                <NavLink to="/TodoCreation" className="navbar-item" >Création todo</NavLink>
+                <NavLink to="/TodoListComponent" className="navbar-item" >Liste des Choses à faire</NavLink>
               </div>
             </div>
           </div>          
            <a className="navbar-item">{this.props.user?.username == null || this.props.user?.username == "" ? "Vous n'êtes pas encore connecté !" : "Bonjour " + this.props.user.username + " !"}</a>
-           <a className="navbar-item">{this.props.user?.roles == null ? "Vous n'avez pas défini d'avatar !" :  <i class={this.props.user.photo + " photo"}></i>}</a>
+           <a className="navbar-item">{this.props.user?.roles == null ? "Vous n'avez pas défini d'avatar !" :  <i className={this.props.user.photo + " photo"}></i>}</a>
         </div>
       </nav>
     );
@@ -156,24 +154,24 @@ class Header extends Component {
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Votre profil</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/ProfilUser"  >Voir Votre profil</NavLink></a>
-                <a className="navbar-item"><NavLink to="/UserUpdate"  onClick={this.handleClick}>Modification du profil</NavLink></a>
+                         <NavLink to="/ProfilUser" className="navbar-item">Voir Votre profil</NavLink>
+                <NavLink to="/UserUpdate" className="navbar-item">Modification du profil</NavLink>
               </div>
             </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Suggestion</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/SuggestionCreation" >Création d'une suggestion</NavLink></a>
-                <a className="navbar-item"><NavLink to="/SuggestionListe" >Liste des suggestions</NavLink></a>
+                  <NavLink to="/SuggestionCreation" className="navbar-item">Création d'une suggestion</NavLink>
+                  <NavLink to="/SuggestionListe" className="navbar-item">Liste des suggestions</NavLink>
               </div>
             </div>
 
           <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Choses Restantes à faire sur ce site ...</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/TodoCreation" >Création todo</NavLink></a>
-                <a className="navbar-item"><NavLink to="/TodoListComponent" >Liste des Choses à faire</NavLink></a>
+                <NavLink to="/TodoCreation" className="navbar-item" >Création todo</NavLink>
+                <NavLink to="/TodoListComponent" className="navbar-item" >Liste des Choses à faire</NavLink>
               </div>
             </div>
 
@@ -181,8 +179,8 @@ class Header extends Component {
           <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Admin</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/ListeUtilisateur"  onClick={this.handleRole}>Liste des Utilisateurs</NavLink></a>
-                <a className="navbar-item"><NavLink to="/Sortie"  onClick={this.handleClick} >Création d'une course</NavLink></a>
+                <NavLink to="/ListeUtilisateur" className="navbar-item" onClick={this.handleRole}>Liste des Utilisateurs</NavLink>
+                <NavLink to="/Sortie" className="navbar-item" onClick={this.handleClick} >Création d'une course</NavLink>
               </div>
             </div>
           </div>          

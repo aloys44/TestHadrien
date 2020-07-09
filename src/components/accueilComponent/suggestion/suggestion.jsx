@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
-import { AddUser, ConnectUser } from "../../../actions/users";
+import { AddUser } from "../../../actions/users";
 import { GetSuggestions } from "../../../actions/suggestions";
 
 
 
 import {
-  BrowserRouter as Router,
   NavLink,
-  Switch,
-  Route,
-  Link,
 } from "react-router-dom";
 
 
@@ -25,10 +20,10 @@ class suggestion extends Component {
   }
 
   render() {
-    if(this.props.user?.username == null || this.props.user?.username == "" ){
+    if(this.props.user?.username === null || this.props.user?.username === "" ){
     return (
         <div>
-            <div class="titreInferieur">
+            <div className="titreInferieur">
             <h3>Les suggestions</h3>
                 <p>Si vous voulez faire une suggestion à propos de la prochaine course ou de l'activité de l'association vous pouvez la faire par ce bouton.
                 un système de Like fera remonter les 3 suggestions préférées au sein de la page d'accueil.</p>
@@ -49,7 +44,7 @@ class suggestion extends Component {
     } else {
         return (
         <div>
-            <div class="titreInferieur">
+            <div className="titreInferieur">
             <h3>Les suggestions</h3>
                 <p>Si vous voulez faire une suggestion à propos de la prochaine course ou de l'activité de l'association vous pouvez la faire par ce bouton.
                 un système de Like fera remonter les 3 suggestions préférées au sein de la page d'accueil.</p>
@@ -57,19 +52,15 @@ class suggestion extends Component {
             <center><img src="https://img.icons8.com/officel/80/000000/25-de-abril-bridge.png"/></center>
             <div className="espace_2"> 
             <center>
-              <a class="button is-primary">
                   <strong>
-                    <NavLink to="/SuggestionCreation">Création d'une Suggestion</NavLink>
+                    <NavLink to="/SuggestionCreation" className="button is-primary">Création d'une Suggestion</NavLink>
                   </strong>
-              </a>
             </center>
             </div>
             <center>
-              <a class="button is-primary">
                 <strong>
-                  <NavLink to="/SuggestionListe">Liste des Suggestions</NavLink>
+                  <NavLink to="/SuggestionListe" className="button is-primary">Liste des Suggestions</NavLink>
                 </strong>
-              </a>
             </center>   
         </div>
         

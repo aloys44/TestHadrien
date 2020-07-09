@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
-import { AddUser, GetUsers } from "../../../actions/users";
+import {  GetUsers } from "../../../actions/users";
 
 
 
@@ -69,13 +68,13 @@ handleSubmit = e => {
       <div className="container">
             <h1><strong>Liste des Joggeurs utiles</strong></h1>
           <div className="columns is-multiline">
-        {this.props.users.userList == null
+        {this.props.users.userList === null
           ? "ERROR MOTHERFUCKER"
           : this.props.users.userList.map((user, index) => (
                    <div class="column is-full">
                       <article
                         className={
-                          index % 2 == 0
+                          index % 2 === 0
                             ? "message is-link"
                             : "message is-success"
                         }

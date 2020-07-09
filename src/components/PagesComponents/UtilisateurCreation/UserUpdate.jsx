@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import Select from 'react-select';
 
 import { UpdateUser } from "../../../actions/users";
@@ -31,14 +30,7 @@ import { UpdateUser } from "../../../actions/users";
 ];
 
 class UserUpdate extends React.Component {
- constructor(props) {
-            super(props);    
-  }
 
-    state = {
-  selectedOption: null,
-  
-}
 
     update = () => {
     const user = {
@@ -51,7 +43,7 @@ class UserUpdate extends React.Component {
 
     };
     if( this.username.length > 3 && this.firstName.length > 3 && this.lastName.length > 3){
-        if(this.confirmedPassword == this.password ){
+        if(this.confirmedPassword === this.password ){
           if(this.password.length > 3){
             console.log(user);
           this.props.UpdateUser(user);
@@ -123,7 +115,6 @@ class UserUpdate extends React.Component {
 
  render() {   
   console.log(this.props.users);
-  const { selectedOption } = this.state;   
      return (
 
 
@@ -134,7 +125,7 @@ class UserUpdate extends React.Component {
               <label>Prénom</label>
               <input
                 type="text"
-                placeholder={this.props.user?.firstName == null || this.props.user?.username == "" ? "Prénom" : this.props.user?.username}
+                placeholder={this.props.user?.firstName === null || this.props.user?.username === "" ? "Prénom" : this.props.user?.username}
                 name="firstName"
                 onChange={this.changeFirstName}
               />
@@ -143,7 +134,7 @@ class UserUpdate extends React.Component {
               <label>Nom</label>
               <input
                 type="text"
-                placeholder={this.props.user?.lastName == null || this.props.user?.lastName == "" ? "Nom" : this.props.user?.lastName}
+                placeholder={this.props.user?.lastName === null || this.props.user?.lastName === "" ? "Nom" : this.props.user?.lastName}
                 name="lastName"
                 onChange={this.changeLastName}
               />
@@ -152,7 +143,7 @@ class UserUpdate extends React.Component {
               <label>Pseudo</label>
               <input
                 type="text"
-                placeholder={this.props.user?.username == null || this.props.user?.username == "" ? "Pseudo" : this.props.user?.username}
+                placeholder={this.props.user?.username === null || this.props.user?.username === "" ? "Pseudo" : this.props.user?.username}
                 name="username"
                 onChange={this.changeUsername}
               />
@@ -161,7 +152,7 @@ class UserUpdate extends React.Component {
               <label>Mot de passe</label>
               <input
                 type="password"
-                placeholder={this.props.user?.password == null || this.props.user?.password == "" ? "Mot de passe" : this.props.user?.password}
+                placeholder={this.props.user?.password === null || this.props.user?.password === "" ? "Mot de passe" : this.props.user?.password}
                 name="password"
                 onChange={this.changePassword}
               />

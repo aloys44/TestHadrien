@@ -1,12 +1,9 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom'
 
 class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
 
-  }
     handleClick = () =>  {
         //this.props.nbr += this.props.is_like ? +1 : -1;
         this.props.fallback(this.props.sortie, this.props.is_subscribed);
@@ -17,7 +14,7 @@ class LikeButton extends React.Component {
         return <button className="btn btn-link" onClick={ this.handleClick}>
             <i
                 className={
-                    this.props.is_subscribed != 1 ? "fas fa-thumbs-up" : "fas fa-thumbs-down"}/>
+                    this.props.is_subscribed !== 1 ? "fas fa-thumbs-up" : "fas fa-thumbs-down"}/>
         </button>
 
 

@@ -13,7 +13,7 @@ class explication extends Component {
     return (
         
         <div>
-            <div class="titreInferieur">
+            <div className="titreInferieur">
             <h3>Mais alors pourquoi un site web ???</h3>
                <div className="espace_2">
                 <center><img src="https://img.icons8.com/emoji/96/000000/thinking-face.png"/></center>
@@ -47,19 +47,15 @@ class explication extends Component {
         </div>
             <div className="espace"> 
             <center>
-                <a class="button is-primary">
                   <strong>
-                    <NavLink to="/Formulaire">Inscription</NavLink>
+                    <NavLink to="/Formulaire" className="button is-primary">Inscription</NavLink>
                   </strong>
-                </a>
             </center>
             </div>    
                 <center>
-                <a class="button is-primary">
                   <strong>
-                    <NavLink to="/Connexion">Connection</NavLink>
+                    <NavLink to="/Connexion" className="button is-primary">Connection</NavLink>
                   </strong>
-                </a>
             </center>
             </div>
         </div>

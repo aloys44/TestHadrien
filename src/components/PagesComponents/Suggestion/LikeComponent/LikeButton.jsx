@@ -1,11 +1,9 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom'
 
 class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
 
     handleClick = () =>  {
         //this.props.nbr += this.props.is_like ? +1 : -1;
