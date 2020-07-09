@@ -56,13 +56,6 @@ import {
                     <div>
                         <h2>Temps prévu avant la prochaine course</h2>
                         <h3>Inscrivez vous !</h3>
-                        <center>
-                            <a class="button is-white">
-                            <strong>
-                                <NavLink to="/Sortie">Participer à la prochaine course</NavLink>
-                            </strong>
-                            </a>
-                        </center>
                     </div>
                     <div>
                         <section>

@@ -29,6 +29,35 @@ export function GetUserByAuthToken(auth_token) {
   };
 }
 
+export function UpdateUser(user) {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/users/updateProfil.php", {
+      method: "post",
+      body: JSON.stringify(user),
+    })
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((json) => {
+            dispatch({
+              type: types.USER_UPDATE,
+              payload: json,
+            });
+          });
+        } else {
+          dispatch({
+            type: types.USER_UPDATE_ERROR,
+          });
+        }
+      })
+      .catch(() => {
+        dispatch({
+          type: types.USER_UPDATE_ERROR,
+        });
+      });
+  };
+}
+
+
 
 export function AddUser(user) {
   return function (dispatch) {
@@ -74,28 +103,6 @@ export function ConnectUser(user) {
       } else {
         dispatch({
           type: types.USER_CONNECT_ERROR,
-        });
-      }
-    });
-  };
-}
-
-export function UpdateUser(user) {
-  return function (dispatch) {
-    return fetch("http://testhadrienback/api/users/update.php", {
-      method: "post",
-      body: JSON.stringify(user),
-    }).then((response) => {
-      if (response.status == 201) {
-        response.json().then((json) => {
-          dispatch({
-            type: types.USER_UPDATE,
-            payload: json,
-          });
-        });
-      } else {
-        dispatch({
-          type: types.USER_UPDATE_ERROR,
         });
       }
     });

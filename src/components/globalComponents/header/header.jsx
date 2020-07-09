@@ -23,9 +23,11 @@ class Header extends Component {
         return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="#">
+        <NavLink  to="/Accueil">
+          <a className="navbar-item" href="/Accueil">
             <img src="/TempLogo.png" width="112" height="28" />
           </a>
+        </NavLink>
           <a
             role="button"
             className="navbar-burger burger"
@@ -41,7 +43,7 @@ class Header extends Component {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <div className="navbar-item">
-              <NavLink to="/ParticipantTest">Prochaine Course</NavLink>
+              <NavLink  to="/SortieOrganisation">Prochaine Course</NavLink>
             </div>
           </div>
 
@@ -93,16 +95,14 @@ class Header extends Component {
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <div className="navbar-item">
-              <NavLink to="/ParticipantTest">Prochaine Course</NavLink>
-            </div>
+
 
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Votre profil</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/SuggestionCreation"  >Voir Votre profil</NavLink></a>
-                <a className="navbar-item"><NavLink to="/UserUpdate"  onClick={this.handleClick}>Modification du profil</NavLink></a>
+                <a className="navbar-item"><NavLink to="/ProfilUser">Voir Votre profil</NavLink></a>
+                <a className="navbar-item"><NavLink to="/UserUpdate">Modification du profil</NavLink></a>
               </div>
             </div>
 
@@ -150,13 +150,13 @@ class Header extends Component {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <div className="navbar-item">
-              <NavLink to="/ParticipantTest">Prochaine Course</NavLink>
+              <NavLink to="/SortieOrganisation">Prochaine Course</NavLink>
             </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Votre profil</a>
               <div className="navbar-dropdown">
-                <a className="navbar-item"><NavLink to="/SuggestionCreation"  >Voir Votre profil</NavLink></a>
+                <a className="navbar-item"><NavLink to="/ProfilUser"  >Voir Votre profil</NavLink></a>
                 <a className="navbar-item"><NavLink to="/UserUpdate"  onClick={this.handleClick}>Modification du profil</NavLink></a>
               </div>
             </div>
@@ -187,7 +187,7 @@ class Header extends Component {
             </div>
           </div>          
            <a className="navbar-item">{this.props.user?.username == null || this.props.user?.username == "" ? "Vous n'êtes pas encore connecté !" : "Bonjour " + this.props.user.username + " !"}</a>
-           <a className="navbar-item">{this.props.user?.roles == null ? "Vous n'avez pas défini d'avatar !" :  <i class={this.props.user.photo + " photo"}></i>}</a>
+           <a className="navbar-item">{this.props.user?.photo == null ? "Vous n'avez pas défini d'avatar !" :  <i class={this.props.user.photo + " photo"}></i>}</a>
         </div>
       </nav>
     );

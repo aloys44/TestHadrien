@@ -1,4 +1,4 @@
-import { USER_ADD, USER_ADD_ERROR, USER_DATA_LOADED, USER_CONNECTED, USER_CONNECT_ERROR } from '../constants/ActionTypes';
+import { USER_ADD, USER_ADD_ERROR, USER_DATA_LOADED, USER_CONNECTED, USER_CONNECT_ERROR, USER_UPDATE, USER_UPDATE_ERROR } from '../constants/ActionTypes';
 
 
 const initialState = {
@@ -31,6 +31,16 @@ export default function users(state = initialState, action) {
       };
 
       case USER_CONNECT_ERROR:
+      return {
+        user: null,
+      };
+      
+      case USER_UPDATE:
+      return {
+        user: action.payload,
+      };
+
+      case USER_UPDATE_ERROR:
       return {
         user: null,
       };

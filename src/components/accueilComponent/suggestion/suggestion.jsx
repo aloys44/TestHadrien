@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { AddUser, ConnectUser } from "../../../actions/users";
+import { GetSuggestions } from "../../../actions/suggestions";
+
+
 
 import {
   BrowserRouter as Router,
@@ -16,34 +19,13 @@ import {
 class suggestion extends Component {
    constructor(props) {
             super(props);    
-  }
 
-   renderLinkButton = (props) => {
-    if (props.userRole > 2 ) {
-      return (
-        <>
-          <a class="button is-primary">
-            <strong>
-              <NavLink to={props.link}>{props.linkTitle}</NavLink>
-            </strong>
-          </a>
-        </>
-      )
-    } else {
-      return (
-         <>
-          <a class="button is-danger">
-            <strong>
-              <NavLink to={props.link}>{props.linkTitle}</NavLink>
-            </strong>
-          </a>
-        </>
-      )
-    }
+  this.props.GetSuggestions();
+
   }
 
   render() {
-
+    if(this.props.user?.username == null || this.props.user?.username == "" ){
     return (
         <div>
             <div class="titreInferieur">
@@ -53,27 +35,59 @@ class suggestion extends Component {
             </div>
             <center><img src="https://img.icons8.com/officel/80/000000/25-de-abril-bridge.png"/></center>
             <div className="espace_2"> 
-            <center>
-               <this.renderLinkButton userRole={this.props.user.role} link={"/SuggestionCreation"} linkTitle={"Création d'une suggestion"}/>
-            </center>
             </div>
             <center>
-               <this.renderLinkButton userRole={this.props.user.role} link={"/SuggestionListe"} linkTitle={"Liste des suggestions"}/>
+              <a class="button is-primary">
+                <strong>
+                  <h1>Vous n'êtes pas connecté ...</h1>
+                </strong>
+              </a>
             </center>    
         </div>
         
     );
+    } else {
+        return (
+        <div>
+            <div class="titreInferieur">
+            <h3>Les suggestions</h3>
+                <p>Si vous voulez faire une suggestion à propos de la prochaine course ou de l'activité de l'association vous pouvez la faire par ce bouton.
+                un système de Like fera remonter les 3 suggestions préférées au sein de la page d'accueil.</p>
+            </div>
+            <center><img src="https://img.icons8.com/officel/80/000000/25-de-abril-bridge.png"/></center>
+            <div className="espace_2"> 
+            <center>
+              <a class="button is-primary">
+                  <strong>
+                    <NavLink to="/SuggestionCreation">Création d'une Suggestion</NavLink>
+                  </strong>
+              </a>
+            </center>
+            </div>
+            <center>
+              <a class="button is-primary">
+                <strong>
+                  <NavLink to="/SuggestionListe">Liste des Suggestions</NavLink>
+                </strong>
+              </a>
+            </center>   
+        </div>
+        
+    );
+    }
   }
 }
 
 const mapStateToProps = (state) => {
   console.log("state User :", state)
-  return { user: state.users.user };
+  return { user: state.users.user, suggestions: state.suggestions };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    AddUser: (user) => dispatch(AddUser(user))
+    AddUser: (user) => dispatch(AddUser(user)),
+    GetSuggestions: () => dispatch(GetSuggestions()),
+
   };
 }
 

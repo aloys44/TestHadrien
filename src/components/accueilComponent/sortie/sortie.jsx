@@ -30,21 +30,13 @@ class Sortie extends Component {
             <center><img src="https://img.icons8.com/bubbles/100/000000/girl-running.png"/></center>
             <div className="espace_2"> 
             <center>
-                <h1>Vous n'êtes pas encore connecté {this.props.user?.username}</h1>
-                <a className="button is-danger">
+                <a className="button is-primary">
                   <strong>
-                    <NavLink to="/Sortiez">Participer à la prochaine course</NavLink>
+                    <h1>Vous n'êtes pas connecté ...</h1>
                   </strong>
                 </a>
-                </center>
+              </center>
                 </div> 
-                <center>
-                <a className="button is-danger">
-                  <strong>
-                    <NavLink to="/ListeSortiez">Voir toutes les courses</NavLink>
-                  </strong>
-                </a>
-                </center>
         </div>   
     );
     } else {
@@ -60,7 +52,7 @@ class Sortie extends Component {
             <center>
                 <a className="button is-primary">
                   <strong>
-                    <NavLink to="/Sortie">Participer à la prochaine course</NavLink>
+                    <NavLink to="/SortieOrganisation">Participer à la prochaine course</NavLink>
                   </strong>
                 </a>
                 </center>

@@ -7,9 +7,27 @@ import { AddSuggestion, GetSuggestions } from "../../../actions/suggestions";
 class SuggestionCreation extends React.Component {
   constructor(props) {
     super(props);
+
+
+  }
+     
+  
+
+  handleSubmit = () => {
+
+      
+    const suggestion = {
+      title: this.title,
+      description: this.description,
+      auth_token: this.props.user?.auth_token,
+    };
+
+    console.log(this.title.length);
+    console.log("suggestion : ", suggestion);
+    this.props.AddSuggestion(suggestion);
   }
 
-
+  
   changeTitle = (e) => {
     if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
         this.title = e.target.value;
@@ -28,61 +46,46 @@ class SuggestionCreation extends React.Component {
     }
 
   }
-     
-  
 
-  handleSubmit = () => {
-
-      
-    const suggestion = {
-      title: this.title,
-      description: this.description,
-      auth_token: this.props.user?.auth_token,
-    };
-
-    console.log(this.title.length);
-    console.log("suggestion : ", suggestion);
-    this.props.AddSuggestion(suggestion);
-  };
 
   render() {
+
     return (
-      <div className="wrapper-suggestion">
+      <div className="wrapper">
         <div className="form-wrapper">
-          <h1>Création d'une suggestion</h1>
+          <h1>Création d'une Suggestion</h1>
+          <form>
             <div className="details">
-              <label>Titre</label>
+              <label htmlFor="title">Titre</label>
               <input
                 placeholder="Titre"
-                type="text"
+                type="title"
                 name="title"
-                minlength="10"
-                maxlength="100"
                 onChange={this.changeTitle}
               />
             </div>
             <div className="details">
-              <label>Description</label>
+              <label htmlFor="description">Description</label>
               <input
                 placeholder="Description"
-                type="text"
+                type="description"
                 name="description"
-                minlength="10"
-                maxlength="100"
                 onChange={this.changeDescription}
               />
             </div>
             <div className="createAccount">
-              <button type="submit" onClick={this.handleSubmit}>
-                Création d'une nouvelle suggestion
-              </button>
+              <button type="submit" onClick={this.handleSubmit}>Création d'une nouvelle suggestion</button>
             </div>
-
+            </form>
         </div>
       </div>
     );
   }
 }
+
+
+
+
 const mapStateToProps = (state) => {
   return { suggestions: state.suggestions, user: state.users.user };
 };
@@ -90,6 +93,7 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     AddSuggestion: (suggestion) => dispatch(AddSuggestion(suggestion)),
+
   };
 }
 

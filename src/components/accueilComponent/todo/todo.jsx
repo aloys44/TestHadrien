@@ -33,22 +33,14 @@ class suggestion extends Component {
             <center><img src="https://img.icons8.com/flat_round/100/000000/tower-crane.png"/></center>
             <div className="espace_2"> 
             <center>
-                <a class="button is-danger">
-                  <strong>
-                    <NavLink to="/TodoCreationz">Création d'une Todo</NavLink>
-                  </strong>
+                <a class="button is-primary">
+                    <strong>
+                       <h1>Vous n'êtes pas connecté ...</h1>
+                    </strong>
                 </a>
             </center>
-            </div>
-            <center>
-                <a class="button is-danger">
-                  <strong>
-                    <NavLink to="/TodoListComponentz">Liste des Todo</NavLink>
-                  </strong>
-                </a>
-            </center>    
-             	
-<a href="#" title="Haut de page" className="scrollup"><i className="fa fa-arrow-up"></i></a>
+            </div>  
+          <a href="#" title="Haut de page" className="scrollup"><img src="https://img.icons8.com/clouds/100/000000/long-arrow-up.png"/></a>
         </div>
         
     );

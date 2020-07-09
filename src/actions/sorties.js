@@ -14,9 +14,9 @@ export function GetSorties() {
   };
 }
 
-export function GetSortieSorted() {
+export function GetSubscribedSortie() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/sorties/readSortieLast.php")
+    return fetch("http://testhadrienback/api/sorties/subscriptionList.php")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -29,6 +29,33 @@ export function GetSortieSorted() {
 }
 
 
+
+export function ReactOnSortie(sortie, auth_token) {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/sorties/suscribed.php", {
+      method: "post",
+      body: JSON.stringify({
+        id: sortie.id,
+        auth_token: auth_token
+      }),
+    })
+      .then((response) => {
+          if (response.status === 200 || response.status === 201 ) {
+            dispatch(GetSorties());
+          } else {
+              dispatch({
+                type: types.SORTIE_ADD_ERROR,
+            });
+          }
+        
+       })
+       .catch(() => {
+            dispatch({
+                type: types.SORTIE_ADD_ERROR,
+            });
+       })
+  };
+}
 
 export function AddSortie(sortie) {
   return function (dispatch) {

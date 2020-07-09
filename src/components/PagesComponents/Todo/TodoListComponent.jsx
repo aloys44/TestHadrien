@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import TodoListComponentCategory1 from "./TodoListComponentCategory1";
 
 import { GetTodos } from "../../../actions/todos";
 
@@ -33,7 +31,7 @@ click = category => e => {
   };
 
   renderArticle = (props) => {
-    if (props.category == 0 || props.category == props.todo.category) {
+    if (props.category === 0 || props.category === props.todo.category) {
       return (
         <>
         <div className="column is-full">

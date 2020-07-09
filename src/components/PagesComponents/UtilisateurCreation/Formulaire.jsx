@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { AddUser, GetUsers } from "../../../actions/users";
 import ImageUploader from "react-images-upload";
-import Select from 'react-select'
+import Select from 'react-select';
+
 
 
 
@@ -32,7 +33,6 @@ import Select from 'react-select'
 ];
 
 
-
 class Formulaire extends Component { 
 constructor(props) {
     super(props);    
@@ -41,7 +41,10 @@ constructor(props) {
 
     state = {
   selectedOption: null,
+  
 }
+
+
 
     add = () => {
     const user = {
@@ -56,13 +59,14 @@ constructor(props) {
     if( this.username.length > 3 && this.firstName.length > 3 && this.lastName.length > 3){
       if(this.email.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+")  != null){
         if(this.confirmedPassword == this.password ){
-          if(this.password.length > 7){
+          if(this.password.length >= 7){
             console.log(user);
           this.props.AddUser(user);
+
           } else {
-              alert("le mot de passe fait moins de 7 lettres"); }
+              alert("le mot de passe fait moins de 8 lettres"); }
           } else {
-              alert("le mot de passe fait moins de 7 lettres ou le mot de passe de confirmation ne correspond pas"); }
+              alert("le mot de passe fait moins de 8 lettres ou le mot de passe de confirmation ne correspond pas"); }
         } else {
           alert("l'email ne semble pas valide ...'"); }
       } else {

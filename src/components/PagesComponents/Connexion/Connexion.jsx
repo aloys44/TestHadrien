@@ -1,21 +1,31 @@
 import React, { Component } from "react";
 import { ConnectUser } from "../../../actions/users";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
+
 
 class Connexion extends Component {
   constructor(props) {
     super(props);
+
   }
+
+        state = { redirection: false }
+
 
   username = "";
   password = "";
-
+     
   connect = (e) => {
     const connexion = {
       username: this.username,
       password: this.password,
     };
     this.props.ConnectUser(connexion);
+             axios.post("/Accueil")
+      .then(() => this.setState({ redirection: true }));
+
   };
 
   pseudoChange = (e) => {

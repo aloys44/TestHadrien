@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { AddTodo } from "../../../actions/todos";
-
+import { useHistory } from "react-router-dom";
+import Accueil from "../../AccueilComponent/Accueil";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 
 
 class TodoComponent extends Component { 
@@ -11,8 +19,10 @@ constructor(props) {
 }
 
 
+     
 
     handleSubmit = (e) => {
+     history: useHistory();
 
     const todo = {
       title: this.title,
@@ -27,6 +37,7 @@ constructor(props) {
     } else {
     console.log(todo);
     this.props.AddTodo(todo);
+
   };}
 
   changeTitle = (e) => {
