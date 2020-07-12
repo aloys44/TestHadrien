@@ -23,7 +23,7 @@ const PageNotFound = React.lazy(() => import('./PageNotFound'));
 
 
 const routes = [
-  { path: '/', exact: true, name: 'Accueil' },
+  { path: '/', exact: true, name: 'Accueil', component: Accueil  },
   { path: '/Accueil', name: 'Accueil', component: Accueil },
   { path: '/Connexion', name: 'Connexion', component: Connexion },
   
@@ -43,7 +43,7 @@ const routes = [
   { path: '/TodoCreation', name: 'TodoCreation', component: TodoCreation },
   { path: '/TodoListComponent', name: 'TodoListComponent', component: TodoListComponent },
 
-    { path: '/*', name: 'PageNotFound', component: PageNotFound }
+  { path: '/*', name: 'PageNotFound', component: PageNotFound }
 
 ];
 

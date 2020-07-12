@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { Router } from 'react-router'
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router'
+import { connect } from "react-redux";
+
+import { history } from "./store/configureStore";
 import './App.scss';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
-import { connect } from "react-redux";
+
 
 import { GetUserByAuthToken } from "./actions/users";
 import { getCookie } from "./helpers/cookiesManager";
@@ -31,14 +36,14 @@ class App extends Component {
 
   render() {
     return (
-      <HashRouter>
+      <ConnectedRouter history={history}>
           <React.Suspense  fallback={loading}>
             <Switch>
               <Route exact path="/404" name="Page 404" render={props => <PageNotFound {...props}/>} />
               <Route path="/" name="Accueil" render={props => <ApplicationLayout {...props}/>} />
             </Switch>
           </React.Suspense>
-      </HashRouter>
+      </ConnectedRouter>
     );
   }
 }

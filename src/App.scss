@@ -119,7 +119,14 @@
   margin-top:50%;
 
 }
-
+  .menu ul{
+  display:table;
+  }
+  .menu li{
+  display:table-cell;
+  text-align:center;
+  width: 10%;
+  }
 
 .prerequis{
   margin-bottom: 30px;

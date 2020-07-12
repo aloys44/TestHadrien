@@ -39,11 +39,6 @@ class Header extends Component {
           </a>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
-            <div className="navbar-item">
-              <NavLink  to="/SortieOrganisation">Prochaine Course</NavLink>
-            </div>
-          </div>
 
           <div className="navbar-item has-dropdown is-hoverable">
           
@@ -76,9 +71,9 @@ class Header extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="#">
-            <img src="/TempLogo.png" width="112" height="28" />
-          </a>
+            <NavLink  to="/Accueil" componentclass={Link} >
+              <img src="/TempLogo.png" width="112" height="28" ></img>
+            </NavLink>
           <a
             role="button"
             className="navbar-burger burger"
@@ -93,6 +88,11 @@ class Header extends Component {
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
+                    <div className="navbar-start">
+            <div className="navbar-item">
+              <NavLink to="/SortieOrganisation">Prochaine Course</NavLink>
+            </div>
+          </div>
 
 
 
@@ -130,9 +130,9 @@ class Header extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="#">
-            <img src="/TempLogo.png" width="112" height="28" />
-          </a>
+            <NavLink  to="/Accueil" componentclass={Link} >
+              <img src="/TempLogo.png" width="112" height="28" ></img>
+            </NavLink>
           <a
             role="button"
             className="navbar-burger burger"

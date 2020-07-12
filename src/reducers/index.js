@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router'
 
 import suggestions from './suggestions';
 import sorties from './sorties';
@@ -7,7 +8,8 @@ import todo from './todos';
 
 
 
-const reducers = combineReducers({
+const reducers = (history) => combineReducers({
+  router: connectRouter(history),
   suggestions,
   sorties,
   users,

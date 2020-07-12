@@ -20,9 +20,6 @@ class TodoListComponent extends React.Component {
   anticipatedEnd_realisation = "";
   like_Count = "";
 
-  load = () => {
-    this.props.GetTodos();
-  };
 
 click = category => e => {
     this.setState({
@@ -31,10 +28,31 @@ click = category => e => {
   };
 
   renderArticle = (props) => {
-    if (props.category === 0 || props.category === props.todo.category) {
+        console.log(props.category);
+        console.log(props.todo.photo);
+
+    if (props.category == 0) {
       return (
         <>
         <div className="column is-full">
+          <article className="message is-primary ">
+            <div className="message-header">
+              <p>
+                {props.todo.title} créée par {props.todo.author} {props.todo.photo}
+              </p>
+              <p>{props.todo.creation_date}</p>
+            </div>
+            <div className="message-body">
+              {props.todo.description + " - " + props.todo.category}{" "}
+            </div>
+          </article>
+        </div>
+        </>
+      )
+    } else  if (props.category == 1 && props.category == props.todo.category) {
+      return (
+        <>
+         <div className="column is-full">
           <article className="message is-link">
             <div className="message-header">
               <p>
@@ -49,11 +67,85 @@ click = category => e => {
         </div>
         </>
       )
-    } else {
+    } else if (props.category == 2 && props.category == props.todo.category) {
+      return (
+        <>
+         <div className="column is-full">
+          <article className="message is-info">
+            <div className="message-header">
+              <p>
+                {props.todo.title} créée par {props.todo.author}
+              </p>
+              <p>{props.todo.creation_date}</p>
+            </div>
+            <div className="message-body">
+              {props.todo.description + " - " + props.todo.category}{" "}
+            </div>
+          </article>
+        </div>
+        </>
+      )
+    } else  if (props.category == 3 && props.category == props.todo.category) {
+     
+      return (
+        <>
+         <div className="column is-full">
+          <article className="message is-warning">
+            <div className="message-header">
+              <p>
+                {props.todo.title} créée par {props.todo.author}
+              </p>
+              <p>{props.todo.creation_date}</p>
+            </div>
+            <div className="message-body">
+              {props.todo.description + " - " + props.todo.category}{" "}
+            </div>
+          </article>
+        </div>
+        </>
+      )
+    } else if (props.category == 4 && props.category == props.todo.category) {
+      return (
+        <>
+         <div className="column is-full">
+          <article className="message is-danger">
+            <div className="message-header">
+              <p>
+                {props.todo.title} créée par {props.todo.author}
+              </p>
+              <p>{props.todo.creation_date}</p>
+            </div>
+            <div className="message-body">
+              {props.todo.description + " - " + props.todo.category}{" "}
+            </div>
+          </article>
+        </div>
+        </>
+      )
+    } else if (props.category == 5 && props.category == props.todo.category) {
+
+      return (
+        <>
+         <div className="column is-full">
+          <article className="message is-success">
+            <div className="message-header">
+              <p>
+                {props.todo.title} créée par {props.todo.author} 
+              </p>
+              <p>{props.todo.creation_date}</p>
+            </div>
+            <div className="message-body">
+              {props.todo.description + " - " + props.todo.category}{" "}
+            </div>
+          </article>
+        </div>
+        </>
+      )
+    } else{
       return (
         <>
         </>
-      )
+      );
     }
   }
 
@@ -64,11 +156,26 @@ click = category => e => {
         <h1>
           <strong>Liste des TODO</strong>
         </h1>
-
-        <button onClick={this.click(1)}>categorie 1</button>
-        <button onClick={this.click(2)}>categorie 2</button>
-        <button onClick={this.click(0)}>reset</button>
-
+        <div className="espace">
+        </div> 
+        <div className="hr">
+        </div>
+                <div className="espace">
+        </div> 
+        <div className="menu">
+          <ul>
+            <li><button onClick={this.click(0)} className="button is-primary">Voir toutes les TODO</button></li>
+            <li><button onClick={this.click(1)} className="button is-link">Version 1</button></li>
+            <li><button onClick={this.click(2)} className="button is-info">Version 2</button></li>
+            <li><button onClick={this.click(3)} className="button is-warning">Version 3</button></li>
+            <li><button onClick={this.click(4)} className="button is-danger">Version 4</button></li>
+            <li><button onClick={this.click(5)} className="button is-success">Version Finale</button></li>
+          </ul>
+        </div>
+        <div className="espace">
+        </div> 
+          <div className="hr">
+        </div>
         <br/>
 
         <div className="container">

@@ -10,12 +10,8 @@ class SuggestionCreation extends React.Component {
 
 
   }
-     
-  
 
   handleSubmit = () => {
-
-      
     const suggestion = {
       title: this.title,
       description: this.description,
@@ -29,20 +25,20 @@ class SuggestionCreation extends React.Component {
 
   
   changeTitle = (e) => {
-    if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+    if(e.target.value.length < 25 && e.target.value.match("^[a-zA-Z ]*$") != null){
         this.title = e.target.value;
                 console.log("titre : " + e.target.value);
     } else {
-      alert("le titre ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+      alert("le titre ne doit pas dépasser les 25 lettres et ne pas avoir de chiffres !");
     }
   };
                 
   changeDescription = (e) =>{
-    if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+    if(e.target.value.length < 100 && e.target.value.match("^[a-zA-Z ]*$") != null){
         this.description = e.target.value;
           console.log("description : " + e.target.value);
               } else {
-      alert("la description ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
+      alert("la description ne doit pas dépasser les 100 lettres et ne pas avoir de chiffres !");
     }
 
   }
@@ -54,7 +50,6 @@ class SuggestionCreation extends React.Component {
       <div className="wrapper">
         <div className="form-wrapper">
           <h1>Création d'une Suggestion</h1>
-          <form>
             <div className="details">
               <label htmlFor="title">Titre</label>
               <input
@@ -74,9 +69,8 @@ class SuggestionCreation extends React.Component {
               />
             </div>
             <div className="createAccount">
-              <button type="submit" onClick={this.handleSubmit}>Création d'une nouvelle suggestion</button>
+              <button  onClick={this.handleSubmit}>Création d'une nouvelle suggestion</button>
             </div>
-            </form>
         </div>
       </div>
     );

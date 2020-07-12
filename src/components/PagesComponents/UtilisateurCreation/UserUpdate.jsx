@@ -152,7 +152,7 @@ class UserUpdate extends React.Component {
               <label>Mot de passe</label>
               <input
                 type="password"
-                placeholder={this.props.user?.password === null || this.props.user?.password === "" ? "Mot de passe" : this.props.user?.password}
+                placeholder="Votre nouveau mot de passe"
                 name="password"
                 onChange={this.changePassword}
               />
