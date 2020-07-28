@@ -20,21 +20,23 @@ class SortieOrganisation extends React.Component {
   }
 
   reaction = (sortie) => {
-    this.setState({is_subscribed: this.state.is_subscribed + 1});
+    this.setState({is_subscribed: this.state.is_subscribed });
     this.props.ReactOnSortie(sortie, this.props.user?.auth_token);
+    console.log(sortie);
+    console.log(this.props.user?.auth_token);
+
   }
 
    render() {
     console.log(this.props.sorties);
     return (
-      <article class="message is-success">
+      <article className="message is-success">
         {this.props.sorties.nextSortie == null
           ? "ERROR MOTHERFUCKER"
           :
             <>
-              <div class="message-body">
+              <div className="message-body">
                   <h1>{this.props.sorties.nextSortie.title}</h1>
-                  {this.state.is_subscribed}
                   <p>Description: {this.props.sorties.nextSortie.description}</p>
                   <p>Nombre Maximum de coureurs: {this.props.sorties.nextSortie.nbMaxRun_participants} Nombre Maximum de marcheurs: {this.props.sorties.nextSortie.nbMaxWalk_participants}</p>
                   <p>Date de la course: {this.props.sorties.nextSortie.running_date}</p>

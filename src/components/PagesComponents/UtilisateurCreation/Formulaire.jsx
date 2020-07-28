@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { AddUser, GetUsers } from "../../../actions/users";
-import ImageUploader from "react-images-upload";
 import Select from 'react-select';
 
 
 
 
   const options = [
-  { value: "fas fa-user-ninja", label: <i class="fas fa-user-ninja"></i> },
-  { value: "fas fa-user-astronaut", label: <i class="fas fa-user-astronaut"></i> },
-  { value: "fas fa-user-tie", label: <i class="fas fa-user-tie"></i> },
-  { value: "fas fa-user-secret", label: <i class="fas fa-user-secret"></i> },
-  { value: "fas fa-snowboarding", label: <i class="fas fa-snowboarding"></i> },
-  { value: "fas fa-bed", label: <i class="fas fa-bed"></i> },
-  { value: "fas fa-hiking", label: <i class="fas fa-hiking"></i> },
-  { value: "fab fa-suse", label: <i class="fab fa-suse"></i> },
-  { value: "fas fa-kiwi-bird", label: <i class="fas fa-kiwi-bird"></i> },
-  { value: "fas fa-dragon", label: <i class="fas fa-dragon"></i> },
-  { value: "fas fa-cat", label: <i class="fas fa-cat"></i> },
-  { value: "fas fa-robot", label: <i class="fas fa-robot"></i> },
-  { value: "fas fa-running", label: <i class="fas fa-running"></i> },
-  { value: "fas fa-meteor", label: <i class="fas fa-meteor"></i> },
-  { value: "fab fa-earlybirds", label: <i class="fab fa-earlybirds"></i> },
-  { value: "fas fa-frog", label: <i class="fas fa-frog"></i> },
-  { value: "fas fa-fish", label: <i class="fas fa-fish"></i> },
-  { value: "fas fa-ghost", label: <i class="fas fa-ghost"></i> },
-  { value: "fas fa-hippo", label: <i class="fas fa-hippo"></i> },
-  { value: "fab fa-jenkins", label: <i class="fab fa-jenkins"></i> },
-  { value: "fas fa-snowman", label: <i class="fas fa-snowman"></i> },
+  { value: "fas fa-user-ninja", label: <i className="fas fa-user-ninja"></i> },
+  { value: "fas fa-user-astronaut", label: <i className="fas fa-user-astronaut"></i> },
+  { value: "fas fa-user-tie", label: <i className="fas fa-user-tie"></i> },
+  { value: "fas fa-user-secret", label: <i className="fas fa-user-secret"></i> },
+  { value: "fas fa-snowboarding", label: <i className="fas fa-snowboarding"></i> },
+  { value: "fas fa-bed", label: <i className="fas fa-bed"></i> },
+  { value: "fas fa-hiking", label: <i className="fas fa-hiking"></i> },
+  { value: "fab fa-suse", label: <i className="fab fa-suse"></i> },
+  { value: "fas fa-kiwi-bird", label: <i className="fas fa-kiwi-bird"></i> },
+  { value: "fas fa-dragon", label: <i className="fas fa-dragon"></i> },
+  { value: "fas fa-cat", label: <i className="fas fa-cat"></i> },
+  { value: "fas fa-robot", label: <i className="fas fa-robot"></i> },
+  { value: "fas fa-running", label: <i className="fas fa-running"></i> },
+  { value: "fas fa-meteor", label: <i className="fas fa-meteor"></i> },
+  { value: "fab fa-earlybirds", label: <i className="fab fa-earlybirds"></i> },
+  { value: "fas fa-frog", label: <i className="fas fa-frog"></i> },
+  { value: "fas fa-fish", label: <i className="fas fa-fish"></i> },
+  { value: "fas fa-ghost", label: <i className="fas fa-ghost"></i> },
+  { value: "fas fa-hippo", label: <i className="fas fa-hippo"></i> },
+  { value: "fab fa-jenkins", label: <i className="fab fa-jenkins"></i> },
+  { value: "fas fa-snowman", label: <i className="fas fa-snowman"></i> },
 
 ];
 
@@ -46,21 +45,22 @@ constructor(props) {
 
 
 
-    add = () => {
+    handleAdd = () => {
     const user = {
       username: this.username,
       password: this.password,
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      photo: this.state.selectedOption.value,
+      photo: "this.state.selectedOption.value",
 
     };
-    if( this.username.length > 3 && this.firstName.length > 3 && this.lastName.length > 3){
+
+    if( this.username.length > 3 || this.username.length == null && this.firstName.length > 3 || this.firstName.length == null && this.lastName.length > 3  || this.lastName.length == null){
       if(this.email.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+")  != null){
         if(this.confirmedPassword == this.password ){
           if(this.password.length >= 7){
-            console.log(user);
+            console.log("user: ", user);
           this.props.AddUser(user);
 
           } else {
@@ -125,17 +125,6 @@ constructor(props) {
   this.setState({ selectedOption });
   console.log(`Option selected:`, selectedOption);
 }
-
-      handleSubmit  = (e) =>{
-      console.log(`
-        --SUBMITTING--
-        First Name: ${this.firstName}
-        Last Name: ${this.lastName}
-        Email: ${ this.email}
-        Password: ${this.password}
-        ConfirmedPassword:  ${this.confirmedPassword}
-      `);
-  };
 
 
   render() {
@@ -210,8 +199,7 @@ constructor(props) {
               </div>  
             </div>
             <div className="createAccount">
-              <button type="submit" onClick={this.add}>Créer votre nouveau profil !</button>
-              <small>Vous avez déja un compte?</small>
+              <button  onClick={this.handleAdd}>Créer votre profil !</button>
             </div>
         </div>
       </div>
@@ -220,7 +208,7 @@ constructor(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { users: state.users };
+  return { users: state.users, user: state.users.user };
 };
 
 function mapDispatchToProps(dispatch) {

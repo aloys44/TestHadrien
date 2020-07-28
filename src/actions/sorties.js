@@ -52,11 +52,6 @@ export function ReactOnSortie(sortie, auth_token) {
     })
       .then((response) => {
         if (response.status === 200 || response.status === 201) {
-           console.log("eeeee");
-           dispatch({
-            type: types.REDIRECT,
-            payload: "/Accueil",
-          });
         } else {
           dispatch({
             type: types.SORTIE_ADD_ERROR,
@@ -83,6 +78,10 @@ export function AddSortie(sortie) {
           dispatch({
             type: types.SORTIE_ADD,
             payload: sortie,
+          });
+          dispatch({
+            type: types.REDIRECT,
+            payload: "/Accueil",
           });
         } else {
           dispatch({

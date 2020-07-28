@@ -32,7 +32,7 @@ class suggestion extends Component {
             <div className="espace_2"> 
             </div>
             <center>
-              <a class="button is-primary">
+              <a className="button is-primary">
                 <strong>
                   <h1>Vous n'êtes pas connecté ...</h1>
                 </strong>

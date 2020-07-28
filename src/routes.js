@@ -19,6 +19,11 @@ const SortieSuscribedList = React.lazy(() => import('./components/SortieComponen
 const TodoCreation = React.lazy(() => import('./components/PagesComponents/Todo/TodoComponent'));
 const TodoListComponent = React.lazy(() => import('./components/PagesComponents/Todo/TodoListComponent'));
 
+const EvenementCreation = React.lazy(() => import('./components/PagesComponents/Evenement/EvenementCreation'));
+const EvenementList = React.lazy(() => import('./components/PagesComponents/Evenement/EvenementList'));
+const NextEvenement = React.lazy(() => import('./components/PagesComponents/Evenement/NextEvenement'));
+
+
 const PageNotFound = React.lazy(() => import('./PageNotFound'));
 
 
@@ -42,6 +47,11 @@ const routes = [
   { path: '/ListeSortie', name: 'ListeSortie', component: ListeSortie },
   { path: '/TodoCreation', name: 'TodoCreation', component: TodoCreation },
   { path: '/TodoListComponent', name: 'TodoListComponent', component: TodoListComponent },
+
+  { path: '/EvenementCreation', name: 'EvenementCreation', component: EvenementCreation },
+  { path: '/EvenementList', name: 'EvenementList', component: EvenementList },
+  { path: '/NextEvenement', name: 'NextEvenement', component: NextEvenement },
+
 
   { path: '/*', name: 'PageNotFound', component: PageNotFound }
 

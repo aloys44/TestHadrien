@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import { AddSortie } from "../../actions/sorties";
 
+import * as Datetime from 'react-datetime';
+import Moment from 'moment/locale/fr';
 
 
 class SortieCreation extends React.Component {
@@ -15,50 +16,50 @@ class SortieCreation extends React.Component {
   description = "";  
   author = "";
   nbMaxWalk_participants = "";  
-  leaderWalk_participants = "";
   nbMaxRun_participants = "";
-  leaderRun_participants = "";
   nbTotal_participants = "";
 
-    add = () => {
+    handleAdd = () => {
     const sortie = {
       title: this.title,
       description: this.description,
       author: this.author,
       nbMaxWalk_participants: this.nbMaxWalk_participants,
-      leaderWalk_participants: this.leaderWalk_participants,
       nbMaxRun_participants: this.nbMaxRun_participants,
-      leaderRun_participants: this.leaderRun_participants,
-      nbTotal_participants: this.nbTotal_participants,
+      running_date:this.running_date,
      };
      console.log(sortie);
     this.props.AddSortie(sortie);
   };
 
-  titleChange= (e) => {
-    this.title = e.target.value;
+  changeTitle = (e) => {
+  console.log("title : " + e.target.value);
+  this.title = e.target.value;
   }
-  descriptionChange= (e) => {
+  changeDescription= (e) => {
+     console.log("description : " + e.target.value);
     this.description = e.target.value;
   }
-  authorChange= (e) => {
+  changeAuthor= (e) => {
+    console.log("auteur : " + e.target.value);
     this.author = e.target.value;
   }
-  nbMaxWalk_participantsChange= (e) => {
+  changeNbMaxWalk= (e) => {
+     console.log("nbMaxWalk : " + e.target.value);
     this.nbMaxWalk_participants = e.target.value;
   }
-  leaderWalk_participantsChange= (e) => {
-    this.leaderWalk_participants = e.target.value;
-  }
-  nbMaxRun_participantsChange= (e) => {
+
+  changeNbMaxRun= (e) => {
+    console.log("nbMaxRun : " + e.target.value);
     this.nbMaxRun_participants = e.target.value;
   }
-  leaderRun_participantsChange= (e) => {
-    this.leaderRun_participants = e.target.value;
+
+    changeRunning_date = (date) => {
+    console.log("date de la course : " + date.format("YYYY-MM-DD HH:mm:ss"));
+    this.running_date = date.format("YYYY-MM-DD HH:mm:ss");
   }
-  nbTotal_participantsChange= (e) => {
-    this.nbTotal_participants = e.target.value;
-  }
+
+
 
 handleSubmit = e => {
       console.log(`
@@ -67,11 +68,8 @@ handleSubmit = e => {
         Description: ${this.state.description}
         Author: ${this.state.author}
         nbMaxWalk_participants: ${this.state.nbMaxWalk_participants}
-        leaderWalk_participants: ${this.state.leaderWalk_participants}
         nbMaxRun_participants: ${this.state.nbMaxRun_participants}
-        leaderRun_participants: ${this.state.leaderRun_participants}
-        nbTotal_participants: ${this.state.nbTotal_participants}
-        creation_date: ${this.state.creation_date}
+        running_date: ${this.state.running_date}
 
       `);
     
@@ -81,98 +79,66 @@ handleSubmit = e => {
 
 
      return (
-     <div>
-      <div className="wrapper-suggestion-creationCourse">
+      <div className="wrapper">
         <div className="form-wrapper">
-          <h1>Création d'une course</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
-            <div className="details">
-              <label htmlFor="title">Titre</label>
+          <h1>Création du profil</h1>
+            <div className="title">
+              <label>Titre de l'évènement</label>
               <input
-                placeholder="Titre"
                 type="text"
+                placeholder="Le titre de la course"
                 name="title"
-                onChange={this.titleChange}
+                onChange={this.changeTitle}
               />
             </div>
-            <div className="details">
-              <label htmlFor="author">Auteur</label>
-              <input
-                placeholder="Auteur"
-                type="text"
-                name="author"
-                noValidate
-                onChange={this.authorChange}
-              />
-            </div>
-            <div className="details">
-              <label htmlFor="nbMaxWalk_participants">Nombre participants Max Marche</label>
-              <input
-                placeholder="Nb Participants Max Marche"
-                type="text"
-                name="nbMaxWalk_participants"
-                noValidate
-                onChange={this.nbMaxWalk_participantsChange}
-              />
-            </div>
-               <div className="details">
-              <label htmlFor="leaderWalk_participants">Leader Marche Marche</label>
-              <input
-                placeholder="leaderWalk_participants"
-                type="text"
-                name="leaderWalk_participants"
-                noValidate
-                onChange={this.leaderWalk_participantsChange}
-              />
-            </div>
-            <div className="details">
-              <label htmlFor="nbMaxRun_participants">Nombre participants Max Course</label>
-              <input
-                placeholder="nbMaxRun_participants"
-                type="text"
-                name="nbMaxRun_participants"
-                noValidate
-                onChange={this.nbMaxRun_participantsChange}
-              />
-            </div>               
-            <div className="details">
-              <label htmlFor="leaderRun_participants">Leader Course</label>
-              <input
-                placeholder="leaderRun_participants"
-                type="text"
-                name="leaderRun_participants"
-                noValidate
-                onChange={this.leaderRun_participantsChange}
-              />
-            </div>               
-            <div className="details">
-              <label htmlFor="nbTotal_participants">Nombre participants Max total</label>
-              <input
-                placeholder="nbTotal_participants"
-                type="text"
-                name="nbTotal_participants"
-                noValidate
-                onChange={this.nbTotal_participantsChange}
-              />
-            </div>               
             <div className="description">
-              <label htmlFor="description">Description</label>
-              <textarea
-                placeholder="Description"
-                rows="7"
+              <label>Description</label>
+              <input
                 type="text"
+                placeholder="description"
                 name="description"
-                noValidate
-                onChange={this.descriptionChange}
+                onChange={this.changeDescription}
               />
-              <div className="createAccount">
-              <button type="submit" onClick={this.add}>Valider la course</button>
             </div>
-            </div>  
-          </form>
+            <div className="description">
+              <label>Author</label>
+              <input
+                type="text"
+                placeholder="author"
+                name="author"
+                onChange={this.changeAuthor}
+              />
+            </div>
+            <div className="nbMaxWalk_participants">
+              <label>Nombre Max Participants marche</label>
+              <input
+                type="number"
+                placeholder="Nombre Max Participants"
+                name="nbMaxWalk_participants"
+                onChange={this.changeNbMaxWalk}
+              />
+            </div>
+            <div className="nbMaxRun_participants">
+              <label>Nombre Max Participants course</label>
+              <input
+                type="number"
+                placeholder="Nombre Max Participants"
+                name="nbMaxRun_participants"
+                onChange={this.changeNbMaxRun}
+              />
+            </div>
+            <div className="running_date">
+              <label>Date de la course</label>
+              <Datetime
+              locale="fr-ca"
+              name="running_date"
+              onChange={this.changeRunning_date} />
+            </div>
+            <div className="createAccount">
+              <button  onClick={this.handleAdd}>Créer une nouvelle course !</button>
+            </div>
         </div>
       </div>
-    </div>  
      )
      
      

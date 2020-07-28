@@ -1,37 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import {  GetUsers } from "../../../actions/users";
+import { GetUsers } from "../../../actions/users";
 
 
 
 class ListUser extends React.Component {
  constructor(props) {
             super(props);    
-                 
-    this.props.GetUsers();
-
+  
   }
-  pseudo = "";
-  firstName = "";
-  lastName = "";  
-  email = "";
-  password = "";  
-  confirmedPassword = "";
 
-
-    add = () => {
-    const user = {
-      username: this.username,
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      password: this.password,
-
-     };
-     console.log(user);
-    this.props.AddUser(user);
-  };
 
   pseudoChange = (e) => {
     this.username = e.target.value;
@@ -50,28 +28,20 @@ class ListUser extends React.Component {
   }
 
 
-handleSubmit = e => {
-      console.log(`
-        --SUBMITTING--
-        pseudo: ${this.state.pseudo}
-        firstName: ${this.state.firstName}
-        lastName: ${this.state.lastName}
-        email: ${this.state.email}
-        password: ${this.state.password}
-      `);
-  };
 
 
   render() {
     console.log(this.props.users);
+        this.props.GetUsers();
+
     return (
       <div className="container">
             <h1><strong>Liste des Joggeurs utiles</strong></h1>
           <div className="columns is-multiline">
-        {this.props.users.userList === null
+        {this.props.users.userList == null
           ? "ERROR MOTHERFUCKER"
           : this.props.users.userList.map((user, index) => (
-                   <div class="column is-full">
+                   <div className="column is-full">
                       <article
                         className={
                           index % 2 === 0
@@ -79,15 +49,15 @@ handleSubmit = e => {
                             : "message is-success"
                         }
                       >
-                        <div class="message-header">
+                        <div className="message-header">
                           <p>
                             {user.username} 
                           </p>
                           <p>{user.experience}</p>
                         </div>
-                        <div class="message-body">
+                        <div className="message-body">
                           {user.email}{" "}
-                          <i class={user.photo + " photo"}></i>
+                          <i className={user.photo + " photo"}></i>
                         </div>
                       </article>
                     </div>
@@ -101,13 +71,13 @@ handleSubmit = e => {
 }
 
 const mapStateToProps = (state) => {
-  return { users: state.users };
+    console.log("state User :", state)
+    return {  users: state.users };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-        GetUsers: () => dispatch(GetUsers())
-
+        GetUsers: (user) => dispatch(GetUsers(user))
   };
 }
 

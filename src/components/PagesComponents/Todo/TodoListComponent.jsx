@@ -169,7 +169,7 @@ click = category => e => {
             <li><button onClick={this.click(2)} className="button is-info">Version 2</button></li>
             <li><button onClick={this.click(3)} className="button is-warning">Version 3</button></li>
             <li><button onClick={this.click(4)} className="button is-danger">Version 4</button></li>
-            <li><button onClick={this.click(5)} className="button is-success">Version Finale</button></li>
+            <li><button onClick={this.click(5)} className="button is-success">TODO Utilisateurs</button></li>
           </ul>
         </div>
         <div className="espace">

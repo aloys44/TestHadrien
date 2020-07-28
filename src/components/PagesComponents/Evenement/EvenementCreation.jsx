@@ -1,43 +1,43 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { AddSuggestion, GetSuggestions } from "../../../actions/suggestions";
+import { AddEvenement, GetEvenements } from "../../../actions/evenements";
 
-class SuggestionCreation extends React.Component {
+import * as Datetime from 'react-datetime';
+import Moment from 'moment/locale/fr';
+
+
+class EvenementCreation extends React.Component {
   constructor(props) {
     super(props);
   }
 
   handleAdd = () => {
-    const suggestion = {
+    const evenement = {
       title: this.title,
       description: this.description,
-      auth_token: this.props.user?.auth_token,
+      author: this.props.user?.username,
+      occured_date: this.occured_date
     };
 
     console.log(this.title.length);
-    console.log("suggestion : ", suggestion);
-    this.props.AddSuggestion(suggestion);
+    console.log("évènement : ", evenement);
+    this.props.AddEvenement(evenement);
   }
 
   
   changeTitle = (e) => {
-    if(e.target.value.length < 25 && e.target.value.match("^[a-zA-Z ]*$") != null){
         this.title = e.target.value;
                 console.log("titre : " + e.target.value);
-    } else {
-      alert("le titre ne doit pas dépasser les 25 lettres et ne pas avoir de chiffres !");
-    }
   };
                 
   changeDescription = (e) =>{
-    if(e.target.value.length < 100 && e.target.value.match("^[a-zA-Z ]*$") != null){
         this.description = e.target.value;
-          console.log("description : " + e.target.value);
-              } else {
-      alert("la description ne doit pas dépasser les 100 lettres et ne pas avoir de chiffres !");
-    }
+          console.log("description : " + e.target.value);   
+  };
 
+      changeOccuredDate = (date) => {
+    this.occured_date = date.format("YYYY-MM-DD HH:mm:ss");
   }
 
 
@@ -46,7 +46,7 @@ class SuggestionCreation extends React.Component {
     return (
       <div className="wrapper">
         <div className="form-wrapper">
-          <h1>Création d'une Suggestion</h1>
+          <h1>Création d'un Evenement</h1>
             <div className="details">
               <label htmlFor="title">Titre</label>
               <input
@@ -65,8 +65,15 @@ class SuggestionCreation extends React.Component {
                 onChange={this.changeDescription}
               />
             </div>
+            <div className="details">
+              <label>Date de la course</label>
+              <Datetime
+              locale="fr-ca"
+              name="occured_date"
+              onChange={this.changeOccuredDate} />
+            </div>
             <div className="createAccount">
-              <button onClick={this.handleAdd}>Création d'un nouveau TODO</button>
+              <button onClick={this.handleAdd}>Création d'un nouvel évènement</button>
             </div>
         </div>
       </div>
@@ -78,14 +85,14 @@ class SuggestionCreation extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  return { suggestions: state.suggestions, user: state.users.user };
+  return { evenements: state.evenements, user: state.users.user };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    AddSuggestion: (suggestion) => dispatch(AddSuggestion(suggestion)),
+    AddEvenement: (evenement) => dispatch(AddEvenement(evenement)),
 
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SuggestionCreation);
+export default connect(mapStateToProps, mapDispatchToProps)(EvenementCreation);

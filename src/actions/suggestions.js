@@ -27,6 +27,10 @@ export function AddSuggestion(suggestion) {
                 type: types.SUGGESTION_ADD,
                 payload: json,
                 });
+            dispatch({
+              type: types.REDIRECT,
+              payload: "/Accueil",
+          });
             });
           } else {
           dispatch({
@@ -41,6 +45,19 @@ export function AddSuggestion(suggestion) {
       });
   };
 }
+  export function GetLikeList() {
+  return function (dispatch) {
+    return fetch("http://testhadrienback/api/suggestions/likeList.php")
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch({
+          type: types.SUGGESTION_DATA_LOADED,
+          payload: json.suggestionList,
+        });
+      });
+  };
+}
+
 
 export function ReactOnSuggestion(suggestion, is_liked, auth_token) {
   return function (dispatch) {

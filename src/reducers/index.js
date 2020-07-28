@@ -5,6 +5,8 @@ import suggestions from './suggestions';
 import sorties from './sorties';
 import users from './users';
 import todo from './todos';
+import evenements from './evenements';
+
 
 
 
@@ -13,7 +15,8 @@ const reducers = (history) => combineReducers({
   suggestions,
   sorties,
   users,
-  todo 
+  todo,
+  evenements 
 });
 
 export default reducers;

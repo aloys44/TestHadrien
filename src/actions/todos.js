@@ -15,21 +15,6 @@ export function GetTodos() {
 }
 
 
-/*
-export function GetSortieSorted() {
-  return function (dispatch) {
-    return fetch("http://testhadrienback/api/sorties/readSortieLast.php")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        dispatch({
-          type: types.SORTIE_DATA_LOADED,
-          payload: json.sortieList,
-        });
-      });
-  };
-}
-*/
 
 
 export function AddTodo(todo) {
@@ -39,12 +24,16 @@ export function AddTodo(todo) {
       body: JSON.stringify(todo),
     })
       .then((response) => {
-          if (response.status === 200) {
+          if (response.status === 200 || response.status === 201) {
              response.json().then((json) => {
             dispatch({
               type: types.TODO_OBJECT_ADD,
               payload: json,
             });
+            dispatch({
+              type: types.REDIRECT,
+              payload: "/Accueil",
+             });       
           });
         } else {
           dispatch({

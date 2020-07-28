@@ -30,12 +30,12 @@ class SortieSuscribedList extends React.Component {
   render() {
     console.log(this.props.sorties);
     return (
-      <article class="message is-success">
+      <article className="message is-success">
         {this.props.sorties.sortieList == null
           ? "ERROR MOTHERFUCKER"
           : this.props.sorties.sortieList.map((sortie, index) => (
               <>
-            <div class="message-body">
+            <div className="message-body">
                 <h1>{sortie.title}</h1>
                 <p>Description: {sortie.description}</p>
             </div>

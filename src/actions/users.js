@@ -5,6 +5,8 @@ export function GetUsers() {
     return fetch("http://testhadrienback/api/users/list.php")
       .then((response) => response.json())
       .then((json) => {
+      console.log(json);
+
         dispatch({
           type: types.USER_DATA_LOADED,
           payload: json.userList,
@@ -42,6 +44,10 @@ export function UpdateUser(user) {
               type: types.USER_UPDATE,
               payload: json,
             });
+            dispatch({
+              type: types.REDIRECT,
+              payload: "/Accueil",
+             });
           });
         } else {
           dispatch({
@@ -66,12 +72,16 @@ export function AddUser(user) {
       body: JSON.stringify(user),
     })
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === 200 || response.status === 201) {
           response.json().then((json) => {
             dispatch({
               type: types.USER_ADD,
               payload: json,
             });
+              dispatch({
+                type: types.REDIRECT,
+                payload: "/Accueil",
+              });
           });
         } else {
           dispatch({
@@ -98,6 +108,10 @@ export function ConnectUser(user) {
           dispatch({
             type: types.USER_CONNECTED,
             payload: json,
+          });
+          dispatch({
+            type: types.REDIRECT,
+            payload: "/Accueil",
           });
         });
       } else {

@@ -1,31 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AddTodo } from "../../../actions/todos";
-import Accueil from "../../AccueilComponent/Accueil";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 class TodoComponent extends Component {
   constructor(props) {
     super(props);
   }
 
-  handleSubmit = (e) => {
+  handleAdd = (e) => {
     const todo = {
       title: this.title,
       description: this.description,
       category: 5,
       author: this.props.user?.username,
     };
-
-    if (this.title.length < 5 || this.description.length < 5) {
-      console.log(this.title.length);
-      alert(
-        "titre ou description trop petite ! Minimum 5 lettres pour chaque !"
-      );
-    } else {
-      console.log(todo);
-      this.props.AddTodo(todo);
-    }
+         if( this.title.length > 5 || this.title.length == null && this.description.length == null && this.description.length > 5  || this.description.length == null){
+            console.log("todo : ", todo);
+            this.props.AddTodo(todo);
+         }  else {
+      alert("le titre comme la description doivent au moins faire 5 lettres !"); }
   };
 
   changeTitle = (e) => {
@@ -37,7 +30,7 @@ class TodoComponent extends Component {
       console.log("titre : " + e.target.value);
     } else {
       alert(
-        "le titre ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !"
+        "le titre ne doit pas dépasser les 25 lettres et ne pas avoir de chiffres !"
       );
     }
   };
@@ -51,7 +44,7 @@ class TodoComponent extends Component {
       console.log("description : " + e.target.value);
     } else {
       alert(
-        "la description ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !"
+        "la description ne doit pas dépasser les 100 lettres et ne pas avoir de chiffres !"
       );
     }
   };
@@ -60,7 +53,7 @@ class TodoComponent extends Component {
     return (
       <div className="wrapper">
         <div className="form-wrapper">
-          <h1>Création d'un Objet Todo</h1>
+          <h1>Création d'un TODO</h1>
             <div className="details">
               <label htmlFor="title">Titre</label>
               <input
@@ -80,9 +73,7 @@ class TodoComponent extends Component {
               />
             </div>
             <div className="createAccount">
-              <button onClick={this.handleSubmit}>
-                Création d'un nouveau Todo
-              </button>
+              <button onClick={this.handleAdd}>Création d'une nouvelle suggestion</button>
             </div>
         </div>
       </div>
@@ -90,8 +81,10 @@ class TodoComponent extends Component {
   }
 }
 
+
+
 const mapStateToProps = (state) => {
-  return { todos: state.todo, user: state.users.user };
+  return { todos: state.todos, user: state.users.user };
 };
 
 function mapDispatchToProps(dispatch) {

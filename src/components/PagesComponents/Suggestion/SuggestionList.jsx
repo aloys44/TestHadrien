@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+
 import LikeButton from "./LikeComponent/LikeButton";
-import { GetSuggestions, ReactOnSuggestion } from "../../../actions/suggestions";
+import { GetSuggestions, ReactOnSuggestion, GetLikeList } from "../../../actions/suggestions";
 
 class SuggestionList extends React.Component {
   constructor(props) {
@@ -12,12 +13,24 @@ class SuggestionList extends React.Component {
     this.props.GetSuggestions();
   }
 
-  load = () => {
-    this.props.GetSuggestions();
-  };
+  mouseOut() {
+    this.props.GetLikeList();
+    console.log(this.props.suggestions);
+
+  }
+  
+  mouseOver() {
+    this.props.GetLikeList();
+        console.log(this.props.suggestions);
+
+  }
 
   reaction = (suggestion, is_liked) => {
     this.props.ReactOnSuggestion(suggestion, is_liked, this.props.user?.auth_token);
+    console.log(suggestion);
+        console.log(this.props.user?.auth_token);
+
+
   }
 
   render() {
@@ -42,7 +55,9 @@ class SuggestionList extends React.Component {
                         <div className="message-body">
                           {suggestion.creation_date}{" "}
                         </div>
-                        <LikeButton is_like={true} nbr={suggestion.likes} suggestion={suggestion} fallback={this.reaction} />
+                        <LikeButton is_like={true} nbr={suggestion.likes} suggestion={suggestion} fallback={this.reaction} 
+                        onMouseEnter={this.mouseOver}
+                        onMouseLeave={this.mouseOut}/>
                         <LikeButton is_like={false} nbr={suggestion.dislikes} suggestion={suggestion} fallback={this.reaction} />
                       </article>
                     </div>
