@@ -13,13 +13,13 @@ class NextEvenement extends React.Component {
     this.props.GetNextEvenement();
   }
 
-  reaction = (evenement) => {
+  componentDidMount = (evenement) => {
+      console.log(evenement);
+      console.log(this.props.user?.auth_token);
     this.props.ReactOnEvenement(evenement, this.props.user?.auth_token);
-            console.log(evenement);
-            console.log(this.props.user?.auth_token);
 
   }
-
+  
 
   render() {
         console.log(this.props.evenements);
@@ -44,7 +44,7 @@ class NextEvenement extends React.Component {
                           {evenement.creation_date}{" "}
                         </div>
                       </article>
-                      <LikeButton evenement={evenement} fallback={this.reaction}/>
+                      <LikeButton evenement={evenement} componentDidMount={evenement}/>
                     </div>
                   )
                 )}
