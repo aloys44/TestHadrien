@@ -1,8 +1,9 @@
 import * as types from "../constants/ActionTypes";
+import getApiUrl from "../helpers/getApiUrl";
 
 export function GetEvenements() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/evenements/list.php")
+    return fetch(getApiUrl() + "/evenements/list.php")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -14,9 +15,14 @@ export function GetEvenements() {
   };
 }
 
-export function GetNextEvenement() {
+export function GetNotSeenListEvenement(auth_token) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/evenements/getNextEvenement.php")
+    return fetch(getApiUrl() + "/evenements/getNotSeenList.php", {
+      method: "post",
+      body: JSON.stringify({
+        auth_token: auth_token,
+      }),
+    })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -31,16 +37,15 @@ export function GetNextEvenement() {
 
   export function ReactOnEvenement(evenement, auth_token) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/evenements/StatutSeen.php", {
+    return fetch(getApiUrl() + "/evenements/StatutSeen.php", {
       method: "post",
       body: JSON.stringify({
-        id: evenement.id,
         auth_token: auth_token,
       }),
     })
         .then((response) => {
         if (response.status === 200 || response.status === 201) {
-            dispatch(GetNextEvenement());
+            dispatch(GetNotSeenListEvenement(auth_token));
           } else {
               dispatch({
                 type: types.EVENEMENT_ADD_ERROR,
@@ -58,14 +63,14 @@ export function GetNextEvenement() {
 
 export function AddEvenement(evenement) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/evenements/add.php", {
+    return fetch(getApiUrl() + "/evenements/add.php", {
       method: "post",
       body: JSON.stringify(evenement),
     })
       .then((response) => {
           if (response.status === 200 || response.status === 201) {
              response.json().then((json) => {
-            dispatch({
+            dispatch({ 
               type: types.EVENEMENT_ADD,
               payload: json,
             });

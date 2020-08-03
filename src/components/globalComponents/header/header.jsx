@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { AddUser } from "../../../actions/users";
-import { GetNextEvenement } from "../../../actions/evenements";
-
-
+import { GetNotSeenListEvenement } from "../../../actions/evenements";
 
 import {
   NavLink,
@@ -16,11 +14,11 @@ import {
 class Header extends Component {
    constructor(props) {
             super(props);  
-
-      this.props.GetNextEvenement();
+  
   }
 
   render() {
+    console.log(this.props.user?.auth_token);
     console.log(this.props.evenements);
         // Utilisateur non connecté
         if(this.props.user?.username == "" || this.props.user?.username == null) {
@@ -125,7 +123,7 @@ class Header extends Component {
               </div>
             </div>
           </div>
-          <a className="navbar-item">{this.props.evenements == null ? <img src="https://img.icons8.com/ios/96/000000/secured-letter.png"/> : <NavLink to="/NextEvenement"><img src="https://img.icons8.com/fluent/96/000000/secured-letter.png"/></NavLink>}</a>
+          <a className="navbar-item">{this.props.evenements == null || this.props.evenements == "" ? <img src="https://img.icons8.com/material-rounded/24/000000/new-letter.png"/> : <NavLink to="/NextEvenement"><img src="https://img.icons8.com/fluent/96/000000/secured-letter.png"/></NavLink>}</a>
            <a className="navbar-item">{this.props.user?.username == null || this.props.user?.username == "" ? "Vous n'êtes pas encore connecté !" : "Bonjour " + this.props.user.username + " !"}</a>
            <a className="navbar-item">{this.props.user?.roles == null ? "Vous n'avez pas défini d'avatar !" :  <i className={this.props.user.photo + " photo"}></i>}</a>
         </div>
@@ -192,7 +190,7 @@ class Header extends Component {
               </div>
             </div>
           </div>          
-           <a className="navbar-item">{this.props.evenements == null ? <img src="https://img.icons8.com/ios/96/000000/secured-letter.png"/> : <NavLink to="/NextEvenement"><img src="https://img.icons8.com/fluent/96/000000/secured-letter.png"/></NavLink>}</a>
+           <a className="navbar-item">{this.props.evenements == null || this.props.evenements == "" ? <img src="https://img.icons8.com/material-rounded/24/000000/new-letter.png"/>: <NavLink to="/NextEvenement"><img src="https://img.icons8.com/fluent/96/000000/secured-letter.png"/></NavLink>}</a>
            <a className="navbar-item">{this.props.user?.username == null || this.props.user?.username == "" ? "Vous n'êtes pas encore connecté !" : "Bonjour " + this.props.user.username + " !"}</a>
            <a className="navbar-item">{this.props.user?.photo == null ? "Vous n'avez pas défini d'avatar !" :  <i className={this.props.user.photo + " photo"}></i>}</a>
         </div>
@@ -210,7 +208,7 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     AddUser: (user) => dispatch(AddUser(user)),
-        GetNextEvenement: () => dispatch(GetNextEvenement()),
+    GetNotSeenListEvenement: (auth_token) => dispatch(GetNotSeenListEvenement(auth_token)),
 
   };
 }

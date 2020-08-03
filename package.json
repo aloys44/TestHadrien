@@ -2,6 +2,7 @@
   "name": "clientapp",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://joggeurs-utiles.fr",
   "scripts": {
     "css-build": "node-sass --omit-source-map-url assets/sass/bulma-override.scss public/css/bulma-override.css",
     "css-watch": "npm run css-build -- --watch",

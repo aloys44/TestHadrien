@@ -1,8 +1,9 @@
 import * as types from "../constants/ActionTypes";
+import getApiUrl from "../helpers/getApiUrl";
 
 export function GetSuggestions() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/list.php")
+    return fetch(getApiUrl() + "/suggestions/list.php")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -16,7 +17,7 @@ export function GetSuggestions() {
 
 export function AddSuggestion(suggestion) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/add.php", {
+    return fetch(getApiUrl() + "/suggestions/add.php", {
       method: "post",
       body: JSON.stringify(suggestion),
     })
@@ -47,7 +48,7 @@ export function AddSuggestion(suggestion) {
 }
   export function GetLikeList() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/likeList.php")
+    return fetch(getApiUrl() + "/suggestions/likeList.php")
       .then((response) => response.json())
       .then((json) => {
         dispatch({
@@ -61,7 +62,7 @@ export function AddSuggestion(suggestion) {
 
 export function ReactOnSuggestion(suggestion, is_liked, auth_token) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/suggestions/like.php", {
+    return fetch(getApiUrl() + "/suggestions/like.php", {
       method: "post",
       body: JSON.stringify({
         id: suggestion.id,

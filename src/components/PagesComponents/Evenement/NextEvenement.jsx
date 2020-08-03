@@ -3,21 +3,20 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 
-import { GetNextEvenement, ReactOnEvenement } from "../../../actions/evenements";
+import { GetNotSeenListEvenement, ReactOnEvenement } from "../../../actions/evenements";
 import LikeButton from "./LikeComponent/LikeButton";
 
 class NextEvenement extends React.Component {
   constructor(props) {
     super(props);
 
-    this.props.GetNextEvenement();
+    this.props.GetNotSeenListEvenement();
   }
 
-  componentDidMount = (evenement) => {
+  reaction = (evenement) => {
       console.log(evenement);
       console.log(this.props.user?.auth_token);
     this.props.ReactOnEvenement(evenement, this.props.user?.auth_token);
-
   }
   
 
@@ -29,7 +28,7 @@ class NextEvenement extends React.Component {
             <h1><strong>Liste des Evenements</strong></h1>
           <div className="columns is-multiline">
             {this.props.evenements.evenementList == null
-              ? "ERROR MOTHERFUCKER"
+              ? "Pas de nouveaux évènements !"
               : this.props.evenements.evenementList.map(
                   (evenement, index) => (
                     <div className="column is-full">
@@ -44,7 +43,7 @@ class NextEvenement extends React.Component {
                           {evenement.creation_date}{" "}
                         </div>
                       </article>
-                      <LikeButton evenement={evenement} componentDidMount={evenement}/>
+                      <LikeButton evenement={evenement} fallback={this.reaction}/>
                     </div>
                   )
                 )}
@@ -62,9 +61,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    GetNextEvenement: () => dispatch(GetNextEvenement()),
+    GetNotSeenListEvenement: () => dispatch(GetNotSeenListEvenement()),
     ReactOnEvenement: (evenement, auth_token) => dispatch(ReactOnEvenement(evenement, auth_token))
-
 
   };
 }

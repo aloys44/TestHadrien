@@ -52,7 +52,7 @@ constructor(props) {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      photo: "this.state.selectedOption.value",
+      photo: this.state.selectedOption.value,
 
     };
 

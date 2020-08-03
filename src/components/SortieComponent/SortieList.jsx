@@ -2,30 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { GetSorties } from "../../actions/sorties";
+import { GetSorties, DeleteSortie } from "../../actions/sorties";
 
+import LikeButton from "./LikeComponent/LikeButton";
 
 
 class SortieList extends React.Component {
  constructor(props) {
             super(props);    
 
-  this.props.GetSorties();
-
-                 
+  this.props.GetSorties();             
   }
-  title = "";
-  description = "";  
-  author = "";
-  nbMaxWalk_participants = "";  
-  leaderWalk_participants = "";
-  nbMaxRun_participants = "";
-  leaderRun_participants = "";
-  nbTotal_participants = "";
 
+    reaction = (sortie) => {
+      const id = sortie.id;
+    this.props.DeleteSortie(id);
+    console.log(id);
 
-
-
+  }
 
   render() {
     console.log(this.props.sorties);
@@ -38,6 +32,8 @@ class SortieList extends React.Component {
             <div className="message-body">
                 <h1>{sortie.title}</h1>
                 <p>Description: {sortie.description}</p>
+                <LikeButton sortie={sortie} fallback={this.reaction}/>
+
             </div>
               </>
             ))}
@@ -52,7 +48,9 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-        GetSorties: () => dispatch(GetSorties())
+        GetSorties: () => dispatch(GetSorties()),
+        DeleteSortie: (id) => dispatch(DeleteSortie(id)),
+
 
   };
 }

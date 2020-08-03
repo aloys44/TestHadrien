@@ -1,50 +1,47 @@
 import * as types from "../constants/ActionTypes";
 import getApiUrl from "../helpers/getApiUrl";
 
-export function GetTodos() {
+export function GetMessages() {
   return function (dispatch) {
-    return fetch(getApiUrl() + "/todos/list.php")
+    return fetch(getApiUrl() + "/messages/list.php")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
         dispatch({
-          type: types.TODO_OBJECT_DATA_LOADED,
-          payload: json.todoList,
+          type: types.MESSAGE_DATA_LOADED,
+          payload: json.messageList,
         });
       });
   };
 }
 
-
-
-
-export function AddTodo(todo) {
+export function AddMessage(message) {
   return function (dispatch) {
-    return fetch(getApiUrl() + "/todos/add.php", {
+    return fetch(getApiUrl() + "/messages/add.php", {
       method: "post",
-      body: JSON.stringify(todo),
+      body: JSON.stringify(message),
     })
       .then((response) => {
           if (response.status === 200 || response.status === 201) {
              response.json().then((json) => {
             dispatch({
-              type: types.TODO_OBJECT_ADD,
-              payload: json,
-            });
+                type: types.MESSAGE_ADD,
+                payload: json,
+                });
             dispatch({
               type: types.REDIRECT,
               payload: "/Accueil",
-             });       
           });
-        } else {
+            });
+          } else {
           dispatch({
-            type: types.TODO_OBJECT_ADD_ERROR,
+            type: types.MESSAGE_ADD_ERROR,
           });
         }
       })
       .catch(() => {
         dispatch({
-          type: types.TODO_OBJECT_ADD_ERROR,
+          type: types.MESSAGE_ADD_ERROR,
         });
       });
   };

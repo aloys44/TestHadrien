@@ -1,10 +1,11 @@
 import { push } from 'connected-react-router'
 
 import * as types from "../constants/ActionTypes";
+import getApiUrl from "../helpers/getApiUrl";
 
 export function GetSorties() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/sorties/list.php")
+    return fetch(getApiUrl() + "/sorties/list.php")
       .then((response) => response.json())
       .then((json) => {
         dispatch({
@@ -17,7 +18,7 @@ export function GetSorties() {
 
 export function GetNextSortie() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/sorties/getNextSortie.php")
+    return fetch(getApiUrl() + "/sorties/getNextSortie.php")
       .then((response) => response.json())
       .then((json) => {
         dispatch({
@@ -30,7 +31,7 @@ export function GetNextSortie() {
 
 export function GetSubscribedSortie() {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/sorties/subscriptionList.php")
+    return fetch(getApiUrl() + "/sorties/subscriptionList.php")
       .then((response) => response.json())
       .then((json) => {
         dispatch({
@@ -41,9 +42,10 @@ export function GetSubscribedSortie() {
   };
 }
 
+
 export function ReactOnSortie(sortie, auth_token) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/sorties/suscribed.php", {
+    return fetch(getApiUrl() + "/sorties/suscribed.php", {
       method: "post",
       body: JSON.stringify({
         id: sortie.id,
@@ -66,9 +68,39 @@ export function ReactOnSortie(sortie, auth_token) {
   };
 }
 
+
+export function DeleteSortie(id) {
+  return function (dispatch) {
+    return fetch(getApiUrl() + "/sorties/delete.php", {
+      method: "post",
+      body: JSON.stringify(id),
+    })
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+
+          response.json().then((json) => {
+            dispatch({
+              type: types.SORTIE_DELETE,
+              payload: json,
+            });
+          });
+        } else {
+          dispatch({
+            type: types.SORTIE_DELETE_ERROR,
+          });
+        }
+      })
+      .catch(() => {
+        dispatch({
+          type: types.SORTIE_DELETE_ERROR,
+        });
+      });
+  };
+}
+
 export function AddSortie(sortie) {
   return function (dispatch) {
-    return fetch("http://testhadrienback/api/sorties/add.php", {
+    return fetch(getApiUrl() + "/sorties/add.php", {
       method: "post",
       body: JSON.stringify(sortie),
     })
@@ -95,4 +127,7 @@ export function AddSortie(sortie) {
         });
       });
   };
+
+
+
 }

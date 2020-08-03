@@ -6,13 +6,12 @@ class LikeButton extends React.Component {
 
     handleClick = () =>  {
         //this.props.nbr += this.props.is_like ? +1 : -1;
-        this.props.fallback(this.props.sortie, this.props.is_subscribed);
+        this.props.fallback(this.props.sortie);
     };
 
     render() {
-        console.log(this.props.is_subscribed);
         return <button className="btn btn-link" onClick={ this.handleClick}>
-            <i className={this.props.is_subscribed == false ? "fas fa-thumbs-down" : "fas fa-thumbs-up"}/>
+            <i className="fas fa-check"/>
         </button>
 
 

@@ -23,6 +23,10 @@ const EvenementCreation = React.lazy(() => import('./components/PagesComponents/
 const EvenementList = React.lazy(() => import('./components/PagesComponents/Evenement/EvenementList'));
 const NextEvenement = React.lazy(() => import('./components/PagesComponents/Evenement/NextEvenement'));
 
+const MessageCreation = React.lazy(() => import('./components/PagesComponents/ForumComponent/MessageComponent/MessageCreation'));
+const ThreadCreation = React.lazy(() => import('./components/PagesComponents/ForumComponent/ThreadComponent/ThreadCreation'));
+const ThreadList = React.lazy(() => import('./components/PagesComponents/ForumComponent/ThreadComponent/ThreadList'));
+
 
 const PageNotFound = React.lazy(() => import('./PageNotFound'));
 
@@ -51,6 +55,10 @@ const routes = [
   { path: '/EvenementCreation', name: 'EvenementCreation', component: EvenementCreation },
   { path: '/EvenementList', name: 'EvenementList', component: EvenementList },
   { path: '/NextEvenement', name: 'NextEvenement', component: NextEvenement },
+
+  { path: '/MessageCreation', name: 'MessageCreation', component: MessageCreation },
+  { path: '/ThreadCreation', name: 'ThreadCreation', component: ThreadCreation },
+  { path: '/ThreadList', name: 'ThreadList', component: ThreadList },
 
 
   { path: '/*', name: 'PageNotFound', component: PageNotFound }

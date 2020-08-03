@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { GetNextSortie, ReactOnSortie } from "../../actions/sorties";
+import { promoteRank1, promoteRank2, promoteRank3, promoteRank4  } from "../../actions/users";
+
 import LikeButton from "./LikeComponent/LikeButton";
 
 class SortieOrganisation extends React.Component {
@@ -15,13 +17,17 @@ class SortieOrganisation extends React.Component {
       is_subscribed: 0
     };
   }
-  
-  handleClick = () => {
-  }
+
 
   reaction = (sortie) => {
     this.setState({is_subscribed: this.state.is_subscribed });
     this.props.ReactOnSortie(sortie, this.props.user?.auth_token);
+    this.props.promoteRank1(this.props.user?.auth_token);
+    this.props.promoteRank2(this.props.user?.auth_token);
+    this.props.promoteRank3(this.props.user?.auth_token);
+    this.props.promoteRank4(this.props.user?.auth_token);
+
+
     console.log(sortie);
     console.log(this.props.user?.auth_token);
 
@@ -67,7 +73,13 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     GetNextSortie: () => dispatch(GetNextSortie()),
-    ReactOnSortie: (sortie, auth_token) => dispatch(ReactOnSortie(sortie, auth_token))
+    ReactOnSortie: (sortie, auth_token) => dispatch(ReactOnSortie(sortie, auth_token)),
+    promoteRank1: (auth_token) => dispatch(promoteRank1(auth_token)),
+        promoteRank2: (auth_token) => dispatch(promoteRank2(auth_token)),
+            promoteRank3: (auth_token) => dispatch(promoteRank3(auth_token)),
+                promoteRank4: (auth_token) => dispatch(promoteRank4(auth_token))
+
+ 
   };
 }
 

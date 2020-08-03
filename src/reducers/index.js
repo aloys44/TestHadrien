@@ -6,6 +6,9 @@ import sorties from './sorties';
 import users from './users';
 import todo from './todos';
 import evenements from './evenements';
+import threads from './threads';
+import messages from './messages';
+
 
 
 
@@ -16,7 +19,9 @@ const reducers = (history) => combineReducers({
   sorties,
   users,
   todo,
-  evenements 
+  evenements,
+  threads,
+  messages, 
 });
 
 export default reducers;
