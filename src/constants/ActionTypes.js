@@ -45,5 +45,7 @@ export const MESSAGE_ADD = 'MESSAGE_ADD';
 export const MESSAGE_ADD_ERROR = 'MESSAGE_ADD_ERROR';
 export const MESSAGE_DATA_LOADED = 'MESSAGE_DATA_LOADED';
 
+export const MODAL_OPEN = 'MODAL_OPEN';
+export const MODAL_CLOSE = 'MODAL_CLOSE';
 
 export const REDIRECT = 'REDIRECT';

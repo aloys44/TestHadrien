@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { AddUser, GetUsers } from "../../../actions/users";
+import { CloseModal, OpenModal } from "../../../actions/modal";
+
 import Select from 'react-select';
 
 
@@ -27,14 +29,31 @@ import Select from 'react-select';
   { value: "fas fa-ghost", label: <i className="fas fa-ghost"></i> },
   { value: "fas fa-hippo", label: <i className="fas fa-hippo"></i> },
   { value: "fab fa-jenkins", label: <i className="fab fa-jenkins"></i> },
-  { value: "fas fa-snowman", label: <i className="fas fa-snowman"></i> },
+  { value: "fas fa-blind", label: <i className="fas fa-blind"></i> },
+  { value: "fas fa-cocktail", label: <i class="fas fa-cocktail"></i> },
+  { value: "fas fa-crow", label: <i className="fas fa-crow"></i> },
+  { value: "fab fa-deskpro", label: <i className="fab fa-deskpro"></i> },
+  { value: "fas fa-dog", label: <i className="fas fa-dog"></i> },
+  { value: "fas fa-dove", label: <i className="fas fa-dove"></i> },
+  { value: "fas fa-fighter-jet", label: <i className="fas fa-fighter-jet"></i> },
+  { value: "fas fa-flushed", label: <i className="fas fa-flushed"></i> },
+  { value: "fab fa-gitkraken", label: <i className="fab fa-gitkraken"></i> },
+  { value: "fab fa-grav", label: <i className="fab fa-grav"></i> },
+  { value: "fas fa-guitar", label: <i className="fas fa-guitar"></i> },
+  { value: "fas fa-hat-cowboy", label: <i className="fas fa-hat-cowboy"></i> },
+  { value: "fab fa-phoenix-framework", label: <i className="fab fa-phoenix-framework"></i> },
+  { value: "fab fa-linux", label: <i className="fab fa-linux"></i> },
+
+
 
 ];
 
 
 class Formulaire extends Component { 
 constructor(props) {
-    super(props);    
+    super(props);  
+
+        this.props.GetUsers();
   }
 
 
@@ -56,12 +75,22 @@ constructor(props) {
 
     };
 
+        const modal = {
+      title: "Profil créé",
+      description: "votre profil a bien été créé",
+
+    };
+
     if( this.username.length > 3 || this.username.length == null && this.firstName.length > 3 || this.firstName.length == null && this.lastName.length > 3  || this.lastName.length == null){
       if(this.email.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+")  != null){
         if(this.confirmedPassword == this.password ){
           if(this.password.length >= 7){
             console.log("user: ", user);
           this.props.AddUser(user);
+                      console.log("modal: ", modal);
+
+          this.props.OpenModal(modal.title, modal.description);
+
 
           } else {
               alert("le mot de passe fait moins de 8 lettres"); }
@@ -208,12 +237,16 @@ constructor(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { users: state.users, user: state.users.user };
+  return { users: state.users, user: state.users.user, modal: state.modal };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     AddUser: (user) => dispatch(AddUser(user)),
+    GetUsers: () => dispatch(GetUsers()),
+    OpenModal: (title, description) => dispatch(OpenModal(title, description)),
+
+
   };
 }
 

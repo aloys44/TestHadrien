@@ -13,7 +13,7 @@ class Sortie extends Component {
 
   render() {
     // Utilisateur non connecté
-        if(this.props.user?.username === "" || this.props.user?.username === null) {
+        if(this.props.user?.username == null || this.props.user?.username == "" ) {
             return (
         <div>
             <div className="titreInferieur">

@@ -38,7 +38,7 @@ class SortieOrganisation extends React.Component {
     return (
       <article className="message is-success">
         {this.props.sorties.nextSortie == null
-          ? "ERROR MOTHERFUCKER"
+          ? "Problème chargement prochaine sortie"
           :
             <>
               <div className="message-body">

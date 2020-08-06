@@ -263,7 +263,7 @@ export function ConnectUser(user) {
           });
           dispatch({
             type: types.REDIRECT,
-            payload: "/Accueil",
+            payload: "/Connexion",
           });
         });
       } else {

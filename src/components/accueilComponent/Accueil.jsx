@@ -8,6 +8,8 @@ import Explication from "./explication/explication.jsx";
 import Suggestion from "./suggestion/suggestion.jsx";
 import Todo from "./todo/todo.jsx";
 import Sortie from "./sortie/sortie.jsx";
+import Forum from "./forum/forum.jsx";
+
 
 import ComingSoon from "./alarm/ComingSoon.jsx";
 
@@ -26,6 +28,7 @@ class Accueil extends Component {
         <Sortie />
         <Suggestion />
         <Todo />
+        <Forum />
         <></>
       </>
     );

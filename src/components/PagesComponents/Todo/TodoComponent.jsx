@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { AddTodo } from "../../../actions/todos";
+import { AddTodo, GetTodos } from "../../../actions/todos";
+import { CloseModal, OpenModal } from "../../../actions/modal";
+
 
 class TodoComponent extends Component {
   constructor(props) {
     super(props);
+
+        this.props.GetTodos();
+
   }
 
   handleAdd = (e) => {
@@ -14,9 +19,11 @@ class TodoComponent extends Component {
       category: 5,
       author: this.props.user?.username,
     };
-         if( this.title.length > 5 || this.title.length == null && this.description.length == null && this.description.length > 5  || this.description.length == null){
+         if( this.title.length > 25 || this.title.length == null && this.description.length == null && this.description.length > 25  || this.description.length == null){
             console.log("todo : ", todo);
             this.props.AddTodo(todo);
+                this.props.OpenModal();
+
          }  else {
       alert("le titre comme la description doivent au moins faire 5 lettres !"); }
   };
@@ -84,12 +91,16 @@ class TodoComponent extends Component {
 
 
 const mapStateToProps = (state) => {
-  return { todos: state.todos, user: state.users.user };
+  return { todos: state.todos, user: state.users.user, modal: state.modal };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     AddTodo: (todo) => dispatch(AddTodo(todo)),
+        GetTodos: () => dispatch(GetTodos()),
+            OpenModal: () => dispatch(OpenModal()),
+
+
   };
 }
 

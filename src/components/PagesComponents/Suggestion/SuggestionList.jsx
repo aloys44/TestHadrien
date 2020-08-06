@@ -41,7 +41,7 @@ class SuggestionList extends React.Component {
             <h1><strong>Liste des Suggestions</strong></h1>
           <div className="columns is-multiline">
             {this.props.suggestions.suggestionList == null
-              ? "ERROR MOTHERFUCKER"
+              ? "Problème chargement liste suggestions"
               : this.props.suggestions.suggestionList.map(
                   (suggestion, index) => (
                     <div className="column is-full">

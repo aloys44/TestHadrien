@@ -6,18 +6,16 @@ const initialState = {
   error: false
 };
 
-export default function todos(state = initialState, action) {
+export default function messages(state = initialState, action) {
   switch (action.type) {
     case MESSAGE_ADD:
       return {
         messageList: [...state.messageList, action.payload],
       };
-
       case MESSAGE_ADD_ERROR:
       return {
         messageList: null,
       };
-
       case MESSAGE_DATA_LOADED:
       return {
         messageList: action.payload,

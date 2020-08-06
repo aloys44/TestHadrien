@@ -10,6 +10,9 @@ import Moment from 'moment/locale/fr';
 class EvenementCreation extends React.Component {
   constructor(props) {
     super(props);
+
+        this.props.GetEvenements();
+
   }
 
   handleAdd = () => {
@@ -91,6 +94,8 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     AddEvenement: (evenement) => dispatch(AddEvenement(evenement)),
+        GetEvenements: () => dispatch(GetEvenements()),
+
 
   };
 }

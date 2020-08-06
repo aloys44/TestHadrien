@@ -20,7 +20,7 @@ class WhoAreWe extends Component {
         <h1 className="hr"><img src="https://img.icons8.com/cotton/64/000000/sneakers--v3.png"/><img src="https://img.icons8.com/cotton/64/000000/sneakers--v2.png"/></h1>
                 <div className="titreInferieur">
                     <h3>Qui sommes Nous ?</h3>
-                    <p>Nous sommes des nazairiens soucieux de notre environnement dans notre ville que nous chérissons !</p>
+                    <p>Nous sommes des nazairiens soucieux de notre environnement et qui avons à coeur de rendre notre ville agréable pour tous !</p>
                 </div>
         </section>
     );

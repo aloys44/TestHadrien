@@ -26,7 +26,7 @@ class SortieList extends React.Component {
     return (
       <article className="message is-success">
         {this.props.sorties.sortieList == null
-          ? "ERROR MOTHERFUCKER"
+          ? "Problème chargement liste sorties"
           : this.props.sorties.sortieList.map((sortie, index) => (
               <>
             <div className="message-body">

@@ -11,7 +11,7 @@ import {
 class suggestion extends Component {
 
   render() {
-        if(this.props.user?.username === "" || this.props.user?.username === null) {
+        if(this.props.user?.username == "" || this.props.user?.username == null) {
             return (
         
         <div>
@@ -31,7 +31,6 @@ class suggestion extends Component {
                 </a>
             </center>
             </div>  
-          <a href="#" title="Haut de page" className="scrollup"><img src="https://img.icons8.com/clouds/100/000000/long-arrow-up.png"/></a>
         </div>
         
     );
@@ -58,7 +57,6 @@ class suggestion extends Component {
                     <NavLink to="/TodoListComponent" className="button is-primary">Liste des Todo</NavLink>
                   </strong>
             </center>    
-          <a href="#" title="Haut de page" className="scrollup"><img src="https://img.icons8.com/clouds/100/000000/long-arrow-up.png"/></a>
         </div>
         
     );

@@ -10,7 +10,7 @@ class NextEvenement extends React.Component {
   constructor(props) {
     super(props);
 
-    this.props.GetNotSeenListEvenement();
+    this.props.GetNotSeenListEvenement(this.props.user?.auth_token);
   }
 
   reaction = (evenement) => {
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    GetNotSeenListEvenement: () => dispatch(GetNotSeenListEvenement()),
+    GetNotSeenListEvenement: (auth_token) => dispatch(GetNotSeenListEvenement(auth_token)),
     ReactOnEvenement: (evenement, auth_token) => dispatch(ReactOnEvenement(evenement, auth_token))
 
   };

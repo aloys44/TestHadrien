@@ -2,7 +2,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { AddMessage, GetMessages } from "../../../../actions/messages";
-import { AddThread } from "../../../../actions/threads";
+import { AddThread, GetThreads } from "../../../../actions/threads";
 
 
 import * as Datetime from 'react-datetime';
@@ -12,6 +12,9 @@ import Moment from 'moment/locale/fr';
 class ThreadCreation extends React.Component {
   constructor(props) {
     super(props);
+
+      this.props.GetThreads();             
+
   }
 
   handleAdd = () => {
@@ -80,6 +83,8 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     AddThread: (thread) => dispatch(AddThread(thread)),
+            GetThreads: () => dispatch(GetThreads())
+
   };
 }
 

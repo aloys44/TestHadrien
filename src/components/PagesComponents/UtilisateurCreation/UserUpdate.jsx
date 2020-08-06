@@ -25,7 +25,22 @@ import { UpdateUser } from "../../../actions/users";
   { value: "fas fa-ghost", label: <i className="fas fa-ghost"></i> },
   { value: "fas fa-hippo", label: <i className="fas fa-hippo"></i> },
   { value: "fab fa-jenkins", label: <i className="fab fa-jenkins"></i> },
-  { value: "fas fa-snowman", label: <i className="fas fa-snowman"></i> },
+  { value: "fas fa-blind", label: <i className="fas fa-blind"></i> },
+  { value: "fas fa-cocktail", label: <i class="fas fa-cocktail"></i> },
+  { value: "fas fa-crow", label: <i className="fas fa-crow"></i> },
+  { value: "fab fa-deskpro", label: <i className="fab fa-deskpro"></i> },
+  { value: "fas fa-dog", label: <i className="fas fa-dog"></i> },
+  { value: "fas fa-dove", label: <i className="fas fa-dove"></i> },
+  { value: "fas fa-fighter-jet", label: <i className="fas fa-fighter-jet"></i> },
+  { value: "fas fa-flushed", label: <i className="fas fa-flushed"></i> },
+  { value: "fab fa-gitkraken", label: <i className="fab fa-gitkraken"></i> },
+  { value: "fab fa-grav", label: <i className="fab fa-grav"></i> },
+  { value: "fas fa-guitar", label: <i className="fas fa-guitar"></i> },
+  { value: "fas fa-hat-cowboy", label: <i className="fas fa-hat-cowboy"></i> },
+  { value: "fab fa-phoenix-framework", label: <i className="fab fa-phoenix-framework"></i> },
+  { value: "fab fa-linux", label: <i className="fab fa-linux"></i> },
+
+
 
 ];
 

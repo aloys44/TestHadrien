@@ -8,6 +8,7 @@ import todo from './todos';
 import evenements from './evenements';
 import threads from './threads';
 import messages from './messages';
+import modal from './modal';
 
 
 
@@ -21,7 +22,8 @@ const reducers = (history) => combineReducers({
   todo,
   evenements,
   threads,
-  messages, 
+  messages,
+  modal,
 });
 
 export default reducers;

@@ -1,11 +1,5 @@
 import React, {useRef, useState, useEffect} from "react";
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+
 
     const ComingSoon = () => {
         const [timerDays, setTimerDays] = useState('00');
@@ -16,7 +10,7 @@ import {
         let interval = useRef();
 
         const startTimer = () => {
-            const countdownDate = new Date('June 21, 2020 11:00:00').getTime();
+            const countdownDate = new Date('August 16, 2020 11:00:00').getTime();
 
             interval = setInterval(() => {
                 const now = new Date().getTime();

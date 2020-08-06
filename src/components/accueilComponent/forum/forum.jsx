@@ -13,12 +13,12 @@ class Forum extends Component {
 
   render() {
     // Utilisateur non connecté
-        if(this.props.user?.username === "" || this.props.user?.username === null) {
+        if(this.props.user?.username == "" || this.props.user?.username == null) {
             return (
         <div>
             <div className="titreInferieur">
             <h3>Les Sorties</h3>
-                <p>Pour participer à la prochaine course et ainsi augmenter votre expérience au sein de votre profil Joggeurs Utiles, il faut vous inscrire en cliquant sur ce bouton.</p>
+                <p>Pour participer au forum, il faut vous connecter d'abord en cliquant sur ce bouton.</p>
             </div>
             <center><img src="https://img.icons8.com/bubbles/100/000000/girl-running.png"/></center>
             <div className="espace_2"> 
@@ -30,6 +30,8 @@ class Forum extends Component {
                 </a>
               </center>
                 </div> 
+                          <a href="#" title="Haut de page" className="scrollup"><img src="https://img.icons8.com/clouds/100/000000/long-arrow-up.png"/></a>
+
         </div>   
     );
     } else {
@@ -37,22 +39,19 @@ class Forum extends Component {
         return (
         <div>
             <div className="titreInferieur">
-            <h3>Les Sorties</h3>
-                <p>Pour participer à la prochaine course et ainsi augmenter votre expérience au sein de votre profil Joggeurs Utiles, il faut vous inscrire en cliquant sur ce bouton.</p>
+            <h3>Le Forum</h3>
+                <p>Pour participer au forum, c'est ici que ça se passe.</p>
             </div>
-            <center><img src="https://img.icons8.com/bubbles/100/000000/girl-running.png"/></center>
+            <center><img src="https://img.icons8.com/color/96/000000/coliseum.png"/></center>
             <div className="espace_2"> 
             <center>
                   <strong>
-                    <NavLink to="/SortieOrganisation" className="button is-primary">Participer à la prochaine course</NavLink>
+                    <NavLink to="/ThreadList" className="button is-primary">Voir les sujets des différents forum</NavLink>
                   </strong>
                 </center>
                 </div> 
-                <center>
-                  <strong>
-                    <NavLink to="/ListeSortie" className="button is-primary">Voir toutes les courses</NavLink>
-                  </strong>
-                </center>
+                          <a href="#" title="Haut de page" className="scrollup"><img src="https://img.icons8.com/clouds/100/000000/long-arrow-up.png"/></a>
+
         </div>   
     );
     }
@@ -70,4 +69,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sortie);
+export default connect(mapStateToProps, mapDispatchToProps)(Forum);

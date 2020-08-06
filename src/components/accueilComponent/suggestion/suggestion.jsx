@@ -20,7 +20,7 @@ class suggestion extends Component {
   }
 
   render() {
-    if(this.props.user?.username === null || this.props.user?.username === "" ){
+    if(this.props.user?.username == null || this.props.user?.username == "" ){
     return (
         <div>
             <div className="titreInferieur">

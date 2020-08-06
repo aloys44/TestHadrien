@@ -181,7 +181,7 @@ click = category => e => {
         <div className="container">
           <div className="columns is-multiline">
             {this.props.todo.todoList == null
-              ? "ERROR MOTHERFUCKER"
+              ? "Problème chargement liste todo"
               : this.props.todo.todoList.map((todo, index) => (
                 <this.renderArticle category={this.state.category} todo={todo}/>
                 ))}

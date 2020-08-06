@@ -44,8 +44,7 @@ class Header extends Component {
         <div id="navbarBasicExample" className="navbar-menu">
 
           <div className="navbar-item has-dropdown is-hoverable">
-          
-           <a className="navbar-item">{this.props.user?.username == null || this.props.user?.username == "" ? "Vous n'êtes pas encore connecté !" : "Bonjour " + this.props.user.username + " !"}</a>
+           <a className="navbar-item">{this.props.user?.username == null || this.props.user?.username == "" ? "Connectez-vous pour pouvoir pleinement profiter de ce site !" : "Bonjour " + this.props.user.username + " !"}</a>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">

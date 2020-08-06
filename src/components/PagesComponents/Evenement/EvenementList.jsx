@@ -27,7 +27,7 @@ class EvenementList extends React.Component {
         </h1>
         <div className="columns is-multiline">
           {this.props.evenements.evenementList === null
-            ? "ERROR MOTHERFUCKER"
+            ? "Problème chargement liste évènements"
             : this.props.evenements.evenementList.map((evenement, index) => (
                 <div className="column is-full">
                   <article>

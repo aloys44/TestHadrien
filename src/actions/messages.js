@@ -30,7 +30,7 @@ export function AddMessage(message) {
                 });
             dispatch({
               type: types.REDIRECT,
-              payload: "/Accueil",
+              payload: "/ThreadList",
           });
             });
           } else {

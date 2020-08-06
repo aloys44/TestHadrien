@@ -6,7 +6,7 @@ const initialState = {
   error: false
 };
 
-export default function todos(state = initialState, action) {
+export default function threads(state = initialState, action) {
   switch (action.type) {
     case THREAD_ADD:
       return {

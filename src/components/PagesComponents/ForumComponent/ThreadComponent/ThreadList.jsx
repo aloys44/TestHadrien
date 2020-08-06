@@ -3,8 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { GetThreads } from "../../../../actions/threads";
+import { GetMessages } from "../../../../actions/messages";
+
 
 import MessageCreation from "../MessageComponent/MessageCreation";
+import MessageListe from "../MessageComponent/MessageListe";
+
 
 
 class ThreadList extends React.Component {
@@ -14,29 +18,25 @@ class ThreadList extends React.Component {
   this.props.GetThreads();             
   }
 
-    reaction = (sortie) => {
-      const id = sortie.id;
-    this.props.DeleteSortie(id);
-    console.log(id);
-
-  }
 
   render() {
     console.log(this.props.threads);
     return (
       <article className="message is-success">
         {this.props.threads.threadList == null
-          ? "ERROR MOTHERFUCKER"
+          ? "Problème chargement liste threads"
           : this.props.threads.threadList.map((thread, index) => (
               <>
             <div className="message-body">
-                <h1>{thread.title}</h1>
-                <p>Description: {thread.description}</p>
-                <MessageCreation thread={thread} fallback={this.reaction}/>
-
+                <h1>Sujet de ce forum:{thread.subject}</h1>
+                <p>Description: {thread.author}</p>
+                <button >Ecrire dans ce forum</button>
+                <MessageListe thread={thread}/>
             </div>
               </>
             ))}
+
+            
 </article>
     );
   }

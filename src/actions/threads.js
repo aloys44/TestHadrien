@@ -30,7 +30,7 @@ export function AddThread(thread) {
                 });
             dispatch({
               type: types.REDIRECT,
-              payload: "/Accueil",
+              payload: "/ThreadList",
           });
             });
           } else {

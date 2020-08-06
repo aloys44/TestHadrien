@@ -39,7 +39,7 @@ class ListUser extends React.Component {
             <h1><strong>Liste des Joggeurs utiles</strong></h1>
           <div className="columns is-multiline">
         {this.props.users.userList == null
-          ? "ERROR MOTHERFUCKER"
+          ? "Problème chargement liste utilisateurs"
           : this.props.users.userList.map((user, index) => (
                    <div className="column is-full">
                       <article
