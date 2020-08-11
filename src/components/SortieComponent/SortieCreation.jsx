@@ -1,148 +1,145 @@
-import React from "react";
-import { connect } from "react-redux";
-
-import { AddSortie } from "../../actions/sorties";
-
+import React from 'react';
 import * as Datetime from 'react-datetime';
-import Moment from 'moment/locale/fr';
-
+import { connect } from 'react-redux';
+import { AddSortie } from '../../actions/sorties';
 
 class SortieCreation extends React.Component {
- constructor(props) {
-            super(props);    
-                 
-  }
-  title = "";
-  description = "";  
-  author = "";
-  nbMaxWalk_participants = "";  
-  nbMaxRun_participants = "";
-  nbTotal_participants = "";
+  title = '';
 
-    handleAdd = () => {
+  description = '';
+
+  author = '';
+
+  nbMaxWalkParticipants = '';
+
+  nbMaxRunParticipants = '';
+
+  nbTotalParticipants = '';
+
+  handleAdd = () => {
     const sortie = {
       title: this.title,
       description: this.description,
       author: this.author,
-      nbMaxWalk_participants: this.nbMaxWalk_participants,
-      nbMaxRun_participants: this.nbMaxRun_participants,
-      running_date:this.running_date,
-     };
-     console.log(sortie);
+      nbMaxWalkParticipants: this.nbMaxWalkParticipants,
+      nbMaxRunParticipants: this.nbMaxRunParticipants,
+      running_date: this.running_date,
+    };
     this.props.AddSortie(sortie);
   };
 
   changeTitle = (e) => {
-  console.log("title : " + e.target.value);
-  this.title = e.target.value;
-  }
-  changeDescription= (e) => {
-     console.log("description : " + e.target.value);
-    this.description = e.target.value;
-  }
-  changeAuthor= (e) => {
-    console.log("auteur : " + e.target.value);
-    this.author = e.target.value;
-  }
-  changeNbMaxWalk= (e) => {
-     console.log("nbMaxWalk : " + e.target.value);
-    this.nbMaxWalk_participants = e.target.value;
-  }
-
-  changeNbMaxRun= (e) => {
-    console.log("nbMaxRun : " + e.target.value);
-    this.nbMaxRun_participants = e.target.value;
-  }
-
-    changeRunning_date = (date) => {
-    console.log("date de la course : " + date.format("YYYY-MM-DD HH:mm:ss"));
-    this.running_date = date.format("YYYY-MM-DD HH:mm:ss");
-  }
-
-
-
-handleSubmit = e => {
-      console.log(`
-        --SUBMITTING--
-        Title: ${this.state.title}
-        Description: ${this.state.description}
-        Author: ${this.state.author}
-        nbMaxWalk_participants: ${this.state.nbMaxWalk_participants}
-        nbMaxRun_participants: ${this.state.nbMaxRun_participants}
-        running_date: ${this.state.running_date}
-
-      `);
-    
+    this.title = e.target.value;
   };
 
- render() {    
+  changeDescription = (e) => {
+    this.description = e.target.value;
+  };
 
+  changeAuthor = (e) => {
+    this.author = e.target.value;
+  };
 
-     return (
+  changeNbMaxWalk = (e) => {
+    this.nbMaxWalkParticipants = e.target.value;
+  };
+
+  changeNbMaxRun = (e) => {
+    this.nbMaxRunParticipants = e.target.value;
+  };
+
+  changeRunningDate = (date) => {
+    this.running_date = date.format('YYYY-MM-DD HH:mm:ss');
+  };
+
+  handleSubmit = () => {};
+
+  render() {
+    return (
       <div className="wrapper">
         <div className="form-wrapper">
           <h1>Création du profil</h1>
-            <div className="title">
-              <label>Titre de l'évènement</label>
+          <div className="title">
+            <label htmlFor="title">
+              Titre de l'évènement
               <input
+                name="title"
+                id="title"
                 type="text"
                 placeholder="Le titre de la course"
-                name="title"
                 onChange={this.changeTitle}
               />
-            </div>
-            <div className="description">
-              <label>Description</label>
+            </label>
+          </div>
+          <div className="description">
+            <label htmlFor="description">
+              Description
               <input
-                type="text"
-                placeholder="description"
                 name="description"
+                id="description"
+                type="text"
+                placeholder="Description"
                 onChange={this.changeDescription}
               />
-            </div>
-            <div className="description">
-              <label>Author</label>
+            </label>
+          </div>
+          <div className="description">
+            <label htmlFor="author">
+              Author
               <input
+                name="author"
+                id="author"
                 type="text"
                 placeholder="author"
-                name="author"
                 onChange={this.changeAuthor}
               />
-            </div>
-            <div className="nbMaxWalk_participants">
-              <label>Nombre Max Participants marche</label>
+            </label>
+          </div>
+          <div className="nbMaxWalkParticipants">
+            <label htmlFor="nbMaxWalkParticipants">
+              Nombre Max Participants marche
               <input
+                name="nbMaxWalkParticipants"
+                id="nbMaxWalkParticipants"
                 type="number"
                 placeholder="Nombre Max Participants"
-                name="nbMaxWalk_participants"
                 onChange={this.changeNbMaxWalk}
               />
-            </div>
-            <div className="nbMaxRun_participants">
-              <label>Nombre Max Participants course</label>
+            </label>
+          </div>
+          <div className="nbMaxRunParticipants">
+            <label htmlFor="nbMaxRunParticipants">
+              Nombre Max Participants course
               <input
+                name="nbMaxRunParticipants"
+                id="nbMaxRunParticipants"
                 type="number"
                 placeholder="Nombre Max Participants"
-                name="nbMaxRun_participants"
                 onChange={this.changeNbMaxRun}
               />
-            </div>
-            <div className="running_date">
-              <label>Date de la course</label>
+            </label>
+          </div>
+          <div className="running_date">
+            <span>
+              Date de la course
               <Datetime
-              locale="fr-ca"
-              name="running_date"
-              onChange={this.changeRunning_date} />
-            </div>
-            <div className="createAccount">
-              <button  onClick={this.handleAdd}>Créer une nouvelle course !</button>
-            </div>
+                name="running_date"
+                id="running_date"
+                locale="fr-ca"
+                onChange={this.changeRunningDate}
+              />
+            </span>
+          </div>
+          <div className="createAccount">
+            <button type="button" onClick={this.handleAdd}>
+              Créer une nouvelle course !
+            </button>
+          </div>
         </div>
       </div>
-     )
-     
-     
-     } }
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   return { sorties: state.sorties };
@@ -150,10 +147,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    AddSortie: (sortie) => dispatch(AddSortie(sortie))
+    AddSortie: (sortie) => dispatch(AddSortie(sortie)),
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortieCreation);
-
-

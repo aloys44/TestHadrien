@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { GetEvenements } from "../../../actions/evenements";
+import React from 'react';
+import { connect } from 'react-redux';
+import { GetEvenements } from '../../../actions/evenements';
 
 class EvenementList extends React.Component {
   constructor(props) {
@@ -9,17 +9,12 @@ class EvenementList extends React.Component {
     this.props.GetEvenements();
   }
 
-  reaction = (suggestion, is_liked) => {
-    this.props.ReactOnSuggestion(
-      suggestion,
-      is_liked,
-      this.props.user?.auth_token
-    );
+  reaction = (suggestion, isLiked) => {
+    this.props.ReactOnSuggestion(suggestion, isLiked, this.props.user?.authToken);
   };
 
   render() {
     this.props.GetEvenements();
-    console.log(this.props.GetEvenements());
     return (
       <div className="container">
         <h1>
@@ -27,19 +22,19 @@ class EvenementList extends React.Component {
         </h1>
         <div className="columns is-multiline">
           {this.props.evenements.evenementList === null
-            ? "Problème chargement liste évènements"
-            : this.props.evenements.evenementList.map((evenement, index) => (
-                <div className="column is-full">
-                  <article>
-                    <div className="message-header">
-                      <p>{evenement.title}</p>
-                      <p>{evenement.description}</p>
-                    </div>
-                    <div className="message-body">
-                      {evenement.creation_date}{" "}
-                    </div>
-                  </article>
-                </div>
+            ? 'Problème chargement liste évènements'
+            : this.props.evenements.evenementList.map((evenement) => (
+                <>
+                  <div className="column is-full">
+                    <article>
+                      <div className="message-header">
+                        <p>{evenement.title}</p>
+                        <p>{evenement.description}</p>
+                      </div>
+                      <div className="message-body">{evenement.creation_date} </div>
+                    </article>
+                  </div>
+                </>
               ))}
         </div>
       </div>

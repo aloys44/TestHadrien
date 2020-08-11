@@ -1,20 +1,12 @@
-import React from "react";
-
-import { connect } from "react-redux";
-import { AddMessage, GetMessages } from "../../../../actions/messages";
-import { AddThread, GetThreads } from "../../../../actions/threads";
-
-
-import * as Datetime from 'react-datetime';
-import Moment from 'moment/locale/fr';
-
+import React from 'react';
+import { connect } from 'react-redux';
+import { AddThread, GetThreads } from '../../../../actions/threads';
 
 class ThreadCreation extends React.Component {
   constructor(props) {
     super(props);
 
-      this.props.GetThreads();             
-
+    this.props.GetThreads();
   }
 
   handleAdd = () => {
@@ -24,57 +16,52 @@ class ThreadCreation extends React.Component {
       author: this.props.user?.username,
     };
 
-    console.log("thread : ", thread);
     this.props.AddThread(thread);
-  }
-
-    changeSubject = (e) =>{
-        this.subject = e.target.value;
-          console.log("subject : " + e.target.value);   
   };
 
-
-  changeText = (e) =>{
-        this.text = e.target.value;
-          console.log("text : " + e.target.value);   
+  changeSubject = (e) => {
+    this.subject = e.target.value;
   };
 
-
-
+  changeText = (e) => {
+    this.text = e.target.value;
+  };
 
   render() {
-
     return (
       <div className="wrapper">
         <div className="form-wrapper">
           <h1>Création d'un message</h1>
-            <div className="details">
-              <label htmlFor="title">Votre sujet</label>
+          <div className="details">
+            <label htmlFor="title">
+              Votre sujet
               <input
                 placeholder="Le sujet de votre message"
                 type="subject"
                 name="subject"
                 onChange={this.changeSubject}
               />
-             <label htmlFor="title">Votre texte</label>
+            </label>
+            <label htmlFor="title">
+              Votre texte
               <input
                 placeholder="Votre message"
                 type="message"
                 name="message"
                 onChange={this.changeText}
               />
-            </div>
-            <div className="createAccount">
-              <button onClick={this.handleAdd}>Création de votre sujet</button>
-            </div>
+            </label>
+          </div>
+          <div className="createAccount">
+            <button type="button" onClick={this.handleAdd}>
+              Création de votre sujet
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 }
-
-
-
 
 const mapStateToProps = (state) => {
   return { threads: state.threads, user: state.users.user };
@@ -83,8 +70,7 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     AddThread: (thread) => dispatch(AddThread(thread)),
-            GetThreads: () => dispatch(GetThreads())
-
+    GetThreads: () => dispatch(GetThreads()),
   };
 }
 

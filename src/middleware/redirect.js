@@ -1,6 +1,6 @@
-import { push } from 'connected-react-router'
-
-import { REDIRECT } from "../constants/ActionTypes";
+/* eslint-disable import/prefer-default-export */
+import { push } from 'connected-react-router';
+import { REDIRECT } from '../constants/ActionTypes';
 
 export const redirectMiddleware = (store) => (next) => (action) => {
   if (action.type === REDIRECT) {

@@ -1,12 +1,11 @@
-import * as types from "../constants/ActionTypes";
-import getApiUrl from "../helpers/getApiUrl";
+import * as types from '../constants/ActionTypes';
+import getApiUrl from '../helpers/getApiUrl';
 
 export function GetMessages() {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/messages/list.php")
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/messages/list.php`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         dispatch({
           type: types.MESSAGE_DATA_LOADED,
           payload: json.messageList,
@@ -16,24 +15,24 @@ export function GetMessages() {
 }
 
 export function AddMessage(message) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/messages/add.php", {
-      method: "post",
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/messages/add.php`, {
+      method: 'post',
       body: JSON.stringify(message),
     })
       .then((response) => {
-          if (response.status === 200 || response.status === 201) {
-             response.json().then((json) => {
+        if (response.status === 200 || response.status === 201) {
+          response.json().then((json) => {
             dispatch({
-                type: types.MESSAGE_ADD,
-                payload: json,
-                });
+              type: types.MESSAGE_ADD,
+              payload: json,
+            });
             dispatch({
               type: types.REDIRECT,
-              payload: "/ThreadList",
-          });
+              payload: '/ThreadList',
             });
-          } else {
+          });
+        } else {
           dispatch({
             type: types.MESSAGE_ADD_ERROR,
           });

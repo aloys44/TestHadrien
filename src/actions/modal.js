@@ -1,23 +1,19 @@
-import * as types from "../constants/ActionTypes";
-import getApiUrl from "../helpers/getApiUrl";
+import * as types from '../constants/ActionTypes';
 
 export function OpenModal(title, description) {
-  return function (dispatch) {
+  return (dispatch) => {
     dispatch({
-        type: types.MODAL_OPEN,
-        title: title,
-        description: description,
+      type: types.MODAL_OPEN,
+      title,
+      description,
     });
   };
 }
 
-
-
-
-export function CloseModal(todo) {
-  return function (dispatch) {
+export function CloseModal() {
+  return (dispatch) => {
     dispatch({
-        type: types.MODAL_CLOSE
+      type: types.MODAL_CLOSE,
     });
   };
 }

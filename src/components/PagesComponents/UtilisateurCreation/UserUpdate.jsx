@@ -1,53 +1,51 @@
-import React from "react";
-import { connect } from "react-redux";
+/* eslint-disable no-alert */
+import React from 'react';
+import { connect } from 'react-redux';
 import Select from 'react-select';
+import { UpdateUser } from '../../../actions/users';
 
-import { UpdateUser } from "../../../actions/users";
-
-  const options = [
-  { value: "fas fa-user-ninja", label: <i className="fas fa-user-ninja"></i> },
-  { value: "fas fa-user-astronaut", label: <i className="fas fa-user-astronaut"></i> },
-  { value: "fas fa-user-tie", label: <i className="fas fa-user-tie"></i> },
-  { value: "fas fa-user-secret", label: <i className="fas fa-user-secret"></i> },
-  { value: "fas fa-snowboarding", label: <i className="fas fa-snowboarding"></i> },
-  { value: "fas fa-bed", label: <i className="fas fa-bed"></i> },
-  { value: "fas fa-hiking", label: <i className="fas fa-hiking"></i> },
-  { value: "fab fa-suse", label: <i className="fab fa-suse"></i> },
-  { value: "fas fa-kiwi-bird", label: <i className="fas fa-kiwi-bird"></i> },
-  { value: "fas fa-dragon", label: <i className="fas fa-dragon"></i> },
-  { value: "fas fa-cat", label: <i className="fas fa-cat"></i> },
-  { value: "fas fa-robot", label: <i className="fas fa-robot"></i> },
-  { value: "fas fa-running", label: <i className="fas fa-running"></i> },
-  { value: "fas fa-meteor", label: <i className="fas fa-meteor"></i> },
-  { value: "fab fa-earlybirds", label: <i className="fab fa-earlybirds"></i> },
-  { value: "fas fa-frog", label: <i className="fas fa-frog"></i> },
-  { value: "fas fa-fish", label: <i className="fas fa-fish"></i> },
-  { value: "fas fa-ghost", label: <i className="fas fa-ghost"></i> },
-  { value: "fas fa-hippo", label: <i className="fas fa-hippo"></i> },
-  { value: "fab fa-jenkins", label: <i className="fab fa-jenkins"></i> },
-  { value: "fas fa-blind", label: <i className="fas fa-blind"></i> },
-  { value: "fas fa-cocktail", label: <i class="fas fa-cocktail"></i> },
-  { value: "fas fa-crow", label: <i className="fas fa-crow"></i> },
-  { value: "fab fa-deskpro", label: <i className="fab fa-deskpro"></i> },
-  { value: "fas fa-dog", label: <i className="fas fa-dog"></i> },
-  { value: "fas fa-dove", label: <i className="fas fa-dove"></i> },
-  { value: "fas fa-fighter-jet", label: <i className="fas fa-fighter-jet"></i> },
-  { value: "fas fa-flushed", label: <i className="fas fa-flushed"></i> },
-  { value: "fab fa-gitkraken", label: <i className="fab fa-gitkraken"></i> },
-  { value: "fab fa-grav", label: <i className="fab fa-grav"></i> },
-  { value: "fas fa-guitar", label: <i className="fas fa-guitar"></i> },
-  { value: "fas fa-hat-cowboy", label: <i className="fas fa-hat-cowboy"></i> },
-  { value: "fab fa-phoenix-framework", label: <i className="fab fa-phoenix-framework"></i> },
-  { value: "fab fa-linux", label: <i className="fab fa-linux"></i> },
-
-
-
+const options = [
+  { value: 'fas fa-user-ninja', label: <i className="fas fa-user-ninja" /> },
+  { value: 'fas fa-user-astronaut', label: <i className="fas fa-user-astronaut" /> },
+  { value: 'fas fa-user-tie', label: <i className="fas fa-user-tie" /> },
+  { value: 'fas fa-user-secret', label: <i className="fas fa-user-secret" /> },
+  { value: 'fas fa-snowboarding', label: <i className="fas fa-snowboarding" /> },
+  { value: 'fas fa-bed', label: <i className="fas fa-bed" /> },
+  { value: 'fas fa-hiking', label: <i className="fas fa-hiking" /> },
+  { value: 'fab fa-suse', label: <i className="fab fa-suse" /> },
+  { value: 'fas fa-kiwi-bird', label: <i className="fas fa-kiwi-bird" /> },
+  { value: 'fas fa-dragon', label: <i className="fas fa-dragon" /> },
+  { value: 'fas fa-cat', label: <i className="fas fa-cat" /> },
+  { value: 'fas fa-robot', label: <i className="fas fa-robot" /> },
+  { value: 'fas fa-running', label: <i className="fas fa-running" /> },
+  { value: 'fas fa-meteor', label: <i className="fas fa-meteor" /> },
+  { value: 'fab fa-earlybirds', label: <i className="fab fa-earlybirds" /> },
+  { value: 'fas fa-frog', label: <i className="fas fa-frog" /> },
+  { value: 'fas fa-fish', label: <i className="fas fa-fish" /> },
+  { value: 'fas fa-ghost', label: <i className="fas fa-ghost" /> },
+  { value: 'fas fa-hippo', label: <i className="fas fa-hippo" /> },
+  { value: 'fab fa-jenkins', label: <i className="fab fa-jenkins" /> },
+  { value: 'fas fa-blind', label: <i className="fas fa-blind" /> },
+  { value: 'fas fa-cocktail', label: <i className="fas fa-cocktail" /> },
+  { value: 'fas fa-crow', label: <i className="fas fa-crow" /> },
+  { value: 'fab fa-deskpro', label: <i className="fab fa-deskpro" /> },
+  { value: 'fas fa-dog', label: <i className="fas fa-dog" /> },
+  { value: 'fas fa-dove', label: <i className="fas fa-dove" /> },
+  { value: 'fas fa-fighter-jet', label: <i className="fas fa-fighter-jet" /> },
+  { value: 'fas fa-flushed', label: <i className="fas fa-flushed" /> },
+  { value: 'fab fa-gitkraken', label: <i className="fab fa-gitkraken" /> },
+  { value: 'fab fa-grav', label: <i className="fab fa-grav" /> },
+  { value: 'fas fa-guitar', label: <i className="fas fa-guitar" /> },
+  { value: 'fas fa-hat-cowboy', label: <i className="fas fa-hat-cowboy" /> },
+  {
+    value: 'fab fa-phoenix-framework',
+    label: <i className="fab fa-phoenix-framework" />,
+  },
+  { value: 'fab fa-linux', label: <i className="fab fa-linux" /> },
 ];
 
 class UserUpdate extends React.Component {
-
-
-    update = () => {
+  update = () => {
     const user = {
       username: this.username,
       password: this.password,
@@ -55,145 +53,177 @@ class UserUpdate extends React.Component {
       lastName: this.lastName,
       email: this.props.user.email,
       photo: this.state.selectedOption.value,
-
     };
-    if( this.username.length > 3 && this.firstName.length > 3 && this.lastName.length > 3){
-        if(this.confirmedPassword === this.password ){
-          if(this.password.length > 3){
-            console.log(user);
+    if (
+      this.username.length > 3 &&
+      this.firstName.length > 3 &&
+      this.lastName.length > 3
+    ) {
+      if (this.confirmedPassword === this.password) {
+        if (this.password.length > 3) {
           this.props.UpdateUser(user);
-          } else {
-              alert("le mot de passe fait moins de 3 lettres"); }
-          } else {
-              alert("le mot de passe fait moins de 7 lettres ou le mot de passe de confirmation ne correspond pas"); }
-        
+        } else {
+          alert('le mot de passe fait moins de 3 lettres');
+        }
       } else {
-        alert("le prénom, nom de famille et pseudo doivent comporter plus de 3 caractères");
-      } 
+        alert(
+          'le mot de passe fait moins de 7 lettres ou le mot de passe de confirmation ne correspond pas'
+        );
+      }
+    } else {
+      alert('le prénom, nom de famille et pseudo doivent comporter plus de 3 caractères');
+    }
   };
 
-    changeUsername = (e) =>{
-        if(e.target.value.length < 15 ){
+  changeUsername = (e) => {
+    if (e.target.value.length < 15) {
       this.username = e.target.value;
-      console.log("pseudo : " + e.target.value);
-        } else {
-      alert("le pseudo ne doit pas dépasser les 15 lettres !");
-    }}
-    
-  changeFirstName = (e) =>{
-        if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+    } else {
+      alert('le pseudo ne doit pas dépasser les 15 lettres !');
+    }
+  };
+
+  changeFirstName = (e) => {
+    if (e.target.value.length < 10 && e.target.value.match('^[a-zA-Z ]*$') != null) {
       this.firstName = e.target.value;
-      console.log("prénom : " + e.target.value);
-        } else {
-      alert("le prénom ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
-    }}
+    } else {
+      alert(
+        'le prénom ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !'
+      );
+    }
+  };
 
-  changeLastName = (e) =>{
-        if(e.target.value.length < 10 && e.target.value.match("^[a-zA-Z ]*$") != null){
+  changeLastName = (e) => {
+    if (e.target.value.length < 10 && e.target.value.match('^[a-zA-Z ]*$') != null) {
       this.lastName = e.target.value;
-      console.log("nom : " + e.target.value);
-        } else {
-      alert("le nom ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !");
-    }}
+    } else {
+      alert('le nom ne doit pas dépasser les 10 lettres et ne pas avoir de chiffres !');
+    }
+  };
 
-  changePassword = (e) =>{
-    if(e.target.value.length < 15) {
+  changePassword = (e) => {
+    if (e.target.value.length < 15) {
       this.password = e.target.value;
-      console.log("mot de passe : " + e.target.value);
-        } else {
-      alert("le mot de passe ne doit pas dépasser les 15 lettres et ne pas avoir de chiffres !");
-    }}
+    } else {
+      alert(
+        'le mot de passe ne doit pas dépasser les 15 lettres et ne pas avoir de chiffres !'
+      );
+    }
+  };
 
-  changeConfirmedPassword = (e) =>{
-    if(e.target.value.length < 15) {
+  changeConfirmedPassword = (e) => {
+    if (e.target.value.length < 15) {
       this.confirmedPassword = e.target.value;
-      console.log("mot de passe : " + e.target.value);
-        } else {
-      alert("le mot de passe ne doit pas dépasser les 15 lettres et ne pas avoir de chiffres !");
-    }}
+    } else {
+      alert(
+        'le mot de passe ne doit pas dépasser les 15 lettres et ne pas avoir de chiffres !'
+      );
+    }
+  };
 
   handleChange = (selectedOption) => {
-  this.setState({ selectedOption });
-  console.log(`Option selected:`, selectedOption);
-}
-
-      handleSubmit  = (e) =>{
-      console.log(`
-        --SUBMITTING--
-        First Name: ${this.firstName}
-        Last Name: ${this.lastName}
-        Email: ${ this.email}
-        Password: ${this.password}
-        ConfirmedPassword:  ${this.confirmedPassword}
-      `);
+    this.setState({ selectedOption });
   };
 
- render() {   
-  console.log(this.props.users);
-     return (
+  handleSubmit = () => {};
 
-
+  render() {
+    return (
       <div className="wrapper">
         <div className="form-wrapper">
           <h1>Modification du profil</h1>
-            <div className="firstName">
-              <label>Prénom</label>
+          <div className="firstName">
+            <label htmlFor="firstName">
+              Prénom
               <input
-                type="text"
-                placeholder={this.props.user?.firstName === null || this.props.user?.username === "" ? "Prénom" : this.props.user?.username}
                 name="firstName"
+                id="firstName"
+                type="text"
+                placeholder={
+                  this.props.user?.firstName === null || this.props.user?.username === ''
+                    ? 'Prénom'
+                    : this.props.user?.username
+                }
                 onChange={this.changeFirstName}
               />
-            </div>
-            <div className="lastName">
-              <label>Nom</label>
+            </label>
+          </div>
+          <div className="lastName">
+            <label htmlFor="lastName">
+              Nom
               <input
-                type="text"
-                placeholder={this.props.user?.lastName === null || this.props.user?.lastName === "" ? "Nom" : this.props.user?.lastName}
                 name="lastName"
+                id="lastName"
+                type="text"
+                placeholder={
+                  this.props.user?.lastName === null || this.props.user?.lastName === ''
+                    ? 'Nom'
+                    : this.props.user?.lastName
+                }
                 onChange={this.changeLastName}
               />
-            </div>
-            <div className="pseudo">
-              <label>Pseudo</label>
+            </label>
+          </div>
+          <div className="pseudo">
+            <label htmlFor="username">
+              Pseudo
               <input
-                type="text"
-                placeholder={this.props.user?.username === null || this.props.user?.username === "" ? "Pseudo" : this.props.user?.username}
                 name="username"
+                id="username"
+                type="text"
+                placeholder={
+                  this.props.user?.username == null || this.props.user?.username === ''
+                    ? 'Pseudo'
+                    : this.props.user?.username
+                }
                 onChange={this.changeUsername}
               />
-            </div>
-            <div className="password">
-              <label>Mot de passe</label>
+            </label>
+          </div>
+          <div className="password">
+            <label htmlFor="password">
+              Mot de passe
               <input
+                name="password"
+                id="password"
                 type="password"
                 placeholder="Votre nouveau mot de passe"
-                name="password"
                 onChange={this.changePassword}
               />
-            </div>
-            <div className="password">
-              <label>Confirmation du mot de passe</label>
+            </label>
+          </div>
+          <div className="password">
+            <label htmlFor="confirmedPassword">
+              Confirmation du mot de passe
               <input
+                name="confirmedPassword"
+                id="confirmedPassword"
                 type="password"
                 placeholder="Confirmation du mot de passe"
-                name="confirmedPassword"
                 onChange={this.changeConfirmedPassword}
               />
-              <div className="espace_3">
-              <label>Avatar</label>
-              <center><h1>
-               <Select 
-               placeholder="Votre avatar ..."
-                onChange={this.handleChange}
-                options={options}
-                autoFocus={true} />
-                </h1></center>
-              </div>  
+            </label>
+            <div className="espace_3">
+              <span>
+                Avatar
+                <center>
+                  <h1>
+                    <Select
+                      placeholder="Votre avatar ..."
+                      onChange={this.handleChange}
+                      options={options}
+                      autoFocus
+                    />
+                  </h1>
+                </center>
+              </span>
             </div>
-            <div className="createAccount">
-              <button type="submit" onClick={this.update}>Modifier votre profil !</button>
-            </div>
+          </div>
+          <div className="createAccount">
+            <button type="submit" onClick={this.update}>
+              Modifier votre profil !
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -201,16 +231,13 @@ class UserUpdate extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state User :", state)
   return { user: state.users.user, users: state.users };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    UpdateUser: (user) => dispatch(UpdateUser(user))
+    UpdateUser: (user) => dispatch(UpdateUser(user)),
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserUpdate);
-
-

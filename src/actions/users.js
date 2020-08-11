@@ -1,13 +1,11 @@
-import * as types from "../constants/ActionTypes";
-import getApiUrl from "../helpers/getApiUrl";
+import * as types from '../constants/ActionTypes';
+import getApiUrl from '../helpers/getApiUrl';
 
 export function GetUsers() {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/list.php")
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/list.php`)
       .then((response) => response.json())
       .then((json) => {
-      console.log(json);
-
         dispatch({
           type: types.USER_DATA_LOADED,
           payload: json.userList,
@@ -16,11 +14,11 @@ export function GetUsers() {
   };
 }
 
-export function GetUserByAuthToken(auth_token) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/getUserByAuthToken.php", {
-      method: "post",
-      body: JSON.stringify({"auth_token": auth_token}),
+export function GetUserByAuthToken(authToken) {
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/getUserByAuthToken.php`, {
+      method: 'post',
+      body: JSON.stringify({ authToken }),
     })
       .then((response) => response.json())
       .then((json) => {
@@ -33,9 +31,9 @@ export function GetUserByAuthToken(auth_token) {
 }
 
 export function UpdateUser(user) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/updateProfil.php", {
-      method: "post",
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/updateProfil.php`, {
+      method: 'post',
       body: JSON.stringify(user),
     })
       .then((response) => {
@@ -47,8 +45,8 @@ export function UpdateUser(user) {
             });
             dispatch({
               type: types.REDIRECT,
-              payload: "/Accueil",
-             });
+              payload: '/Accueil',
+            });
           });
         } else {
           dispatch({
@@ -64,12 +62,12 @@ export function UpdateUser(user) {
   };
 }
 
-export function listPastSorties(auth_token) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/listPastSorties.php", {
-      method: "post",
-       body: JSON.stringify({
-        auth_token: auth_token,
+export function listPastSorties(authToken) {
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/listPastSorties.php`, {
+      method: 'post',
+      body: JSON.stringify({
+        authToken,
       }),
     })
       .then((response) => {
@@ -94,12 +92,12 @@ export function listPastSorties(auth_token) {
   };
 }
 
-export function promoteRank1(auth_token) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/promoteRank1.php", {
-      method: "post",
-       body: JSON.stringify({
-        auth_token: auth_token,
+export function promoteRank1(authToken) {
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/promoteRank1.php`, {
+      method: 'post',
+      body: JSON.stringify({
+        authToken,
       }),
     })
       .then((response) => {
@@ -124,12 +122,12 @@ export function promoteRank1(auth_token) {
   };
 }
 
-export function promoteRank2(auth_token) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/promoteRank2.php", {
-      method: "post",
-       body: JSON.stringify({
-        auth_token: auth_token,
+export function promoteRank2(authToken) {
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/promoteRank2.php`, {
+      method: 'post',
+      body: JSON.stringify({
+        authToken,
       }),
     })
       .then((response) => {
@@ -154,12 +152,12 @@ export function promoteRank2(auth_token) {
   };
 }
 
-export function promoteRank3(auth_token) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/promoteRank3.php", {
-      method: "post",
-       body: JSON.stringify({
-        auth_token: auth_token,
+export function promoteRank3(authToken) {
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/promoteRank3.php`, {
+      method: 'post',
+      body: JSON.stringify({
+        authToken,
       }),
     })
       .then((response) => {
@@ -184,13 +182,12 @@ export function promoteRank3(auth_token) {
   };
 }
 
-
-export function promoteRank4(auth_token) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/promoteRank4.php", {
-      method: "post",
-       body: JSON.stringify({
-        auth_token: auth_token,
+export function promoteRank4(authToken) {
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/promoteRank4.php`, {
+      method: 'post',
+      body: JSON.stringify({
+        authToken,
       }),
     })
       .then((response) => {
@@ -214,13 +211,11 @@ export function promoteRank4(auth_token) {
       });
   };
 }
-
-
 
 export function AddUser(user) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/add.php", {
-      method: "post",
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/add.php`, {
+      method: 'post',
       body: JSON.stringify(user),
     })
       .then((response) => {
@@ -230,10 +225,10 @@ export function AddUser(user) {
               type: types.USER_ADD,
               payload: json,
             });
-              dispatch({
-                type: types.REDIRECT,
-                payload: "/Accueil",
-              });
+            dispatch({
+              type: types.REDIRECT,
+              payload: '/Accueil',
+            });
           });
         } else {
           dispatch({
@@ -250,9 +245,9 @@ export function AddUser(user) {
 }
 
 export function ConnectUser(user) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/users/login.php", {
-      method: "post",
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/users/login.php`, {
+      method: 'post',
       body: JSON.stringify(user),
     }).then((response) => {
       if (response.status === 200) {
@@ -263,7 +258,7 @@ export function ConnectUser(user) {
           });
           dispatch({
             type: types.REDIRECT,
-            payload: "/Connexion",
+            payload: '/Connexion',
           });
         });
       } else {

@@ -1,29 +1,18 @@
-import React, { Component } from "react";
-import { ConnectUser } from "../../../actions/users";
-import { connect } from "react-redux";
-import axios from 'axios';
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { ConnectUser } from '../../../actions/users';
 
 class Connexion extends Component {
-  constructor(props) {
-    super(props);
+  username = '';
 
-  }
+  password = '';
 
-        state = { redirection: false }
-
-
-  username = "";
-  password = "";
-     
-  connect = (e) => {
+  connect = () => {
     const connexion = {
       username: this.username,
       password: this.password,
     };
     this.props.ConnectUser(connexion);
-
-
   };
 
   pseudoChange = (e) => {
@@ -41,26 +30,32 @@ class Connexion extends Component {
           <h1>Connexion</h1>
 
           <div className="pseudo">
-            <label htmlFor="pseudo">Pseudo</label>
-            <input
-              placeholder="Votre pseudo"
-              type="pseudo"
-              name="pseudo"
-              onChange={this.pseudoChange}
-            />
+            <label htmlFor="pseudo">
+              Pseudo
+              <input
+                placeholder="Votre pseudo"
+                type="pseudo"
+                name="pseudo"
+                onChange={this.pseudoChange}
+              />
+            </label>
           </div>
           <div className="password">
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              placeholder="Mot de passe"
-              type="password"
-              name="password"
-              onChange={this.passwordChange}
-            />
+            <label htmlFor="password">
+              Mot de passe
+              <input
+                placeholder="Mot de passe"
+                type="password"
+                name="password"
+                onChange={this.passwordChange}
+              />
+            </label>
           </div>
           <div className="createAccount">
-            <button onClick={this.connect}>Connexion</button>
-            <button className="submit-choice">
+            <button type="button" onClick={this.connect}>
+              Connexion
+            </button>
+            <button type="button" className="submit-choice">
               <small>Vous n'avez pas de compte ?</small>
             </button>
           </div>

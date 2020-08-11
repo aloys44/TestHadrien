@@ -1,46 +1,41 @@
-import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
-import { GetSorties, DeleteSortie } from "../../actions/sorties";
-
-import LikeButton from "./LikeComponent/LikeButton";
-
+import React from 'react';
+import { connect } from 'react-redux';
+import { DeleteSortie, GetSorties } from '../../actions/sorties';
+import LikeButton from './LikeComponent/LikeButton';
 
 class SortieList extends React.Component {
- constructor(props) {
-            super(props);    
+  constructor(props) {
+    super(props);
 
-  this.props.GetSorties();             
+    this.props.GetSorties();
   }
 
-    reaction = (sortie) => {
-      const id = sortie.id;
+  reaction = (sortie) => {
+    const { id } = sortie;
     this.props.DeleteSortie(id);
-    console.log(id);
-
-  }
+  };
 
   render() {
-    console.log(this.props.sorties);
     return (
       <article className="message is-success">
         {this.props.sorties.sortieList == null
-          ? "Problème chargement liste sorties"
-          : this.props.sorties.sortieList.map((sortie, index) => (
+          ? 'Problème chargement liste sorties'
+          : this.props.sorties.sortieList.map((sortie) => (
               <>
-            <div className="message-body">
-                <h1>{sortie.title}</h1>
-                <p>Description: {sortie.description}</p>
-                <LikeButton sortie={sortie} fallback={this.reaction}/>
-
-            </div>
+                <div className="message-body">
+                  <h1>{sortie.title}</h1>
+                  <p>
+                    Description:
+                    {sortie.description}
+                  </p>
+                  <LikeButton sortie={sortie} fallback={this.reaction} />
+                </div>
               </>
             ))}
-</article>
+      </article>
     );
   }
-} 
+}
 
 const mapStateToProps = (state) => {
   return { sorties: state.sorties };
@@ -48,13 +43,9 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-        GetSorties: () => dispatch(GetSorties()),
-        DeleteSortie: (id) => dispatch(DeleteSortie(id)),
-
-
+    GetSorties: () => dispatch(GetSorties()),
+    DeleteSortie: (id) => dispatch(DeleteSortie(id)),
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortieList);
-
-

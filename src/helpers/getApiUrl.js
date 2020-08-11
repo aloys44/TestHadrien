@@ -1,5 +1,5 @@
-import * as url from "../constants/Url";
+import * as url from '../constants/Url';
 
 export default function getApiUrl() {
-    return url.API_ONLINE;
+  return url.API_ONLINE;
 }

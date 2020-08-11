@@ -1,9 +1,12 @@
-import { MESSAGE_ADD, MESSAGE_ADD_ERROR, MESSAGE_DATA_LOADED} from '../constants/ActionTypes';
-
+import {
+  MESSAGE_ADD,
+  MESSAGE_ADD_ERROR,
+  MESSAGE_DATA_LOADED,
+} from '../constants/ActionTypes';
 
 const initialState = {
   messageList: null,
-  error: false
+  error: false,
 };
 
 export default function messages(state = initialState, action) {
@@ -12,11 +15,11 @@ export default function messages(state = initialState, action) {
       return {
         messageList: [...state.messageList, action.payload],
       };
-      case MESSAGE_ADD_ERROR:
+    case MESSAGE_ADD_ERROR:
       return {
         messageList: null,
       };
-      case MESSAGE_DATA_LOADED:
+    case MESSAGE_DATA_LOADED:
       return {
         messageList: action.payload,
       };

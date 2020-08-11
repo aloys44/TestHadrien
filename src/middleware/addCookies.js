@@ -1,9 +1,10 @@
-import { USER_CONNECTED } from "../constants/ActionTypes";
-import { setCookie } from "../helpers/cookiesManager";
+/* eslint-disable import/prefer-default-export */
+import { USER_CONNECTED } from '../constants/ActionTypes';
+import { setCookie } from '../helpers/cookiesManager';
 
-export const addCookiesMiddleware = (store) => (next) => (action) => {
+export const addCookiesMiddleware = () => (next) => (action) => {
   if (action.type === USER_CONNECTED) {
-    setCookie("auth_token", action.payload.auth_token);
+    setCookie('authToken', action.payload.authToken);
   }
 
   return next(action);

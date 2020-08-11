@@ -1,41 +1,31 @@
-import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
-import { GetSorties } from "../../actions/sorties";
-
-
+import React from 'react';
+import { connect } from 'react-redux';
+import { GetSorties } from '../../actions/sorties';
 
 class SortieSuscribedList extends React.Component {
- constructor(props) {
-            super(props);    
+  constructor(props) {
+    super(props);
 
-  this.props.GetSorties();
-
-                 
+    this.props.GetSorties();
   }
 
-
-
-
   render() {
-    console.log(this.props.sorties);
     return (
       <article className="message is-success">
         {this.props.sorties.sortieList == null
-          ? "Problème chargement liste sorties"
-          : this.props.sorties.sortieList.map((sortie, index) => (
+          ? 'Problème chargement liste sorties'
+          : this.props.sorties.sortieList.map((sortie) => (
               <>
-            <div className="message-body">
-                <h1>{sortie.title}</h1>
-                <p>Description: {sortie.description}</p>
-            </div>
+                <div className="message-body">
+                  <h1>{sortie.title}</h1>
+                  <p>Description: {sortie.description}</p>
+                </div>
               </>
             ))}
-</article>
+      </article>
     );
   }
-} 
+}
 
 const mapStateToProps = (state) => {
   return { sorties: state.sorties };
@@ -43,11 +33,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-        GetSorties: () => dispatch(GetSorties())
-
+    GetSorties: () => dispatch(GetSorties()),
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortieSuscribedList);
-
-

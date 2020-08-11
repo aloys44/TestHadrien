@@ -1,11 +1,17 @@
-import { SORTIE_ADD, SORTIE_ADD_ERROR, SORTIE_DATA_LOADED, SORTIE_NEXT_DATA_LOADED, SORTIE_SUSCRIBED_LIST, SORTIE_DELETE, SORTIE_DELETE_ERROR  } from '../constants/ActionTypes';
-
+import {
+  SORTIE_ADD,
+  SORTIE_ADD_ERROR,
+  SORTIE_DATA_LOADED,
+  SORTIE_DELETE,
+  SORTIE_DELETE_ERROR,
+  SORTIE_NEXT_DATA_LOADED,
+} from '../constants/ActionTypes';
 
 const initialState = {
   sortieList: null,
   nextSortie: null,
   id: null,
-  error: false
+  error: false,
 };
 
 export default function sorties(state = initialState, action) {
@@ -19,31 +25,30 @@ export default function sorties(state = initialState, action) {
     case SORTIE_NEXT_DATA_LOADED:
       return {
         sortieList: state.sortieList,
-        nextSortie : action.payload,
-      }
+        nextSortie: action.payload,
+      };
 
-      case SORTIE_ADD_ERROR:
+    case SORTIE_ADD_ERROR:
       return {
         sortieList: null,
         nextSortie: null,
       };
 
-      case SORTIE_DATA_LOADED:
+    case SORTIE_DATA_LOADED:
       return {
         sortieList: action.payload,
         nextSortie: state.nextSortie,
       };
 
-      case SORTIE_DELETE:
+    case SORTIE_DELETE:
       return {
         id: action.payload,
       };
 
-      case SORTIE_DELETE_ERROR:
+    case SORTIE_DELETE_ERROR:
       return {
         id: null,
       };
-
 
     default:
       return state;

@@ -1,19 +1,14 @@
-import React, { Component } from "react";
-
-import Intro from "./intro/intro.jsx";
-import WhoAreWe from "./who-are-we/who-are-we.jsx";
-import Carrousel from "./carrousel/carrousel.jsx";
-import Description from "./description/description.jsx";
-import Explication from "./explication/explication.jsx";
-import Suggestion from "./suggestion/suggestion.jsx";
-import Todo from "./todo/todo.jsx";
-import Sortie from "./sortie/sortie.jsx";
-import Forum from "./forum/forum.jsx";
-
-
-import ComingSoon from "./alarm/ComingSoon.jsx";
-
-
+import React, { Component } from 'react';
+import ComingSoon from './alarm/ComingSoon';
+import Carrousel from './carrousel/carrousel';
+import Description from './description/description';
+import Explication from './explication/explication';
+import Forum from './forum/forum';
+import Intro from './intro/intro';
+import Sortie from './sortie/sortie';
+import Suggestion from './suggestion/suggestion';
+import Todo from './todo/todo';
+import WhoAreWe from './who-are-we/who-are-we';
 
 class Accueil extends Component {
   render() {

@@ -7,9 +7,11 @@
     "css-build": "node-sass --omit-source-map-url assets/sass/bulma-override.scss public/css/bulma-override.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set 'GENERATE_SOURCEMAP=false' && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
@@ -22,6 +24,8 @@
     "axios": "^0.19.2",
     "bulma": "^0.8.2",
     "connected-react-router": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-react": "^1.1.7",
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-cookie": "^4.0.3",
@@ -58,7 +62,13 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "prettier-eslint": "^11.0.0",
     "redux-devtools": "^3.5.0"
   }
 }

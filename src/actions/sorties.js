@@ -1,11 +1,9 @@
-import { push } from 'connected-react-router'
-
-import * as types from "../constants/ActionTypes";
-import getApiUrl from "../helpers/getApiUrl";
+import * as types from '../constants/ActionTypes';
+import getApiUrl from '../helpers/getApiUrl';
 
 export function GetSorties() {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/sorties/list.php")
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/sorties/list.php`)
       .then((response) => response.json())
       .then((json) => {
         dispatch({
@@ -17,8 +15,8 @@ export function GetSorties() {
 }
 
 export function GetNextSortie() {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/sorties/getNextSortie.php")
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/sorties/getNextSortie.php`)
       .then((response) => response.json())
       .then((json) => {
         dispatch({
@@ -30,8 +28,8 @@ export function GetNextSortie() {
 }
 
 export function GetSubscribedSortie() {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/sorties/subscriptionList.php")
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/sorties/subscriptionList.php`)
       .then((response) => response.json())
       .then((json) => {
         dispatch({
@@ -42,19 +40,17 @@ export function GetSubscribedSortie() {
   };
 }
 
-
-export function ReactOnSortie(sortie, auth_token) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/sorties/suscribed.php", {
-      method: "post",
+export function ReactOnSortie(sortie, authToken) {
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/sorties/suscribed.php`, {
+      method: 'post',
       body: JSON.stringify({
         id: sortie.id,
-        auth_token: auth_token,
+        authToken,
       }),
     })
       .then((response) => {
-        if (response.status === 200 || response.status === 201) {
-        } else {
+        if (response.status !== 200 && response.status !== 201) {
           dispatch({
             type: types.SORTIE_ADD_ERROR,
           });
@@ -68,16 +64,14 @@ export function ReactOnSortie(sortie, auth_token) {
   };
 }
 
-
 export function DeleteSortie(id) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/sorties/delete.php", {
-      method: "post",
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/sorties/delete.php`, {
+      method: 'post',
       body: JSON.stringify(id),
     })
       .then((response) => {
         if (response.status === 200 || response.status === 201) {
-
           response.json().then((json) => {
             dispatch({
               type: types.SORTIE_DELETE,
@@ -99,21 +93,20 @@ export function DeleteSortie(id) {
 }
 
 export function AddSortie(sortie) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/sorties/add.php", {
-      method: "post",
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/sorties/add.php`, {
+      method: 'post',
       body: JSON.stringify(sortie),
     })
       .then((response) => {
-        if (response.status == 201) {
-          let json = response.json();
+        if (response.status === 201) {
           dispatch({
             type: types.SORTIE_ADD,
             payload: sortie,
           });
           dispatch({
             type: types.REDIRECT,
-            payload: "/Accueil",
+            payload: '/Accueil',
           });
         } else {
           dispatch({
@@ -127,7 +120,4 @@ export function AddSortie(sortie) {
         });
       });
   };
-
-
-
 }

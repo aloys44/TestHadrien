@@ -1,12 +1,11 @@
-import * as types from "../constants/ActionTypes";
-import getApiUrl from "../helpers/getApiUrl";
+import * as types from '../constants/ActionTypes';
+import getApiUrl from '../helpers/getApiUrl';
 
 export function GetTodos() {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/todos/list.php")
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/todos/list.php`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         dispatch({
           type: types.TODO_OBJECT_DATA_LOADED,
           payload: json.todoList,
@@ -15,26 +14,23 @@ export function GetTodos() {
   };
 }
 
-
-
-
 export function AddTodo(todo) {
-  return function (dispatch) {
-    return fetch(getApiUrl() + "/todos/add.php", {
-      method: "post",
+  return (dispatch) => {
+    return fetch(`${getApiUrl()}/todos/add.php`, {
+      method: 'post',
       body: JSON.stringify(todo),
     })
       .then((response) => {
-          if (response.status === 200 || response.status === 201) {
-             response.json().then((json) => {
+        if (response.status === 200 || response.status === 201) {
+          response.json().then((json) => {
             dispatch({
               type: types.TODO_OBJECT_ADD,
               payload: json,
             });
             dispatch({
               type: types.REDIRECT,
-              payload: "/Accueil",
-             });       
+              payload: '/Accueil',
+            });
           });
         } else {
           dispatch({

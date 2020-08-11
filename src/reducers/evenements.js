@@ -1,10 +1,13 @@
-import { EVENEMENT_ADD, EVENEMENT_DATA_LOADED, EVENEMENT_ADD_ERROR } from '../constants/ActionTypes';
-
+import {
+  EVENEMENT_ADD,
+  EVENEMENT_ADD_ERROR,
+  EVENEMENT_DATA_LOADED,
+} from '../constants/ActionTypes';
 
 const initialState = {
   evenementList: null,
   evenementNext: null,
-  error: false
+  error: false,
 };
 
 export default function evenements(state = initialState, action) {
@@ -12,16 +15,16 @@ export default function evenements(state = initialState, action) {
     case EVENEMENT_ADD:
       return {
         evenementList: [...state.evenementList, action.payload],
-        evenementNext: state.evenementNext
+        evenementNext: state.evenementNext,
       };
 
-      case EVENEMENT_ADD_ERROR:
+    case EVENEMENT_ADD_ERROR:
       return {
         evenementList: null,
         evenementNext: null,
       };
 
-      case EVENEMENT_DATA_LOADED:
+    case EVENEMENT_DATA_LOADED:
       return {
         evenementList: action.payload,
         evenementNext: state.evenementNext,
