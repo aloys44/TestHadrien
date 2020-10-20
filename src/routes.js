@@ -51,6 +51,10 @@ const NextEvenement = React.lazy(() =>
   import('./components/PagesComponents/Evenement/NextEvenement')
 );
 
+const HallOfShame = React.lazy(() =>
+  import('./components/PagesComponents/ForumComponent/HallOfShameComponent/HallOfShame')
+);
+
 const MessageCreation = React.lazy(() =>
   import('./components/PagesComponents/ForumComponent/MessageComponent/MessageCreation')
 );
@@ -99,6 +103,8 @@ const routes = [
   { path: '/ListeSortie', name: 'ListeSortie', component: ListeSortie },
   { path: '/TodoCreation', name: 'TodoCreation', component: TodoCreation },
   { path: '/TodoListComponent', name: 'TodoListComponent', component: TodoListComponent },
+
+  { path: '/HallOfShame', name: 'HallOfShame', component: HallOfShame },
 
   { path: '/EvenementCreation', name: 'EvenementCreation', component: EvenementCreation },
   { path: '/EvenementList', name: 'EvenementList', component: EvenementList },

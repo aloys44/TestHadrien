@@ -17,9 +17,6 @@ class Description extends Component {
             notre ville plus belle et agréable ! Nous nous réunissons, une fois par mois
             pour, pour ramasser les déchets peu esthétique, qui trainent dans les rues.
           </p>
-          <button type="button" onClick={this.openModal}>
-            MODAL !!!
-          </button>
           <div className="prerequis">
             <h3>Prerequis :</h3>
 

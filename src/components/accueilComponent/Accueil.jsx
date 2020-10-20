@@ -5,6 +5,7 @@ import Description from './description/description';
 import Explication from './explication/explication';
 import Forum from './forum/forum';
 import Intro from './intro/intro';
+import HallOfShame from './hallOfShame/hallOfShame';
 import Sortie from './sortie/sortie';
 import Suggestion from './suggestion/suggestion';
 import Todo from './todo/todo';
@@ -23,6 +24,7 @@ class Accueil extends Component {
         <Sortie />
         <Suggestion />
         <Todo />
+        <HallOfShame />
         <Forum />
         <></>
       </>
